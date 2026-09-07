@@ -1,0 +1,620 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+
+    <meta
+        name="viewport"
+        content="width=device-width, initial-scale=1.0"
+    >
+
+    <title>Order Confirmed - TableTap</title>
+
+    <style>
+
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        body {
+            font-family: Arial, sans-serif;
+            background: #f7f7f7;
+            color: #222;
+        }
+
+        .container {
+            max-width: 520px;
+            margin: auto;
+            padding: 25px 16px 40px;
+        }
+
+        /* =========================
+           SUCCESS
+        ========================== */
+
+        .success-section {
+            text-align: center;
+            padding: 25px 10px 30px;
+        }
+
+        .success-icon {
+            width: 75px;
+            height: 75px;
+
+            margin: 0 auto 18px;
+
+            border-radius: 50%;
+
+            background: #111;
+            color: white;
+
+            display: flex;
+            align-items: center;
+            justify-content: center;
+
+            font-size: 38px;
+        }
+
+        .success-title {
+            font-size: 25px;
+            font-weight: 700;
+
+            margin-bottom: 8px;
+        }
+
+        .success-message {
+            color: #777;
+            font-size: 14px;
+            line-height: 1.5;
+        }
+
+
+        /* =========================
+           ORDER ID
+        ========================== */
+
+        .order-id-card {
+            background: #ffffff;
+
+            border-radius: 16px;
+
+            padding: 20px;
+
+            text-align: center;
+
+            border: 1px solid #eeeeee;
+
+            margin-bottom: 15px;
+        }
+
+        .order-id-label {
+            font-size: 12px;
+            color: #777;
+
+            margin-bottom: 8px;
+        }
+
+        .order-id {
+            font-size: 24px;
+            font-weight: 700;
+
+            letter-spacing: 1px;
+        }
+
+
+        /* =========================
+           TABLE
+        ========================== */
+
+        .table-card {
+            background: #ffffff;
+
+            border-radius: 14px;
+
+            padding: 16px;
+
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+
+            border: 1px solid #eeeeee;
+
+            margin-bottom: 20px;
+        }
+
+        .table-label {
+            font-size: 12px;
+            color: #777;
+        }
+
+        .table-number {
+            font-size: 17px;
+            font-weight: 700;
+        }
+
+
+        /* =========================
+           ORDER DETAILS
+        ========================== */
+
+        .section-title {
+            font-size: 18px;
+            font-weight: 700;
+
+            margin-bottom: 12px;
+        }
+
+        .order-card {
+            background: #ffffff;
+
+            border-radius: 14px;
+
+            padding: 16px;
+
+            border: 1px solid #eeeeee;
+
+            margin-bottom: 18px;
+        }
+
+        .order-item {
+            display: flex;
+            justify-content: space-between;
+
+            padding: 12px 0;
+
+            border-bottom: 1px solid #eeeeee;
+        }
+
+        .order-item:last-child {
+            border-bottom: none;
+        }
+
+        .item-name {
+            font-size: 14px;
+        }
+
+        .item-quantity {
+            color: #777;
+            margin-left: 5px;
+        }
+
+        .item-price {
+            font-size: 14px;
+            font-weight: 600;
+        }
+
+
+        /* =========================
+           TOTAL
+        ========================== */
+
+        .total-row {
+            display: flex;
+            justify-content: space-between;
+
+            padding-top: 15px;
+
+            font-size: 18px;
+            font-weight: 700;
+        }
+
+
+        /* =========================
+           STATUS
+        ========================== */
+
+        .status-card {
+            background: #ffffff;
+
+            border-radius: 14px;
+
+            padding: 18px;
+
+            border: 1px solid #eeeeee;
+
+            margin-bottom: 20px;
+        }
+
+        .status-header {
+            display: flex;
+            align-items: center;
+
+            gap: 10px;
+
+            margin-bottom: 8px;
+        }
+
+        .status-dot {
+            width: 10px;
+            height: 10px;
+
+            border-radius: 50%;
+
+            background: #222;
+        }
+
+        .status-title {
+            font-size: 16px;
+            font-weight: 700;
+        }
+
+        .status-message {
+            font-size: 13px;
+            color: #777;
+
+            line-height: 1.5;
+        }
+
+
+        /* =========================
+           BUTTON
+        ========================== */
+
+        .menu-btn {
+            width: 100%;
+
+            border: none;
+
+            background: #111;
+            color: #ffffff;
+
+            padding: 15px;
+
+            border-radius: 10px;
+
+            font-size: 15px;
+            font-weight: 600;
+
+            cursor: pointer;
+        }
+
+        .menu-btn:active {
+            transform: scale(0.98);
+        }
+
+
+        /* =========================
+           FOOTER
+        ========================== */
+
+        .footer {
+            text-align: center;
+
+            margin-top: 25px;
+
+            color: #999;
+
+            font-size: 12px;
+        }
+
+    </style>
+</head>
+
+<body>
+
+<div class="container">
+
+
+    <!-- =========================
+         SUCCESS
+    ========================== -->
+
+    <section class="success-section">
+
+        <div class="success-icon">
+            ✓
+        </div>
+
+        <div class="success-title">
+            Order Placed!
+        </div>
+
+        <div class="success-message">
+            Your order has been successfully sent
+            to the kitchen.
+        </div>
+
+    </section>
+
+
+    <!-- =========================
+         ORDER ID
+    ========================== -->
+
+    <div class="order-id-card">
+
+        <div class="order-id-label">
+            Your Order ID
+        </div>
+
+        <div
+            class="order-id"
+            id="orderId">
+
+            TT000000
+
+        </div>
+
+    </div>
+
+
+    <!-- =========================
+         TABLE
+    ========================== -->
+
+    <div class="table-card">
+
+        <div>
+
+            <div class="table-label">
+                Table
+            </div>
+
+            <div
+                class="table-number"
+                id="tableNumber">
+
+                Table 4
+
+            </div>
+
+        </div>
+
+        <div style="font-size: 24px;">
+            🍽️
+        </div>
+
+    </div>
+
+
+    <!-- =========================
+         ORDER DETAILS
+    ========================== -->
+
+    <div class="section-title">
+        Order Details
+    </div>
+
+    <div class="order-card">
+
+        <div id="orderItems"></div>
+
+        <div class="total-row">
+
+            <span>
+                Total
+            </span>
+
+            <span id="orderTotal">
+                ₹0
+            </span>
+
+        </div>
+
+    </div>
+
+
+    <!-- =========================
+         STATUS
+    ========================== -->
+
+    <div class="status-card">
+
+        <div class="status-header">
+
+            <div class="status-dot"></div>
+
+            <div class="status-title">
+                Order Received
+            </div>
+
+        </div>
+
+        <div class="status-message">
+            The restaurant has received your order.
+            Please wait while our kitchen prepares
+            your food.
+        </div>
+
+    </div>
+
+
+    <!-- =========================
+         BACK TO MENU
+    ========================== -->
+
+    <button
+        class="menu-btn"
+        onclick="backToMenu()">
+
+        Order More Food
+
+    </button>
+
+
+    <div class="footer">
+        Powered by TableTap · Scan. Order. Serve.
+    </div>
+
+</div>
+
+
+<script>
+
+    /* =========================
+       MENU DATA
+    ========================== */
+
+    const menu = {
+
+        dosa: {
+            name: "Masala Dosa",
+            price: 80
+        },
+
+        idly: {
+            name: "Idly",
+            price: 50
+        },
+
+        briyani: {
+            name: "Chicken Briyani",
+            price: 180
+        },
+
+        parotta: {
+            name: "Parotta",
+            price: 60
+        },
+
+        coffee: {
+            name: "Filter Coffee",
+            price: 40
+        }
+
+    };
+
+
+    /* =========================
+       GET ORDER
+    ========================== */
+
+    const order =
+        JSON.parse(
+            localStorage.getItem("tableTapOrder")
+        );
+
+
+    /* =========================
+       DISPLAY ORDER
+    ========================== */
+
+    function displayOrder() {
+
+        if (!order) {
+            return;
+        }
+
+
+        /* Order ID */
+
+        document.getElementById("orderId")
+            .textContent =
+                order.orderId;
+
+
+        /* Table */
+
+        document.getElementById("tableNumber")
+            .textContent =
+                `Table ${order.tableNumber}`;
+
+
+        const orderItems =
+            document.getElementById("orderItems");
+
+
+        orderItems.innerHTML = "";
+
+
+        let total = 0;
+
+
+        for (const id in order.items) {
+
+            const quantity =
+                order.items[id];
+
+            if (
+                !menu[id] ||
+                quantity <= 0
+            ) {
+                continue;
+            }
+
+
+            const item =
+                menu[id];
+
+
+            const itemTotal =
+                item.price * quantity;
+
+
+            total += itemTotal;
+
+
+            const itemElement =
+                document.createElement("div");
+
+
+            itemElement.className =
+                "order-item";
+
+
+            itemElement.innerHTML = `
+
+                <div class="item-name">
+
+                    ${item.name}
+
+                    <span class="item-quantity">
+                        × ${quantity}
+                    </span>
+
+                </div>
+
+                <div class="item-price">
+                    ₹${itemTotal}
+                </div>
+
+            `;
+
+
+            orderItems.appendChild(
+                itemElement
+            );
+
+        }
+
+
+        document.getElementById("orderTotal")
+            .textContent =
+                `₹${total}`;
+
+    }
+
+
+    /* =========================
+       BACK TO MENU
+    ========================== */
+
+    function backToMenu() {
+
+        /*
+         * Clear previous cart so customer
+         * can create a fresh order.
+         */
+
+        localStorage.removeItem(
+            "tableTapCart"
+        );
+
+        window.location.href =
+            "menu.html";
+
+    }
+
+
+    /* =========================
+       INITIALIZE
+    ========================== */
+
+    displayOrder();
+
+</script>
+
+</body>
+</html>

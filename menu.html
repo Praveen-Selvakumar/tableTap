@@ -1,0 +1,949 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Menu - Sri Saravana Bhavan</title>
+
+    <style>
+
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        body {
+            font-family: Arial, sans-serif;
+            background: #faf8f4;
+            color: #24211f;
+            padding-bottom: 95px;
+        }
+
+        /* =========================
+           HEADER
+        ========================= */
+
+        header {
+            height: 64px;
+
+            background: white;
+
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+
+            padding: 0 20px;
+
+            border-bottom: 1px solid #eee9e3;
+
+            position: sticky;
+            top: 0;
+            z-index: 10;
+        }
+
+        .back {
+            font-size: 22px;
+            text-decoration: none;
+            color: #24211f;
+        }
+
+        .header-title {
+            font-size: 18px;
+            font-weight: bold;
+        }
+
+        .cart-icon {
+            width: 40px;
+            height: 40px;
+
+            background: #f4efe9;
+
+            border-radius: 12px;
+
+            display: flex;
+            align-items: center;
+            justify-content: center;
+
+            font-size: 19px;
+        }
+
+
+        /* =========================
+           RESTAURANT
+        ========================= */
+
+        .restaurant-info {
+            padding: 22px 20px 10px;
+        }
+
+        .restaurant-info h1 {
+            font-size: 26px;
+        }
+
+        .restaurant-info p {
+            margin-top: 7px;
+
+            color: #777;
+
+            font-size: 13px;
+
+            line-height: 1.5;
+        }
+
+
+        /* =========================
+           CATEGORY
+        ========================= */
+
+        .categories {
+
+            display: flex;
+
+            gap: 10px;
+
+            overflow-x: auto;
+
+            padding: 15px 20px;
+
+            scrollbar-width: none;
+        }
+
+        .categories::-webkit-scrollbar {
+            display: none;
+        }
+
+        .category {
+
+            flex-shrink: 0;
+
+            padding: 9px 15px;
+
+            border-radius: 20px;
+
+            background: white;
+
+            border: 1px solid #e6dfd8;
+
+            font-size: 12px;
+
+            font-weight: 600;
+        }
+
+        .category.active {
+
+            background: #e85d04;
+
+            color: white;
+
+            border-color: #e85d04;
+        }
+
+
+        /* =========================
+           MENU
+        ========================= */
+
+        .menu-section {
+
+            padding: 5px 20px;
+        }
+
+        .section-title {
+
+            font-size: 19px;
+
+            font-weight: bold;
+
+            margin-bottom: 14px;
+        }
+
+
+        /* =========================
+           FOOD CARD
+        ========================= */
+
+        .food-card {
+
+            background: white;
+
+            border-radius: 18px;
+
+            padding: 13px;
+
+            margin-bottom: 12px;
+
+            display: flex;
+
+            gap: 13px;
+
+            border: 1px solid #eee8e1;
+
+            min-height: 125px;
+        }
+
+        .food-image {
+
+            width: 105px;
+            height: 105px;
+
+            flex-shrink: 0;
+
+            border-radius: 14px;
+
+            object-fit: cover;
+        }
+
+        .food-details {
+
+            flex: 1;
+
+            display: flex;
+
+            flex-direction: column;
+
+            justify-content: space-between;
+        }
+
+        .food-name {
+
+            font-size: 15px;
+
+            font-weight: bold;
+        }
+
+        .food-description {
+
+            font-size: 11px;
+
+            color: #888;
+
+            line-height: 1.4;
+
+            margin-top: 5px;
+        }
+
+        .food-bottom {
+
+            display: flex;
+
+            align-items: center;
+
+            justify-content: space-between;
+
+            margin-top: 8px;
+        }
+
+        .price {
+
+            font-size: 15px;
+
+            font-weight: bold;
+        }
+
+
+        /* =========================
+           QUANTITY
+        ========================= */
+
+        .quantity {
+
+            display: flex;
+
+            align-items: center;
+
+            gap: 10px;
+        }
+
+        .quantity button {
+
+            width: 30px;
+            height: 30px;
+
+            border: none;
+
+            border-radius: 9px;
+
+            background: #f1ebe4;
+
+            color: #24211f;
+
+            font-size: 18px;
+
+            cursor: pointer;
+        }
+
+        .quantity button.plus {
+
+            background: #e85d04;
+
+            color: white;
+        }
+
+        .quantity span {
+
+            min-width: 15px;
+
+            text-align: center;
+
+            font-size: 14px;
+
+            font-weight: bold;
+        }
+
+
+        /* =========================
+           BOTTOM ORDER BAR
+        ========================= */
+
+        .order-bar {
+
+            position: fixed;
+
+            bottom: 0;
+            left: 0;
+            right: 0;
+
+            background: white;
+
+            border-top: 1px solid #e5dfd8;
+
+            padding: 12px 20px;
+
+            z-index: 20;
+        }
+
+        .order-container {
+
+            max-width: 520px;
+
+            margin: auto;
+
+            display: flex;
+
+            align-items: center;
+
+            gap: 12px;
+        }
+
+        .total {
+
+            flex: 1;
+        }
+
+        .total-label {
+
+            font-size: 11px;
+
+            color: #888;
+        }
+
+        .total-price {
+
+            font-size: 20px;
+
+            font-weight: bold;
+
+            margin-top: 3px;
+        }
+
+        .order-button {
+
+            border: none;
+
+            background: #e85d04;
+
+            color: white;
+
+            padding: 15px 22px;
+
+            border-radius: 14px;
+
+            font-size: 15px;
+
+            font-weight: bold;
+
+            cursor: pointer;
+        }
+
+        .order-button:disabled {
+
+            background: #cfc8c1;
+
+            cursor: not-allowed;
+        }
+
+
+        /* =========================
+           DESKTOP
+        ========================= */
+
+        @media (min-width: 700px) {
+
+            body {
+                background: #eeeae5;
+            }
+
+            main {
+
+                max-width: 520px;
+
+                margin: auto;
+
+                background: #faf8f4;
+
+                min-height: 100vh;
+            }
+
+            header {
+
+                max-width: 520px;
+
+                margin: auto;
+
+                left: 0;
+                right: 0;
+            }
+
+            .order-bar {
+
+                background: transparent;
+
+                border: none;
+            }
+
+        }
+
+    </style>
+
+</head>
+
+
+<body>
+
+<main>
+
+
+    <!-- =========================
+         HEADER
+    ========================= -->
+
+    <header>
+
+        <a href="index.html" class="back">
+            ←
+        </a>
+
+        <div class="header-title">
+            Menu
+        </div>
+
+        <div class="cart-icon">
+            🛒
+        </div>
+
+    </header>
+
+
+    <!-- =========================
+         RESTAURANT
+    ========================= -->
+
+    <section class="restaurant-info">
+
+        <h1>
+            Sri Saravana Bhavan
+        </h1>
+
+        <p>
+            Authentic South Indian food, freshly prepared
+            and served hot.
+        </p>
+
+    </section>
+
+
+    <!-- =========================
+         CATEGORIES
+    ========================= -->
+
+    <div class="categories">
+
+        <div class="category active">
+            All
+        </div>
+
+        <div class="category">
+            Breakfast
+        </div>
+
+        <div class="category">
+            Main Course
+        </div>
+
+        <div class="category">
+            Snacks
+        </div>
+
+        <div class="category">
+            Drinks
+        </div>
+
+    </div>
+
+
+    <!-- =========================
+         MENU
+    ========================= -->
+
+    <section class="menu-section">
+
+        <div class="section-title">
+            Popular
+        </div>
+
+
+        <!-- DOSA -->
+
+        <div class="food-card">
+
+            <img
+                class="food-image"
+                src="https://images.unsplash.com/photo-1630383249896-424e482df921?auto=format&fit=crop&w=300&q=80"
+            >
+
+            <div class="food-details">
+
+                <div>
+
+                    <div class="food-name">
+                        Masala Dosa
+                    </div>
+
+                    <div class="food-description">
+                        Crispy dosa served with potato masala,
+                        sambar and chutney.
+                    </div>
+
+                </div>
+
+                <div class="food-bottom">
+
+                    <div class="price">
+                        ₹80
+                    </div>
+
+                    <div class="quantity">
+
+                        <button onclick="removeItem('dosa')">
+                            −
+                        </button>
+
+                        <span id="qty-dosa">
+                            0
+                        </span>
+
+                        <button
+                            class="plus"
+                            onclick="addItem('dosa')">
+                            +
+                        </button>
+
+                    </div>
+
+                </div>
+
+            </div>
+
+        </div>
+
+
+        <!-- IDLY -->
+
+        <div class="food-card">
+
+            <img
+                class="food-image"
+                src="https://images.unsplash.com/photo-1589301760014-d929f3979dbc?auto=format&fit=crop&w=300&q=80"
+            >
+
+            <div class="food-details">
+
+                <div>
+
+                    <div class="food-name">
+                        Idly
+                    </div>
+
+                    <div class="food-description">
+                        Soft steamed idlis served with
+                        sambar and coconut chutney.
+                    </div>
+
+                </div>
+
+                <div class="food-bottom">
+
+                    <div class="price">
+                        ₹50
+                    </div>
+
+                    <div class="quantity">
+
+                        <button onclick="removeItem('idly')">
+                            −
+                        </button>
+
+                        <span id="qty-idly">
+                            0
+                        </span>
+
+                        <button
+                            class="plus"
+                            onclick="addItem('idly')">
+                            +
+                        </button>
+
+                    </div>
+
+                </div>
+
+            </div>
+
+        </div>
+
+
+        <!-- BRIYANI -->
+
+        <div class="food-card">
+
+            <img
+                class="food-image"
+                src="https://images.unsplash.com/photo-1563379091339-03246963d51a?auto=format&fit=crop&w=300&q=80"
+            >
+
+            <div class="food-details">
+
+                <div>
+
+                    <div class="food-name">
+                        Chicken Briyani
+                    </div>
+
+                    <div class="food-description">
+                        Fragrant basmati rice cooked with
+                        tender chicken and aromatic spices.
+                    </div>
+
+                </div>
+
+                <div class="food-bottom">
+
+                    <div class="price">
+                        ₹180
+                    </div>
+
+                    <div class="quantity">
+
+                        <button onclick="removeItem('briyani')">
+                            −
+                        </button>
+
+                        <span id="qty-briyani">
+                            0
+                        </span>
+
+                        <button
+                            class="plus"
+                            onclick="addItem('briyani')">
+                            +
+                        </button>
+
+                    </div>
+
+                </div>
+
+            </div>
+
+        </div>
+
+
+        <!-- PAROTTA -->
+
+        <div class="food-card">
+
+            <img
+                class="food-image"
+                src="https://images.unsplash.com/photo-1601050690597-df0568f70950?auto=format&fit=crop&w=300&q=80"
+            >
+
+            <div class="food-details">
+
+                <div>
+
+                    <div class="food-name">
+                        Parotta
+                    </div>
+
+                    <div class="food-description">
+                        Flaky layered parotta served with
+                        delicious vegetable kurma.
+                    </div>
+
+                </div>
+
+                <div class="food-bottom">
+
+                    <div class="price">
+                        ₹60
+                    </div>
+
+                    <div class="quantity">
+
+                        <button onclick="removeItem('parotta')">
+                            −
+                        </button>
+
+                        <span id="qty-parotta">
+                            0
+                        </span>
+
+                        <button
+                            class="plus"
+                            onclick="addItem('parotta')">
+                            +
+                        </button>
+
+                    </div>
+
+                </div>
+
+            </div>
+
+        </div>
+
+
+        <!-- COFFEE -->
+
+        <div class="food-card">
+
+            <img
+                class="food-image"
+                src="https://images.unsplash.com/photo-1514432324607-a09d9b4aefdd?auto=format&fit=crop&w=300&q=80"
+            >
+
+            <div class="food-details">
+
+                <div>
+
+                    <div class="food-name">
+                        Filter Coffee
+                    </div>
+
+                    <div class="food-description">
+                        Traditional South Indian filter coffee
+                        served hot.
+                    </div>
+
+                </div>
+
+                <div class="food-bottom">
+
+                    <div class="price">
+                        ₹40
+                    </div>
+
+                    <div class="quantity">
+
+                        <button onclick="removeItem('coffee')">
+                            −
+                        </button>
+
+                        <span id="qty-coffee">
+                            0
+                        </span>
+
+                        <button
+                            class="plus"
+                            onclick="addItem('coffee')">
+                            +
+                        </button>
+
+                    </div>
+
+                </div>
+
+            </div>
+
+        </div>
+
+
+    </section>
+
+
+    <!-- =========================
+         BOTTOM ORDER BAR
+    ========================= -->
+
+    <div class="order-bar">
+
+        <div class="order-container">
+
+            <div class="total">
+
+                <div class="total-label">
+                    Total
+                </div>
+
+                <div
+                    class="total-price"
+                    id="total">
+                    ₹0
+                </div>
+
+            </div>
+
+            <button
+                class="order-button"
+                id="orderButton"
+                onclick="goToCart()"
+                disabled>
+
+                Order →
+
+            </button>
+
+        </div>
+
+    </div>
+
+
+</main>
+
+
+<script>
+
+    const menu = {
+
+        dosa: {
+            name: "Masala Dosa",
+            price: 80
+        },
+
+        idly: {
+            name: "Idly",
+            price: 50
+        },
+
+        briyani: {
+            name: "Chicken Briyani",
+            price: 180
+        },
+
+        parotta: {
+            name: "Parotta",
+            price: 60
+        },
+
+        coffee: {
+            name: "Filter Coffee",
+            price: 40
+        }
+
+    };
+
+
+    let cart = {};
+
+
+    function addItem(id) {
+
+        if (!cart[id]) {
+            cart[id] = 0;
+        }
+
+        cart[id]++;
+
+        updateUI();
+
+    }
+
+
+    function removeItem(id) {
+
+        if (!cart[id]) {
+            return;
+        }
+
+        cart[id]--;
+
+        if (cart[id] <= 0) {
+            delete cart[id];
+        }
+
+        updateUI();
+
+    }
+
+
+    function updateUI() {
+
+        let total = 0;
+        let itemCount = 0;
+
+
+        Object.keys(menu).forEach(id => {
+
+            const quantity = cart[id] || 0;
+
+            document.getElementById(
+                "qty-" + id
+            ).innerText = quantity;
+
+            total += menu[id].price * quantity;
+
+            itemCount += quantity;
+
+        });
+
+
+        document.getElementById("total")
+            .innerText = "₹" + total;
+
+
+        const orderButton =
+            document.getElementById("orderButton");
+
+
+        orderButton.disabled =
+            itemCount === 0;
+
+    }
+
+
+    function goToCart() {
+
+        if (Object.keys(cart).length === 0) {
+            return;
+        }
+
+
+        localStorage.setItem(
+            "tableTapCart",
+            JSON.stringify(cart)
+        );
+
+
+        window.location.href =
+            "cart.html";
+
+    }
+
+</script>
+
+
+</body>
+
+</html>
