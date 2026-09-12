@@ -544,7 +544,7 @@
 
 
     <!-- =========================
-         SUCCESS CONTENT
+         SUCCESS
     ========================== -->
 
     <div
@@ -765,13 +765,9 @@
 import {
 
     collection,
-
     getDocs,
-
     doc,
-
     getDoc,
-
     setDoc
 
 } from
@@ -887,9 +883,7 @@ createOrder();
 
 async function createOrder() {
 
-
     try {
-
 
         /* =========================================
            VALIDATION
@@ -988,10 +982,27 @@ async function createOrder() {
                     document.data();
 
 
+                /*
+                 * IMPORTANT
+                 *
+                 * document.id =
+                 * Firestore document ID.
+                 *
+                 * data.id =
+                 * optional old/custom ID.
+                 *
+                 * Both are stored here so
+                 * old carts continue working.
+                 */
+
                 menuItems.push({
 
                     id:
                         document.id,
+
+                    fieldId:
+                        data.id ||
+                        "",
 
                     name:
                         data.name ||
@@ -1013,6 +1024,18 @@ async function createOrder() {
         );
 
 
+        console.log(
+            "Firestore menu:",
+            menuItems
+        );
+
+
+        console.log(
+            "Customer cart:",
+            cart
+        );
+
+
 
         /* =========================================
            BUILD ORDER ITEMS
@@ -1025,13 +1048,13 @@ async function createOrder() {
 
 
         for (
-            const itemId in cart
+            const cartItemId in cart
         ) {
 
 
             const quantity =
                 Number(
-                    cart[itemId]
+                    cart[cartItemId]
                 );
 
 
@@ -1044,25 +1067,62 @@ async function createOrder() {
             }
 
 
+
+            /*
+             * IMPORTANT FIX
+             *
+             * First try Firestore document ID.
+             *
+             * If not found, try the old
+             * data.id field.
+             */
+
             const item =
                 menuItems.find(
                     menuItem =>
-                        menuItem.id === itemId
+                        menuItem.id === cartItemId ||
+                        menuItem.fieldId === cartItemId
                 );
+
 
 
             if (!item) {
 
+                console.error(
+                    "Item not found:",
+                    cartItemId
+                );
+
+                console.error(
+                    "Available menu IDs:",
+                    menuItems.map(
+                        menuItem => ({
+                            documentId:
+                                menuItem.id,
+
+                            fieldId:
+                                menuItem.fieldId,
+
+                            name:
+                                menuItem.name
+                        })
+                    )
+                );
+
+
                 throw new Error(
-                    "Some selected items are no longer available."
+                    "The item \"" +
+                    cartItemId +
+                    "\" is no longer available in the restaurant menu."
                 );
 
             }
 
 
-            /*
-             * Check stock
-             */
+
+            /* =====================================
+               STOCK CHECK
+            ===================================== */
 
             if (
                 item.count > 0 &&
@@ -1070,11 +1130,19 @@ async function createOrder() {
             ) {
 
                 throw new Error(
-                    `${item.name} has only ${item.count} available.`
+                    item.name +
+                    " has only " +
+                    item.count +
+                    " available."
                 );
 
             }
 
+
+
+            /* =====================================
+               ITEM TOTAL
+            ===================================== */
 
             const itemTotal =
                 item.price *
@@ -1085,7 +1153,17 @@ async function createOrder() {
                 itemTotal;
 
 
+
+            /* =====================================
+               ORDER ITEM
+            ===================================== */
+
             orderItems.push({
+
+                /*
+                 * ALWAYS STORE THE FIRESTORE
+                 * DOCUMENT ID.
+                 */
 
                 itemId:
                     item.id,
@@ -1104,6 +1182,10 @@ async function createOrder() {
         }
 
 
+
+        /* =========================================
+           VALIDATE ORDER
+        ========================================= */
 
         if (
             orderItems.length === 0
@@ -1141,7 +1223,7 @@ async function createOrder() {
 
 
         /* =========================================
-           FIRESTORE ORDER
+           ORDER OBJECT
         ========================================= */
 
         const order = {
@@ -1187,7 +1269,7 @@ async function createOrder() {
 
 
         /* =========================================
-           WRITE TO FIRESTORE
+           WRITE ORDER
         ========================================= */
 
         await setDoc(
@@ -1264,7 +1346,6 @@ async function createOrder() {
 
     } catch (error) {
 
-
         console.error(
             "Order creation failed:",
             error
@@ -1325,7 +1406,6 @@ function renderOrderItems(
     items,
     total
 ) {
-
 
     orderItemsElement.innerHTML =
         "";
@@ -1397,7 +1477,6 @@ function renderOrderItems(
 
 function showError(message) {
 
-
     loading.style.display =
         "none";
 
@@ -1425,7 +1504,6 @@ function showError(message) {
 window.backToCart =
     function() {
 
-
         window.location.href =
             "cart.html" +
             "?restaurantId=" +
@@ -1447,7 +1525,6 @@ window.backToCart =
 
 window.backToMenu =
     function() {
-
 
         window.location.href =
             "menu.html" +
