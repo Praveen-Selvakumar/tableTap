@@ -3,22 +3,35 @@
 
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-    <title>TableTap - Sri Saravana Bhavan</title>
+    <meta name="viewport"
+          content="width=device-width, initial-scale=1.0">
+
+    <title>TableTap</title>
 
     <style>
 
         * {
-            box-sizing: border-box;
             margin: 0;
             padding: 0;
+            box-sizing: border-box;
         }
 
         body {
-            font-family: Arial, sans-serif;
-            background: #faf8f4;
-            color: #24211f;
+            font-family: -apple-system,
+                         BlinkMacSystemFont,
+                         "Segoe UI",
+                         Roboto,
+                         Arial,
+                         sans-serif;
+
+            background: #f7f7f7;
+            color: #222;
+        }
+
+        a {
+            text-decoration: none;
+            color: inherit;
         }
 
         /* =========================
@@ -35,36 +48,46 @@
 
             padding: 0 20px;
 
-            border-bottom: 1px solid #eee9e3;
+            border-bottom: 1px solid #eeeeee;
 
             position: sticky;
             top: 0;
-            z-index: 10;
+            z-index: 100;
         }
 
         .logo {
-            font-size: 21px;
+            font-size: 22px;
             font-weight: 800;
             letter-spacing: -0.5px;
         }
 
         .logo span {
-            color: #e85d04;
+            color: #ff5a36;
         }
 
-        .menu {
-            width: 42px;
-            height: 42px;
+        .menu-icon {
+            width: 40px;
+            height: 40px;
 
-            background: #f4efe9;
+            border-radius: 50%;
 
-            border-radius: 12px;
+            background: #f5f5f5;
 
             display: flex;
             align-items: center;
             justify-content: center;
 
-            font-size: 21px;
+            font-size: 20px;
+        }
+
+        /* =========================
+           MAIN
+        ========================= */
+
+        main {
+            max-width: 520px;
+            margin: auto;
+            padding-bottom: 40px;
         }
 
         /* =========================
@@ -72,25 +95,22 @@
         ========================= */
 
         .hero {
-            padding: 18px 16px 0;
-        }
+            margin: 16px;
 
-        .hero-card {
+            height: 230px;
 
-            min-height: 390px;
-
-            border-radius: 26px;
+            border-radius: 24px;
 
             overflow: hidden;
 
             position: relative;
 
-            background:
+            background-image:
                 linear-gradient(
-                    rgba(45, 30, 20, 0.08),
-                    rgba(45, 30, 20, 0.45)
+                    rgba(0, 0, 0, 0.25),
+                    rgba(0, 0, 0, 0.55)
                 ),
-                url("https://images.unsplash.com/photo-1556911220-bff31c812dba?auto=format&fit=crop&w=1000&q=85");
+                url("https://images.unsplash.com/photo-1556910103-1c02745aae4d?auto=format&fit=crop&w=1000&q=80");
 
             background-size: cover;
             background-position: center;
@@ -100,54 +120,20 @@
         }
 
         .hero-content {
-
-            width: 100%;
-
-            padding: 25px 20px;
-
             color: white;
-
-            background: linear-gradient(
-                transparent,
-                rgba(0,0,0,0.7)
-            );
-        }
-
-        .tag {
-
-            display: inline-block;
-
-            padding: 7px 11px;
-
-            border-radius: 20px;
-
-            background: rgba(255,255,255,0.18);
-
-            backdrop-filter: blur(8px);
-
-            font-size: 12px;
-
-            margin-bottom: 12px;
-        }
-
-        .hero-content h1 {
-
-            font-size: 34px;
-
-            line-height: 1.05;
-
-            margin-bottom: 10px;
+            padding: 24px;
         }
 
         .hero-content p {
+            font-size: 13px;
+            margin-bottom: 7px;
+            opacity: 0.9;
+        }
 
-            font-size: 14px;
-
-            line-height: 1.5;
-
-            color: #eee;
-
-            max-width: 320px;
+        .hero-content h1 {
+            font-size: 28px;
+            line-height: 1.15;
+            font-weight: 800;
         }
 
         /* =========================
@@ -155,116 +141,108 @@
         ========================= */
 
         .table-info {
-
-            margin: 18px 20px 0;
-
-            padding: 14px 16px;
-
-            background: #fff3e8;
-
-            border: 1px solid #f4d7bd;
-
-            border-radius: 14px;
-
-            display: flex;
-
-            justify-content: space-between;
-
-            align-items: center;
-        }
-
-        .table-info-left {
-            display: flex;
-            flex-direction: column;
-            gap: 4px;
-        }
-
-        .table-info-label {
-
-            font-size: 11px;
-
-            color: #8a6a54;
-
-            text-transform: uppercase;
-
-            letter-spacing: 0.5px;
-        }
-
-        .table-info-value {
-
-            font-size: 16px;
-
-            font-weight: bold;
-
-            color: #d35400;
-        }
-
-        .restaurant-id {
-
-            font-size: 11px;
-
-            color: #8a6a54;
+            margin: 16px;
 
             background: #ffffff;
 
-            padding: 6px 8px;
+            border-radius: 18px;
 
-            border-radius: 8px;
+            padding: 16px;
+
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+
+            box-shadow: 0 3px 12px rgba(0,0,0,0.04);
+        }
+
+        .table-left {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+        }
+
+        .table-icon {
+            width: 42px;
+            height: 42px;
+
+            border-radius: 12px;
+
+            background: #fff0eb;
+
+            display: flex;
+            align-items: center;
+            justify-content: center;
+
+            font-size: 21px;
+        }
+
+        .table-label {
+            font-size: 12px;
+            color: #888;
+            margin-bottom: 3px;
+        }
+
+        .table-number {
+            font-size: 16px;
+            font-weight: 700;
+        }
+
+        .restaurant-id {
+            font-size: 12px;
+            color: #999;
+            text-align: right;
         }
 
         /* =========================
-           RESTAURANT INFO
+           RESTAURANT
         ========================= */
 
-        .restaurant {
+        .restaurant-card {
+            background: white;
 
-            padding: 24px 20px 10px;
+            margin: 16px;
+
+            padding: 20px;
+
+            border-radius: 20px;
+
+            box-shadow: 0 3px 12px rgba(0,0,0,0.04);
         }
 
-        .restaurant-name {
-
+        .restaurant-header {
             display: flex;
-
             justify-content: space-between;
-
-            align-items: center;
+            align-items: flex-start;
 
             gap: 10px;
         }
 
         .restaurant-name h2 {
-
-            font-size: 25px;
-
-            line-height: 1.2;
+            font-size: 22px;
+            font-weight: 800;
         }
 
         .rating {
-
-            background: #fff3e8;
-
-            color: #d35400;
+            background: #fff4df;
 
             padding: 7px 10px;
 
             border-radius: 10px;
 
-            font-size: 12px;
-
-            font-weight: bold;
+            font-size: 13px;
 
             white-space: nowrap;
         }
 
         .restaurant-description {
-
-            margin-top: 9px;
-
-            color: #777;
+            margin-top: 10px;
 
             font-size: 14px;
 
             line-height: 1.5;
+
+            color: #666;
         }
 
         /* =========================
@@ -272,151 +250,205 @@
         ========================= */
 
         .order-button {
+            margin-top: 20px;
 
-            display: block;
+            width: 100%;
 
-            margin: 18px 20px 0;
-
-            padding: 17px;
-
-            background: #e85d04;
-
-            color: white;
-
-            text-decoration: none;
-
-            text-align: center;
+            height: 54px;
 
             border-radius: 15px;
 
+            background: #ff5a36;
+
+            color: white;
+
+            display: flex;
+            align-items: center;
+            justify-content: center;
+
             font-size: 16px;
 
-            font-weight: bold;
-
-            box-shadow: 0 8px 20px rgba(232,93,4,0.22);
+            font-weight: 700;
 
             transition: 0.2s;
         }
 
-        .order-button:active {
+        .order-button:hover {
+            background: #ed4825;
+        }
 
-            transform: scale(0.98);
+        .order-button.disabled {
+            background: #cccccc;
+            pointer-events: none;
         }
 
         /* =========================
            FEATURES
         ========================= */
 
-        .features {
-
-            padding: 28px 20px 10px;
-        }
-
-        .features-title {
+        .section-title {
+            margin: 24px 16px 12px;
 
             font-size: 18px;
 
-            font-weight: bold;
-
-            margin-bottom: 15px;
+            font-weight: 800;
         }
 
-        .feature-grid {
-
+        .features {
             display: grid;
 
             grid-template-columns: repeat(3, 1fr);
 
             gap: 10px;
+
+            margin: 0 16px;
         }
 
-        .feature {
-
+        .feature-card {
             background: white;
 
             border-radius: 16px;
 
-            padding: 15px 8px;
+            padding: 16px 10px;
 
             text-align: center;
 
-            border: 1px solid #eee9e3;
+            box-shadow: 0 3px 12px rgba(0,0,0,0.03);
         }
 
         .feature-icon {
-
-            font-size: 25px;
+            font-size: 23px;
 
             margin-bottom: 8px;
         }
 
-        .feature h3 {
-
-            font-size: 12px;
-
-            margin-bottom: 4px;
-        }
-
-        .feature p {
-
-            font-size: 10px;
-
-            color: #888;
-
-            line-height: 1.3;
-        }
-
-        /* =========================
-           RESTAURANT DETAILS
-        ========================= */
-
-        .info {
-
-            padding: 25px 20px;
-        }
-
-        .info-row {
-
-            display: flex;
-
-            align-items: center;
-
-            gap: 14px;
-
-            padding: 15px 0;
-
-            border-bottom: 1px solid #e7e1da;
-        }
-
-        .info-icon {
-
-            width: 42px;
-            height: 42px;
-
-            background: #f1ebe4;
-
-            border-radius: 12px;
-
-            display: flex;
-
-            align-items: center;
-            justify-content: center;
-
-            font-size: 19px;
-        }
-
-        .info-row h3 {
-
+        .feature-card h3 {
             font-size: 13px;
 
             margin-bottom: 4px;
         }
 
-        .info-row p {
+        .feature-card p {
+            font-size: 11px;
 
+            color: #888;
+
+            line-height: 1.4;
+        }
+
+        /* =========================
+           RESTAURANT INFO
+        ========================= */
+
+        .info-card {
+            margin: 16px;
+
+            background: white;
+
+            border-radius: 18px;
+
+            padding: 18px;
+
+            box-shadow: 0 3px 12px rgba(0,0,0,0.03);
+        }
+
+        .info-row {
+            display: flex;
+
+            align-items: center;
+
+            gap: 12px;
+
+            padding: 12px 0;
+
+            border-bottom: 1px solid #eeeeee;
+        }
+
+        .info-row:last-child {
+            border-bottom: none;
+        }
+
+        .info-icon {
+            width: 38px;
+            height: 38px;
+
+            border-radius: 10px;
+
+            background: #f7f7f7;
+
+            display: flex;
+            align-items: center;
+            justify-content: center;
+
+            font-size: 17px;
+        }
+
+        .info-row h4 {
             font-size: 12px;
 
-            color: #777;
+            color: #999;
+
+            margin-bottom: 3px;
+        }
+
+        .info-row p {
+            font-size: 14px;
+
+            font-weight: 500;
+
+            color: #333;
+        }
+
+        /* =========================
+           LOADING
+        ========================= */
+
+        .loading {
+            display: none;
+
+            margin: 16px;
+
+            padding: 14px;
+
+            background: #fff8f5;
+
+            color: #ff5a36;
+
+            border-radius: 12px;
+
+            text-align: center;
+
+            font-size: 13px;
+        }
+
+        .loading.show {
+            display: block;
+        }
+
+        /* =========================
+           ERROR
+        ========================= */
+
+        .error-message {
+            display: none;
+
+            margin: 16px;
+
+            padding: 14px;
+
+            background: #fff0f0;
+
+            color: #d93025;
+
+            border-radius: 12px;
+
+            text-align: center;
+
+            font-size: 13px;
+        }
+
+        .error-message.show {
+            display: block;
         }
 
         /* =========================
@@ -424,39 +456,17 @@
         ========================= */
 
         footer {
-
-            margin-top: 10px;
-
-            padding: 30px 20px;
-
-            background: #211d1a;
-
-            color: white;
-
             text-align: center;
-        }
 
-        footer h3 {
+            padding: 20px 16px 35px;
 
-            font-size: 17px;
-        }
-
-        footer p {
-
-            margin-top: 7px;
-
-            color: #aaa;
+            color: #999;
 
             font-size: 12px;
         }
 
-        .powered {
-
-            margin-top: 18px;
-
-            font-size: 10px;
-
-            color: #777;
+        footer strong {
+            color: #ff5a36;
         }
 
         /* =========================
@@ -466,226 +476,237 @@
         @media (min-width: 700px) {
 
             body {
-                background: #eeeae5;
+                background: #eeeeee;
             }
 
             main {
-
-                max-width: 520px;
-
-                margin: auto;
-
-                background: #faf8f4;
+                background: #f7f7f7;
 
                 min-height: 100vh;
+
+                box-shadow:
+                    0 0 30px rgba(0,0,0,0.05);
             }
 
             header {
-
                 max-width: 520px;
-
                 margin: auto;
-
-                left: 0;
-                right: 0;
             }
-
         }
 
     </style>
-
 </head>
 
 
 <body>
 
+<header>
+
+    <div class="logo">
+        Table<span>Tap</span>
+    </div>
+
+    <div class="menu-icon">
+        ☰
+    </div>
+
+</header>
+
+
 <main>
 
-    <!-- =========================
-         HEADER
-    ========================= -->
-
-    <header>
-
-        <div class="logo">
-            Table<span>Tap</span>
-        </div>
-
-        <div class="menu">
-            ☰
-        </div>
-
-    </header>
-
-
-    <!-- =========================
-         HERO
-    ========================= -->
+    <!-- HERO -->
 
     <section class="hero">
 
-        <div class="hero-card">
+        <div class="hero-content">
 
-            <div class="hero-content">
+            <p>Welcome to TableTap</p>
 
-                <span class="tag">
-                    🍽️ Welcome to our restaurant
-                </span>
-
-                <h1>
-                    Good food.<br>
-                    Great moments.
-                </h1>
-
-                <p>
-                    Freshly prepared South Indian favourites,
-                    served hot and made with love.
-                </p>
-
-            </div>
+            <h1>
+                Good food.<br>
+                Great moments.
+            </h1>
 
         </div>
 
     </section>
 
 
-    <!-- =========================
-         TABLE INFORMATION
-    ========================= -->
+    <!-- TABLE INFORMATION -->
 
     <section class="table-info">
 
-        <div class="table-info-left">
+        <div class="table-left">
 
-            <span class="table-info-label">
-                Your Table
-            </span>
+            <div class="table-icon">
+                🍽️
+            </div>
 
-            <span class="table-info-value" id="table-number">
-                Table -
-            </span>
+            <div>
+
+                <div class="table-label">
+                    Ordering from
+                </div>
+
+                <div
+                    class="table-number"
+                    id="table-number">
+                    Table -
+                </div>
+
+            </div>
 
         </div>
 
-        <div class="restaurant-id" id="restaurant-id">
+
+        <div
+            class="restaurant-id"
+            id="restaurant-id">
+
             Restaurant -
+
         </div>
 
     </section>
 
 
-    <!-- =========================
-         RESTAURANT
-    ========================= -->
+    <!-- LOADING -->
 
-    <section class="restaurant">
+    <div
+        id="loading"
+        class="loading">
 
-        <div class="restaurant-name">
+        Loading restaurant details...
 
-            <h2>
-                Sri Saravana Bhavan
-            </h2>
+    </div>
 
-            <span class="rating">
+
+    <!-- ERROR -->
+
+    <div
+        id="error-message"
+        class="error-message">
+
+        Unable to load restaurant details.
+
+    </div>
+
+
+    <!-- RESTAURANT -->
+
+    <section class="restaurant-card">
+
+        <div class="restaurant-header">
+
+            <div class="restaurant-name">
+
+                <h2 id="restaurant-name">
+                    Restaurant
+                </h2>
+
+            </div>
+
+
+            <div class="rating">
                 ⭐ 4.8
-            </span>
+            </div>
 
         </div>
 
-        <p class="restaurant-description">
 
-            Authentic South Indian cuisine with
-            delicious dosas, idlis, biryanis and
-            refreshing beverages.
+        <p
+            id="restaurant-description"
+            class="restaurant-description">
+
+            Freshly prepared food served with care.
 
         </p>
 
+
+        <a
+            href="#"
+            id="order-button"
+            class="order-button disabled">
+
+            Order Now
+
+        </a>
+
     </section>
 
 
-    <!-- =========================
-         ORDER BUTTON
-    ========================= -->
+    <!-- FEATURES -->
 
-    <a href="#" id="order-button" class="order-button">
+    <h3 class="section-title">
+        Why order with TableTap?
+    </h3>
 
-        🍽️ Order Now →
-
-    </a>
-
-
-    <!-- =========================
-         FEATURES
-    ========================= -->
 
     <section class="features">
 
-        <div class="features-title">
-            Why order here?
+        <div class="feature-card">
+
+            <div class="feature-icon">
+                📱
+            </div>
+
+            <h3>
+                Easy Ordering
+            </h3>
+
+            <p>
+                Browse the menu and order directly from your table.
+            </p>
+
         </div>
 
-        <div class="feature-grid">
 
-            <div class="feature">
+        <div class="feature-card">
 
-                <div class="feature-icon">
-                    ⚡
-                </div>
-
-                <h3>
-                    Quick Order
-                </h3>
-
-                <p>
-                    Order directly from your table
-                </p>
-
+            <div class="feature-icon">
+                ⚡
             </div>
 
+            <h3>
+                Fast
+            </h3>
 
-            <div class="feature">
+            <p>
+                Your order reaches the restaurant instantly.
+            </p>
 
-                <div class="feature-icon">
-                    👨‍🍳
-                </div>
+        </div>
 
-                <h3>
-                    Fresh Food
-                </h3>
 
-                <p>
-                    Prepared fresh for you
-                </p>
+        <div class="feature-card">
 
+            <div class="feature-icon">
+                🍴
             </div>
 
+            <h3>
+                Fresh Food
+            </h3>
 
-            <div class="feature">
-
-                <div class="feature-icon">
-                    📱
-                </div>
-
-                <h3>
-                    Easy
-                </h3>
-
-                <p>
-                    No app installation required
-                </p>
-
-            </div>
+            <p>
+                Freshly prepared meals served to your table.
+            </p>
 
         </div>
 
     </section>
 
 
-    <!-- =========================
-         RESTAURANT INFO
-    ========================= -->
+    <!-- RESTAURANT INFORMATION -->
 
-    <section class="info">
+    <h3 class="section-title">
+        Restaurant information
+    </h3>
+
+
+    <section class="info-card">
+
 
         <div class="info-row">
 
@@ -695,12 +716,12 @@
 
             <div>
 
-                <h3>
+                <h4>
                     Location
-                </h3>
+                </h4>
 
-                <p>
-                    Anna Nagar, Madurai
+                <p id="restaurant-location">
+                    -
                 </p>
 
             </div>
@@ -711,16 +732,16 @@
         <div class="info-row">
 
             <div class="info-icon">
-                🕐
+                🕘
             </div>
 
             <div>
 
-                <h3>
+                <h4>
                     Opening Hours
-                </h3>
+                </h4>
 
-                <p>
+                <p id="restaurant-hours">
                     9:00 AM – 10:00 PM
                 </p>
 
@@ -737,12 +758,33 @@
 
             <div>
 
-                <h3>
-                    Contact
-                </h3>
+                <h4>
+                    Phone
+                </h4>
 
-                <p>
-                    +91 98765 43210
+                <p id="restaurant-phone">
+                    -
+                </p>
+
+            </div>
+
+        </div>
+
+
+        <div class="info-row">
+
+            <div class="info-icon">
+                ✉️
+            </div>
+
+            <div>
+
+                <h4>
+                    Email
+                </h4>
+
+                <p id="restaurant-email">
+                    -
                 </p>
 
             </div>
@@ -752,89 +794,288 @@
     </section>
 
 
-    <!-- =========================
-         FOOTER
-    ========================= -->
-
-    <footer>
-
-        <h3>
-            Sri Saravana Bhavan
-        </h3>
-
-        <p>
-            Good food. Great moments.
-        </p>
-
-        <div class="powered">
-            Powered by TableTap
-        </div>
-
-    </footer>
-
-
 </main>
 
 
-<!-- =========================
-     URL PARAMETER HANDLING
-========================= -->
+<footer>
 
-<script>
+    Powered by <strong>TableTap</strong>
 
-    // Read parameters from URL
-    const params = new URLSearchParams(window.location.search);
-
-    const restaurantId = params.get("restaurantId");
-    const tableNumber = params.get("tableNumber");
+</footer>
 
 
-    // Display restaurant ID
+<!-- =====================================================
+     FIREBASE + PAGE LOGIC
+===================================================== -->
+
+<script type="module">
+
+    import {
+        doc,
+        getDoc
+    } from
+    "https://www.gstatic.com/firebasejs/12.2.1/firebase-firestore.js";
+
+
+    import {
+        db
+    } from "./firebase.js";
+
+
+    /* =====================================================
+       READ QR URL PARAMETERS
+    ===================================================== */
+
+    const params = new URLSearchParams(
+        window.location.search
+    );
+
+
+    const restaurantId =
+        params.get("restaurantId");
+
+
+    const tableNumber =
+        params.get("tableNumber");
+
+
+    /* =====================================================
+       HTML ELEMENTS
+    ===================================================== */
+
+    const restaurantIdElement =
+        document.getElementById("restaurant-id");
+
+
+    const tableNumberElement =
+        document.getElementById("table-number");
+
+
+    const restaurantNameElement =
+        document.getElementById("restaurant-name");
+
+
+    const restaurantDescriptionElement =
+        document.getElementById("restaurant-description");
+
+
+    const restaurantLocationElement =
+        document.getElementById("restaurant-location");
+
+
+    const restaurantPhoneElement =
+        document.getElementById("restaurant-phone");
+
+
+    const restaurantEmailElement =
+        document.getElementById("restaurant-email");
+
+
+    const orderButton =
+        document.getElementById("order-button");
+
+
+    const loadingElement =
+        document.getElementById("loading");
+
+
+    const errorElement =
+        document.getElementById("error-message");
+
+
+    /* =====================================================
+       SHOW TABLE INFORMATION
+    ===================================================== */
+
     if (restaurantId) {
 
-        document.getElementById("restaurant-id").textContent =
+        restaurantIdElement.textContent =
             restaurantId;
 
     } else {
 
-        document.getElementById("restaurant-id").textContent =
+        restaurantIdElement.textContent =
             "Restaurant -";
 
     }
 
 
-    // Display table number
     if (tableNumber) {
 
-        document.getElementById("table-number").textContent =
+        tableNumberElement.textContent =
             "Table " + tableNumber;
 
     } else {
 
-        document.getElementById("table-number").textContent =
+        tableNumberElement.textContent =
             "Table -";
 
     }
 
 
-    // Pass the same parameters to menu.html
-    const orderButton = document.getElementById("order-button");
+    /* =====================================================
+       LOAD RESTAURANT FROM FIRESTORE
+       
+       PATH:
+       /restaurants/{restaurantId}
+    ===================================================== */
+
+    async function loadRestaurant() {
+
+        if (!restaurantId) {
+
+            errorElement.textContent =
+                "Restaurant information is missing.";
+
+            errorElement.classList.add("show");
+
+            return;
+        }
 
 
-    if (restaurantId && tableNumber) {
+        loadingElement.classList.add("show");
 
-        orderButton.href =
-            "menu.html" +
-            "?restaurantId=" +
-            encodeURIComponent(restaurantId) +
-            "&tableNumber=" +
-            encodeURIComponent(tableNumber);
 
-    } else {
+        try {
 
-        orderButton.href = "menu.html";
+            const restaurantRef =
+                doc(
+                    db,
+                    "restaurants",
+                    restaurantId
+                );
+
+
+            const snapshot =
+                await getDoc(restaurantRef);
+
+
+            if (!snapshot.exists()) {
+
+                throw new Error(
+                    "Restaurant not found."
+                );
+
+            }
+
+
+            const restaurant =
+                snapshot.data();
+
+
+            console.log(
+                "Restaurant data:",
+                restaurant
+            );
+
+
+            /* =================================================
+               RESTAURANT NAME
+            ================================================= */
+
+            restaurantNameElement.textContent =
+                restaurant.restaurantName ||
+                "Restaurant";
+
+
+            /* =================================================
+               DESCRIPTION
+               
+               If you don't have description in Firestore,
+               the default text will remain.
+            ================================================= */
+
+            restaurantDescriptionElement.textContent =
+                restaurant.description ||
+                "Freshly prepared food served with care.";
+
+
+            /* =================================================
+               LOCATION
+            ================================================= */
+
+            restaurantLocationElement.textContent =
+                restaurant.location ||
+                "-";
+
+
+            /* =================================================
+               PHONE
+            ================================================= */
+
+            restaurantPhoneElement.textContent =
+                restaurant.phoneNumber ||
+                "-";
+
+
+            /* =================================================
+               EMAIL
+            ================================================= */
+
+            restaurantEmailElement.textContent =
+                restaurant.email ||
+                "-";
+
+
+            /* =================================================
+               ENABLE ORDER BUTTON
+               
+               Pass restaurantId + tableNumber to menu.html
+            ================================================= */
+
+            if (restaurantId && tableNumber) {
+
+                orderButton.href =
+                    "menu.html" +
+                    "?restaurantId=" +
+                    encodeURIComponent(
+                        restaurantId
+                    ) +
+                    "&tableNumber=" +
+                    encodeURIComponent(
+                        tableNumber
+                    );
+
+
+                orderButton.classList.remove(
+                    "disabled"
+                );
+
+            }
+
+
+        } catch (error) {
+
+            console.error(
+                "Error loading restaurant:",
+                error
+            );
+
+
+            errorElement.textContent =
+                "Unable to load restaurant details.";
+
+
+            errorElement.classList.add(
+                "show"
+            );
+
+        } finally {
+
+            loadingElement.classList.remove(
+                "show"
+            );
+
+        }
 
     }
+
+
+    /* =====================================================
+       START
+    ===================================================== */
+
+    loadRestaurant();
 
 </script>
 
