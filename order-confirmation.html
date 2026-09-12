@@ -10,7 +10,7 @@
         content="width=device-width, initial-scale=1.0"
     >
 
-    <title>Order Confirmed - TableTap</title>
+    <title>Order Confirmation - TableTap</title>
 
 
     <style>
@@ -21,456 +21,272 @@
             padding: 0;
         }
 
-
         body {
-
             font-family: Arial, sans-serif;
-
-            background: #f7f7f7;
-
-            color: #222;
+            background: #eeeae5;
+            color: #211d1a;
         }
 
-
-        .container {
-
+        main {
             max-width: 520px;
+            min-height: 100vh;
 
             margin: auto;
 
-            padding: 25px 16px 40px;
+            background: #faf8f4;
+
+            padding-bottom: 30px;
         }
 
+        header {
+            height: 64px;
 
-        /* =========================
-           LOADING
-        ========================== */
-
-        .loading {
-
-            text-align: center;
-
-            padding: 80px 20px;
-
-            color: #777;
-
-            font-size: 14px;
-        }
-
-
-        /* =========================
-           ERROR
-        ========================== */
-
-        .error {
-
-            display: none;
-
-            text-align: center;
-
-            padding: 50px 20px;
-        }
-
-
-        .error.show {
-
-            display: block;
-        }
-
-
-        .error-icon {
-
-            width: 70px;
-
-            height: 70px;
-
-            margin: 0 auto 20px;
-
-            border-radius: 50%;
-
-            background: #eeeeee;
+            padding: 0 20px;
 
             display: flex;
-
             align-items: center;
-
             justify-content: center;
 
-            font-size: 32px;
+            background: #211d1a;
+            color: white;
         }
 
-
-        .error-title {
-
-            font-size: 21px;
-
-            font-weight: 700;
-
-            margin-bottom: 8px;
+        .logo {
+            font-size: 22px;
+            font-weight: bold;
         }
 
-
-        .error-message {
-
-            color: #777;
-
-            font-size: 14px;
-
-            line-height: 1.5;
-
-            margin-bottom: 25px;
+        .logo span {
+            color: #e6a15c;
         }
 
+        .content {
+            padding: 20px;
+        }
 
-        /* =========================
-           SUCCESS
-        ========================== */
+        .success-card {
+            background: white;
 
-        .success-section {
+            border-radius: 20px;
+
+            padding: 28px 20px;
 
             text-align: center;
 
-            padding: 25px 10px 30px;
+            box-shadow:
+                0 5px 20px
+                rgba(0,0,0,0.05);
         }
-
 
         .success-icon {
-
             width: 75px;
-
             height: 75px;
 
-            margin: 0 auto 18px;
+            margin: auto;
 
             border-radius: 50%;
 
-            background: #111;
-
-            color: white;
-
             display: flex;
-
             align-items: center;
-
             justify-content: center;
+
+            background: #e7f5e8;
 
             font-size: 38px;
         }
 
-
-        .success-title {
+        .success-card h1 {
+            margin-top: 18px;
 
             font-size: 25px;
-
-            font-weight: 700;
-
-            margin-bottom: 8px;
         }
 
-
-        .success-message {
+        .success-card p {
+            margin-top: 8px;
 
             color: #777;
 
             font-size: 14px;
-
-            line-height: 1.5;
         }
-
-
-        /* =========================
-           ORDER ID
-        ========================== */
-
-        .order-id-card {
-
-            background: #ffffff;
-
-            border-radius: 16px;
-
-            padding: 20px;
-
-            text-align: center;
-
-            border: 1px solid #eeeeee;
-
-            margin-bottom: 15px;
-        }
-
-
-        .order-id-label {
-
-            font-size: 12px;
-
-            color: #777;
-
-            margin-bottom: 8px;
-        }
-
 
         .order-id {
-
-            font-size: 24px;
-
-            font-weight: 700;
-
-            letter-spacing: 1px;
-        }
-
-
-        /* =========================
-           TABLE
-        ========================== */
-
-        .table-card {
-
-            background: #ffffff;
-
-            border-radius: 14px;
-
-            padding: 16px;
-
-            display: flex;
-
-            justify-content: space-between;
-
-            align-items: center;
-
-            border: 1px solid #eeeeee;
-
-            margin-bottom: 20px;
-        }
-
-
-        .table-label {
-
-            font-size: 12px;
-
-            color: #777;
-        }
-
-
-        .table-number {
-
-            font-size: 17px;
-
-            font-weight: 700;
-        }
-
-
-        /* =========================
-           RESTAURANT
-        ========================== */
-
-        .restaurant-name {
-
-            text-align: center;
-
-            font-size: 14px;
-
-            color: #777;
-
-            margin-bottom: 20px;
-        }
-
-
-        /* =========================
-           ORDER DETAILS
-        ========================== */
-
-        .section-title {
-
-            font-size: 18px;
-
-            font-weight: 700;
-
-            margin-bottom: 12px;
-        }
-
-
-        .order-card {
-
-            background: #ffffff;
-
-            border-radius: 14px;
-
-            padding: 16px;
-
-            border: 1px solid #eeeeee;
-
-            margin-bottom: 18px;
-        }
-
-
-        .order-item {
-
-            display: flex;
-
-            justify-content: space-between;
-
-            gap: 15px;
-
-            padding: 12px 0;
-
-            border-bottom: 1px solid #eeeeee;
-        }
-
-
-        .order-item:last-child {
-
-            border-bottom: none;
-        }
-
-
-        .item-name {
-
-            font-size: 14px;
-
-            flex: 1;
-        }
-
-
-        .item-quantity {
-
-            color: #777;
-
-            margin-left: 5px;
-        }
-
-
-        .item-price {
-
-            font-size: 14px;
-
-            font-weight: 600;
-
-            white-space: nowrap;
-        }
-
-
-        /* =========================
-           TOTAL
-        ========================== */
-
-        .total-row {
-
-            display: flex;
-
-            justify-content: space-between;
-
-            padding-top: 15px;
-
-            font-size: 18px;
-
-            font-weight: 700;
-        }
-
-
-        /* =========================
-           STATUS
-        ========================== */
-
-        .status-card {
-
-            background: #ffffff;
-
-            border-radius: 14px;
-
-            padding: 18px;
-
-            border: 1px solid #eeeeee;
-
-            margin-bottom: 20px;
-        }
-
-
-        .status-header {
-
-            display: flex;
-
-            align-items: center;
-
-            gap: 10px;
-
-            margin-bottom: 8px;
-        }
-
-
-        .status-dot {
-
-            width: 10px;
-
-            height: 10px;
-
-            border-radius: 50%;
-
-            background: #222;
-        }
-
-
-        .status-title {
-
-            font-size: 16px;
-
-            font-weight: 700;
-        }
-
-
-        .status-message {
-
-            font-size: 13px;
-
-            color: #777;
-
-            line-height: 1.5;
-        }
-
-
-        /* =========================
-           BUTTON
-        ========================== */
-
-        .menu-btn {
-
-            width: 100%;
-
-            border: none;
-
-            background: #111;
-
-            color: #ffffff;
+            margin-top: 20px;
 
             padding: 15px;
 
-            border-radius: 10px;
+            border-radius: 12px;
 
+            background: #f5f1ec;
+        }
+
+        .order-id-label {
+            font-size: 12px;
+            color: #777;
+        }
+
+        .order-id-value {
+            margin-top: 5px;
+
+            font-size: 22px;
+            font-weight: bold;
+        }
+
+        .info-card {
+            margin-top: 15px;
+
+            background: white;
+
+            border-radius: 18px;
+
+            padding: 18px;
+        }
+
+        .info-row {
+            display: flex;
+
+            justify-content: space-between;
+
+            padding: 10px 0;
+
+            border-bottom: 1px solid #eee;
+        }
+
+        .info-row:last-child {
+            border-bottom: none;
+        }
+
+        .info-label {
+            color: #777;
+            font-size: 14px;
+        }
+
+        .info-value {
+            font-weight: bold;
+            font-size: 14px;
+        }
+
+        .section-title {
+            margin-top: 22px;
+            margin-bottom: 12px;
+
+            font-size: 19px;
+            font-weight: bold;
+        }
+
+        .order-item {
+            display: flex;
+
+            justify-content: space-between;
+
+            background: white;
+
+            padding: 14px;
+
+            border-radius: 14px;
+
+            margin-bottom: 10px;
+        }
+
+        .order-item-name {
+            font-weight: bold;
+        }
+
+        .order-item-quantity {
+            margin-top: 5px;
+
+            font-size: 13px;
+            color: #777;
+        }
+
+        .order-item-price {
+            font-weight: bold;
+        }
+
+        .total-card {
+            margin-top: 15px;
+
+            padding: 18px;
+
+            border-radius: 18px;
+
+            background: #211d1a;
+            color: white;
+
+            display: flex;
+
+            justify-content: space-between;
+
+            align-items: center;
+        }
+
+        .total-label {
             font-size: 15px;
-
-            font-weight: 600;
-
-            cursor: pointer;
         }
 
-
-        .menu-btn:active {
-
-            transform: scale(0.98);
+        .total-value {
+            font-size: 21px;
+            font-weight: bold;
         }
 
+        .button {
+            display: block;
 
-        /* =========================
-           FOOTER
-        ========================== */
+            width: 100%;
 
-        .footer {
+            margin-top: 15px;
+
+            padding: 15px;
+
+            border-radius: 14px;
 
             text-align: center;
 
-            margin-top: 25px;
+            text-decoration: none;
 
-            color: #999;
+            font-size: 16px;
+            font-weight: bold;
+        }
 
-            font-size: 12px;
+        .primary-button {
+            background: #211d1a;
+            color: white;
+        }
+
+        .secondary-button {
+            background: white;
+            color: #211d1a;
+
+            border: 1px solid #ddd;
+        }
+
+        .loading {
+            text-align: center;
+
+            padding: 70px 20px;
+
+            color: #777;
+        }
+
+        .error-card {
+            background: white;
+
+            border-radius: 18px;
+
+            padding: 30px 20px;
+
+            text-align: center;
+        }
+
+        .error-card h2 {
+            font-size: 21px;
+        }
+
+        .error-message {
+            margin-top: 10px;
+
+            color: #c0392b;
+
+            font-size: 14px;
         }
 
     </style>
@@ -480,1053 +296,824 @@
 
 <body>
 
+<main>
 
-<div class="container">
+    <!-- HEADER -->
 
+    <header>
 
-    <!-- =========================
-         LOADING
-    ========================== -->
-
-    <div
-        class="loading"
-        id="loading">
-
-        Sending your order...
-
-    </div>
-
-
-
-    <!-- =========================
-         ERROR
-    ========================== -->
-
-    <div
-        class="error"
-        id="errorSection">
-
-
-        <div class="error-icon">
-
-            ✕
-
+        <div class="logo">
+            Table<span>Tap</span>
         </div>
 
+    </header>
 
-        <div class="error-title">
 
-            Order Failed
+    <div class="content">
 
-        </div>
-
+        <!-- LOADING -->
 
         <div
-            class="error-message"
-            id="errorMessage">
-
-            We couldn't place your order.
-
+            id="loading"
+            class="loading"
+        >
+            Placing your order...
         </div>
-
-
-        <button
-            class="menu-btn"
-            onclick="backToCart()">
-
-            Back to Cart
-
-        </button>
-
-
-    </div>
-
-
-
-    <!-- =========================
-         SUCCESS
-    ========================== -->
-
-    <div
-        id="successContent"
-        style="display:none;">
-
-
-        <!-- RESTAURANT -->
-
-        <div
-            class="restaurant-name"
-            id="restaurantName">
-
-            Restaurant
-
-        </div>
-
 
 
         <!-- SUCCESS -->
 
-        <section class="success-section">
+        <div
+            id="success"
+            style="display:none;"
+        >
 
+            <div class="success-card">
 
-            <div class="success-icon">
-
-                ✓
-
-            </div>
-
-
-            <div class="success-title">
-
-                Order Placed!
-
-            </div>
-
-
-            <div class="success-message">
-
-                Your order has been successfully sent
-                to the kitchen.
-
-            </div>
-
-
-        </section>
-
-
-
-        <!-- ORDER ID -->
-
-        <div class="order-id-card">
-
-
-            <div class="order-id-label">
-
-                Your Order ID
-
-            </div>
-
-
-            <div
-                class="order-id"
-                id="orderId">
-
-                TK-A482
-
-            </div>
-
-
-        </div>
-
-
-
-        <!-- TABLE -->
-
-        <div class="table-card">
-
-
-            <div>
-
-                <div class="table-label">
-
-                    Table
-
+                <div class="success-icon">
+                    ✓
                 </div>
 
+                <h1>
+                    Order Placed!
+                </h1>
 
-                <div
-                    class="table-number"
-                    id="tableNumber">
+                <p>
+                    Your order has been sent to the restaurant.
+                </p>
 
-                    Table -
+
+                <div class="order-id">
+
+                    <div class="order-id-label">
+                        ORDER ID
+                    </div>
+
+                    <div
+                        id="order-id"
+                        class="order-id-value"
+                    >
+                        TK-A123
+                    </div>
 
                 </div>
 
             </div>
 
 
-            <div style="font-size: 24px;">
+            <!-- INFO -->
 
-                🍽️
+            <div class="info-card">
 
-            </div>
+                <div class="info-row">
 
+                    <span class="info-label">
+                        Restaurant
+                    </span>
 
-        </div>
-
-
-
-        <!-- ORDER DETAILS -->
-
-        <div class="section-title">
-
-            Order Details
-
-        </div>
-
-
-        <div class="order-card">
-
-
-            <div id="orderItems"></div>
-
-
-            <div class="total-row">
-
-
-                <span>
-
-                    Total
-
-                </span>
-
-
-                <span id="orderTotal">
-
-                    ₹0
-
-                </span>
-
-
-            </div>
-
-
-        </div>
-
-
-
-        <!-- STATUS -->
-
-        <div class="status-card">
-
-
-            <div class="status-header">
-
-
-                <div class="status-dot"></div>
-
-
-                <div class="status-title">
-
-                    Order Received
-
-                </div>
-
-
-            </div>
-
-
-            <div class="status-message">
-
-                The restaurant has received your
-                order. Please wait while our kitchen
-                prepares your food.
-
-            </div>
-
-
-        </div>
-
-
-
-        <!-- ORDER MORE -->
-
-        <button
-            class="menu-btn"
-            onclick="backToMenu()">
-
-            Order More Food
-
-        </button>
-
-
-
-        <div class="footer">
-
-            Powered by TableTap · Scan. Order. Serve.
-
-        </div>
-
-
-    </div>
-
-
-</div>
-
-
-
-<script type="module">
-
-
-/* =========================================================
-   FIREBASE
-========================================================= */
-
-import {
-
-    collection,
-    getDocs,
-    doc,
-    getDoc,
-    setDoc
-
-} from
-"https://www.gstatic.com/firebasejs/12.2.1/firebase-firestore.js";
-
-
-import { db } from "./firebase.js";
-
-
-
-/* =========================================================
-   URL PARAMETERS
-========================================================= */
-
-const params =
-    new URLSearchParams(
-        window.location.search
-    );
-
-
-const restaurantId =
-    params.get("restaurantId");
-
-
-const tableNumber =
-    params.get("tableNumber");
-
-
-
-/* =========================================================
-   ELEMENTS
-========================================================= */
-
-const loading =
-    document.getElementById(
-        "loading"
-    );
-
-
-const errorSection =
-    document.getElementById(
-        "errorSection"
-    );
-
-
-const errorMessage =
-    document.getElementById(
-        "errorMessage"
-    );
-
-
-const successContent =
-    document.getElementById(
-        "successContent"
-    );
-
-
-const restaurantName =
-    document.getElementById(
-        "restaurantName"
-    );
-
-
-const orderIdElement =
-    document.getElementById(
-        "orderId"
-    );
-
-
-const tableNumberElement =
-    document.getElementById(
-        "tableNumber"
-    );
-
-
-const orderItemsElement =
-    document.getElementById(
-        "orderItems"
-    );
-
-
-const orderTotalElement =
-    document.getElementById(
-        "orderTotal"
-    );
-
-
-
-/* =========================================================
-   CART
-========================================================= */
-
-const cart =
-    JSON.parse(
-        localStorage.getItem(
-            "tableTapCart"
-        )
-    ) || {};
-
-
-
-/* =========================================================
-   START
-========================================================= */
-
-createOrder();
-
-
-
-/* =========================================================
-   CREATE ORDER
-========================================================= */
-
-async function createOrder() {
-
-    try {
-
-        /* =========================================
-           VALIDATION
-        ========================================= */
-
-        if (!restaurantId) {
-
-            throw new Error(
-                "Restaurant information is missing."
-            );
-
-        }
-
-
-        if (!tableNumber) {
-
-            throw new Error(
-                "Table information is missing."
-            );
-
-        }
-
-
-        if (
-            Object.keys(cart).length === 0
-        ) {
-
-            throw new Error(
-                "Your cart is empty."
-            );
-
-        }
-
-
-
-        /* =========================================
-           LOAD RESTAURANT
-        ========================================= */
-
-        const restaurantRef =
-            doc(
-                db,
-                "restaurants",
-                restaurantId
-            );
-
-
-        const restaurantSnapshot =
-            await getDoc(
-                restaurantRef
-            );
-
-
-        if (
-            restaurantSnapshot.exists()
-        ) {
-
-            const restaurant =
-                restaurantSnapshot.data();
-
-
-            restaurantName.textContent =
-                restaurant.restaurantName ||
-                "Restaurant";
-
-        }
-
-
-
-        /* =========================================
-           LOAD MY MENU
-        ========================================= */
-
-        const myMenuRef =
-            collection(
-                db,
-                "restaurants",
-                restaurantId,
-                "myMenu"
-            );
-
-
-        const menuSnapshot =
-            await getDocs(
-                myMenuRef
-            );
-
-
-        const menuItems = [];
-
-
-        menuSnapshot.forEach(
-            document => {
-
-                const data =
-                    document.data();
-
-
-                /*
-                 * IMPORTANT
-                 *
-                 * document.id =
-                 * Firestore document ID.
-                 *
-                 * data.id =
-                 * optional old/custom ID.
-                 *
-                 * Both are stored here so
-                 * old carts continue working.
-                 */
-
-                menuItems.push({
-
-                    id:
-                        document.id,
-
-                    fieldId:
-                        data.id ||
-                        "",
-
-                    name:
-                        data.name ||
-                        "Food Item",
-
-                    price:
-                        Number(
-                            data.price || 0
-                        ),
-
-                    count:
-                        Number(
-                            data.count || 0
-                        )
-
-                });
-
-            }
-        );
-
-
-        console.log(
-            "Firestore menu:",
-            menuItems
-        );
-
-
-        console.log(
-            "Customer cart:",
-            cart
-        );
-
-
-
-        /* =========================================
-           BUILD ORDER ITEMS
-        ========================================= */
-
-        const orderItems = [];
-
-
-        let totalAmount = 0;
-
-
-        for (
-            const cartItemId in cart
-        ) {
-
-
-            const quantity =
-                Number(
-                    cart[cartItemId]
-                );
-
-
-            if (
-                quantity <= 0
-            ) {
-
-                continue;
-
-            }
-
-
-
-            /*
-             * IMPORTANT FIX
-             *
-             * First try Firestore document ID.
-             *
-             * If not found, try the old
-             * data.id field.
-             */
-
-            const item =
-                menuItems.find(
-                    menuItem =>
-                        menuItem.id === cartItemId ||
-                        menuItem.fieldId === cartItemId
-                );
-
-
-
-            if (!item) {
-
-                console.error(
-                    "Item not found:",
-                    cartItemId
-                );
-
-                console.error(
-                    "Available menu IDs:",
-                    menuItems.map(
-                        menuItem => ({
-                            documentId:
-                                menuItem.id,
-
-                            fieldId:
-                                menuItem.fieldId,
-
-                            name:
-                                menuItem.name
-                        })
-                    )
-                );
-
-
-                throw new Error(
-                    "The item \"" +
-                    cartItemId +
-                    "\" is no longer available in the restaurant menu."
-                );
-
-            }
-
-
-
-            /* =====================================
-               STOCK CHECK
-            ===================================== */
-
-            if (
-                item.count > 0 &&
-                quantity > item.count
-            ) {
-
-                throw new Error(
-                    item.name +
-                    " has only " +
-                    item.count +
-                    " available."
-                );
-
-            }
-
-
-
-            /* =====================================
-               ITEM TOTAL
-            ===================================== */
-
-            const itemTotal =
-                item.price *
-                quantity;
-
-
-            totalAmount +=
-                itemTotal;
-
-
-
-            /* =====================================
-               ORDER ITEM
-            ===================================== */
-
-            orderItems.push({
-
-                /*
-                 * ALWAYS STORE THE FIRESTORE
-                 * DOCUMENT ID.
-                 */
-
-                itemId:
-                    item.id,
-
-                name:
-                    item.name,
-
-                quantity:
-                    quantity,
-
-                price:
-                    item.price
-
-            });
-
-        }
-
-
-
-        /* =========================================
-           VALIDATE ORDER
-        ========================================= */
-
-        if (
-            orderItems.length === 0
-        ) {
-
-            throw new Error(
-                "No valid items found in your cart."
-            );
-
-        }
-
-
-
-        /* =========================================
-           GENERATE ORDER ID
-        ========================================= */
-
-        const orderId =
-            generateOrderId();
-
-
-        const now =
-            Date.now();
-
-
-
-        /* =========================================
-           TABLE ID
-        ========================================= */
-
-        const tableId =
-            "table_" +
-            tableNumber;
-
-
-
-        /* =========================================
-           ORDER OBJECT
-        ========================================= */
-
-        const order = {
-
-            orderId:
-                orderId,
-
-            tableId:
-                tableId,
-
-            tableNumber:
-                Number(
-                    tableNumber
-                ),
-
-            items:
-                orderItems,
-
-            totalAmount:
-                totalAmount,
-
-            status:
-                "NEW",
-
-            orderType:
-                "DINE_IN",
-
-            createdAt:
-                now,
-
-            updatedAt:
-                now
-
-        };
-
-
-
-        console.log(
-            "Creating order:",
-            order
-        );
-
-
-
-        /* =========================================
-           WRITE ORDER
-        ========================================= */
-
-        await setDoc(
-
-            doc(
-                db,
-                "restaurants",
-                restaurantId,
-                "orders",
-                orderId
-            ),
-
-            order
-
-        );
-
-
-
-        /* =========================================
-           DISPLAY SUCCESS
-        ========================================= */
-
-        orderIdElement.textContent =
-            orderId;
-
-
-        tableNumberElement.textContent =
-            "Table " +
-            tableNumber;
-
-
-        renderOrderItems(
-            orderItems,
-            totalAmount
-        );
-
-
-        loading.style.display =
-            "none";
-
-
-        errorSection.classList.remove(
-            "show"
-        );
-
-
-        successContent.style.display =
-            "block";
-
-
-
-        /* =========================================
-           CLEAR CART
-        ========================================= */
-
-        localStorage.removeItem(
-            "tableTapCart"
-        );
-
-
-        localStorage.setItem(
-            "tableTapLastOrderId",
-            orderId
-        );
-
-
-        localStorage.setItem(
-            "tableTapOrder",
-            JSON.stringify(
-                order
-            )
-        );
-
-
-    } catch (error) {
-
-        console.error(
-            "Order creation failed:",
-            error
-        );
-
-
-        showError(
-            error.message ||
-            "Unable to place your order."
-        );
-
-    }
-
-}
-
-
-
-/* =========================================================
-   GENERATE ORDER ID
-========================================================= */
-
-function generateOrderId() {
-
-    const letters =
-        "ABCDEFGHJKLMNPQRTUVWXYZ";
-
-
-    const randomLetter =
-        letters[
-            Math.floor(
-                Math.random() *
-                letters.length
-            )
-        ];
-
-
-    const randomNumber =
-        Math.floor(
-            Math.random() * 900
-        ) + 100;
-
-
-    return (
-        "TK-" +
-        randomLetter +
-        randomNumber
-    );
-
-}
-
-
-
-/* =========================================================
-   RENDER ORDER ITEMS
-========================================================= */
-
-function renderOrderItems(
-    items,
-    total
-) {
-
-    orderItemsElement.innerHTML =
-        "";
-
-
-    items.forEach(
-        item => {
-
-
-            const itemTotal =
-                item.price *
-                item.quantity;
-
-
-            const element =
-                document.createElement(
-                    "div"
-                );
-
-
-            element.className =
-                "order-item";
-
-
-            element.innerHTML = `
-
-                <div class="item-name">
-
-                    ${escapeHtml(
-                        item.name
-                    )}
-
-                    <span class="item-quantity">
-
-                        × ${item.quantity}
-
+                    <span
+                        id="restaurant-name"
+                        class="info-value"
+                    >
+                        Restaurant
                     </span>
 
                 </div>
 
 
-                <div class="item-price">
+                <div class="info-row">
 
-                    ₹${itemTotal}
+                    <span class="info-label">
+                        Table
+                    </span>
+
+                    <span
+                        id="table-number"
+                        class="info-value"
+                    >
+                        -
+                    </span>
 
                 </div>
 
-            `;
+
+                <div class="info-row">
+
+                    <span class="info-label">
+                        Status
+                    </span>
+
+                    <span class="info-value">
+                        Order Received
+                    </span>
+
+                </div>
+
+            </div>
 
 
-            orderItemsElement.appendChild(
-                element
+            <!-- ITEMS -->
+
+            <div class="section-title">
+                Order Items
+            </div>
+
+            <div id="order-items"></div>
+
+
+            <!-- TOTAL -->
+
+            <div class="total-card">
+
+                <span class="total-label">
+                    Total Amount
+                </span>
+
+                <span
+                    id="total"
+                    class="total-value"
+                >
+                    ₹0
+                </span>
+
+            </div>
+
+
+            <!-- BUTTONS -->
+
+            <a
+                id="order-more-button"
+                class="button primary-button"
+                href="#"
+            >
+                Order More Food
+            </a>
+
+
+            <a
+                id="back-home-button"
+                class="button secondary-button"
+                href="#"
+            >
+                Back to Restaurant
+            </a>
+
+        </div>
+
+
+        <!-- ERROR -->
+
+        <div
+            id="error"
+            class="error-card"
+            style="display:none;"
+        >
+
+            <h2>
+                Unable to place order
+            </h2>
+
+            <p
+                id="error-message"
+                class="error-message"
+            >
+                Something went wrong.
+            </p>
+
+
+            <a
+                id="back-cart-button"
+                class="button primary-button"
+                href="#"
+            >
+                Back to Cart
+            </a>
+
+        </div>
+
+    </div>
+
+</main>
+
+
+<script type="module">
+
+    import { db } from "./firebase.js";
+
+
+    import {
+        collection,
+        getDocs,
+        doc,
+        getDoc,
+        setDoc
+    }
+    from
+        "https://www.gstatic.com/firebasejs/12.2.1/firebase-firestore.js";
+
+
+    // ============================================================
+    // URL PARAMETERS
+    // ============================================================
+
+    const params =
+        new URLSearchParams(
+            window.location.search
+        );
+
+
+    const restaurantId =
+        params.get("restaurantId");
+
+
+    const tableNumber =
+        params.get("tableNumber");
+
+
+    // ============================================================
+    // CART
+    // ============================================================
+
+    let cart =
+        JSON.parse(
+            localStorage.getItem(
+                "tableTapCart"
+            )
+        ) || {};
+
+
+    let menuItems = [];
+
+
+    // ============================================================
+    // ELEMENTS
+    // ============================================================
+
+    const loading =
+        document.getElementById(
+            "loading"
+        );
+
+
+    const success =
+        document.getElementById(
+            "success"
+        );
+
+
+    const error =
+        document.getElementById(
+            "error"
+        );
+
+
+    const errorMessage =
+        document.getElementById(
+            "error-message"
+        );
+
+
+    // ============================================================
+    // START
+    // ============================================================
+
+    placeOrder();
+
+
+    // ============================================================
+    // PLACE ORDER
+    // ============================================================
+
+    async function placeOrder() {
+
+        try {
+
+            if (!restaurantId) {
+
+                throw new Error(
+                    "Restaurant information is missing."
+                );
+
+            }
+
+
+            if (!tableNumber) {
+
+                throw new Error(
+                    "Table number is missing."
+                );
+
+            }
+
+
+            if (
+                Object.keys(cart).length === 0
+            ) {
+
+                throw new Error(
+                    "Your cart is empty."
+                );
+
+            }
+
+
+            // ====================================================
+            // RESTAURANT
+            // ====================================================
+
+            const restaurantSnapshot =
+                await getDoc(
+                    doc(
+                        db,
+                        "restaurants",
+                        restaurantId
+                    )
+                );
+
+
+            if (!restaurantSnapshot.exists()) {
+
+                throw new Error(
+                    "Restaurant not found."
+                );
+
+            }
+
+
+            const restaurantData =
+                restaurantSnapshot.data();
+
+
+            document.getElementById(
+                "restaurant-name"
+            ).textContent =
+                restaurantData.name ||
+                "Restaurant";
+
+
+            document.getElementById(
+                "table-number"
+            ).textContent =
+                tableNumber;
+
+
+            // ====================================================
+            // LOAD MENU
+            // ====================================================
+
+            const menuSnapshot =
+                await getDocs(
+                    collection(
+                        db,
+                        "restaurants",
+                        restaurantId,
+                        "myMenu"
+                    )
+                );
+
+
+            menuItems = [];
+
+
+            menuSnapshot.forEach(
+                (menuDocument) => {
+
+                    const data =
+                        menuDocument.data();
+
+
+                    /*
+                     * IMPORTANT:
+                     *
+                     * Firestore document.id
+                     * is the ONLY canonical ID.
+                     *
+                     * data.id is NOT used.
+                     */
+
+                    menuItems.push({
+
+                        id:
+                            menuDocument.id,
+
+                        name:
+                            data.name ||
+                            "Food Item",
+
+                        price:
+                            Number(
+                                data.price || 0
+                            ),
+
+                        count:
+                            Number(
+                                data.count || 0
+                            )
+
+                    });
+
+                }
+            );
+
+
+            // ====================================================
+            // BUILD ORDER ITEMS
+            // ====================================================
+
+            const orderItems = [];
+
+            let totalAmount = 0;
+
+
+            for (
+                const [cartItemId, quantityValue]
+                of Object.entries(cart)
+            ) {
+
+                const quantity =
+                    Number(quantityValue);
+
+
+                /*
+                 * IMPORTANT:
+                 *
+                 * Match ONLY against
+                 * Firestore document.id.
+                 */
+
+                const item =
+                    menuItems.find(
+                        menuItem =>
+                            menuItem.id ===
+                            cartItemId
+                    );
+
+
+                if (!item) {
+
+                    throw new Error(
+                        "One of the selected food items is no longer available."
+                    );
+
+                }
+
+
+                if (quantity <= 0) {
+
+                    continue;
+
+                }
+
+
+                // =================================================
+                // STOCK CHECK
+                // =================================================
+
+                if (
+                    item.count > 0 &&
+                    quantity > item.count
+                ) {
+
+                    throw new Error(
+                        item.name +
+                        " has only " +
+                        item.count +
+                        " available."
+                    );
+
+                }
+
+
+                const itemTotal =
+                    item.price *
+                    quantity;
+
+
+                totalAmount +=
+                    itemTotal;
+
+
+                orderItems.push({
+
+                    itemId:
+                        item.id,
+
+                    name:
+                        item.name,
+
+                    quantity:
+                        quantity,
+
+                    price:
+                        item.price
+
+                });
+
+            }
+
+
+            if (
+                orderItems.length === 0
+            ) {
+
+                throw new Error(
+                    "No valid items found in your cart."
+                );
+
+            }
+
+
+            // ====================================================
+            // GENERATE ORDER ID
+            // ====================================================
+
+            const orderId =
+                generateOrderId();
+
+
+            const timestamp =
+                Date.now();
+
+
+            // ====================================================
+            // ORDER OBJECT
+            // ====================================================
+
+            const order = {
+
+                orderId:
+                    orderId,
+
+                tableId:
+                    "table_" +
+                    tableNumber,
+
+                tableNumber:
+                    Number(tableNumber),
+
+                items:
+                    orderItems,
+
+                totalAmount:
+                    totalAmount,
+
+                status:
+                    "NEW",
+
+                orderType:
+                    "DINE_IN",
+
+                createdAt:
+                    timestamp,
+
+                updatedAt:
+                    timestamp
+
+            };
+
+
+            // ====================================================
+            // SAVE ORDER
+            // ====================================================
+
+            await setDoc(
+
+                doc(
+                    db,
+                    "restaurants",
+                    restaurantId,
+                    "orders",
+                    orderId
+                ),
+
+                order
+
+            );
+
+
+            // ====================================================
+            // SAVE LOCAL ORDER
+            // ====================================================
+
+            localStorage.removeItem(
+                "tableTapCart"
+            );
+
+
+            localStorage.setItem(
+                "tableTapLastOrderId",
+                orderId
+            );
+
+
+            localStorage.setItem(
+                "tableTapOrder",
+                JSON.stringify(order)
+            );
+
+
+            // ====================================================
+            // SHOW SUCCESS
+            // ====================================================
+
+            showSuccess(
+                orderId,
+                orderItems,
+                totalAmount
+            );
+
+
+        } catch (e) {
+
+            console.error(
+                "Order placement error:",
+                e
+            );
+
+
+            showError(
+                e.message ||
+                "Something went wrong while placing your order."
             );
 
         }
-    );
+
+    }
 
 
-    orderTotalElement.textContent =
-        "₹" + total;
+    // ============================================================
+    // GENERATE ORDER ID
+    // ============================================================
 
-}
+    function generateOrderId() {
 
-
-
-/* =========================================================
-   ERROR
-========================================================= */
-
-function showError(message) {
-
-    loading.style.display =
-        "none";
+        const letters =
+            "ABCDEFGHJKLMNPQRTUVWXYZ";
 
 
-    successContent.style.display =
-        "none";
+        const randomLetter =
+            letters[
+                Math.floor(
+                    Math.random() *
+                    letters.length
+                )
+            ];
 
 
-    errorMessage.textContent =
-        message;
+        const randomNumber =
+            Math.floor(
+                Math.random() * 900
+            ) + 100;
 
 
-    errorSection.classList.add(
-        "show"
-    );
+        return (
+            "TK-" +
+            randomLetter +
+            randomNumber
+        );
 
-}
+    }
 
 
+    // ============================================================
+    // SHOW SUCCESS
+    // ============================================================
 
-/* =========================================================
-   BACK TO CART
-========================================================= */
+    function showSuccess(
+        orderId,
+        orderItems,
+        totalAmount
+    ) {
 
-window.backToCart =
-    function() {
+        loading.style.display =
+            "none";
 
-        window.location.href =
-            "cart.html" +
-            "?restaurantId=" +
-            encodeURIComponent(
-                restaurantId
-            ) +
-            "&tableNumber=" +
-            encodeURIComponent(
-                tableNumber || ""
+
+        success.style.display =
+            "block";
+
+
+        document.getElementById(
+            "order-id"
+        ).textContent =
+            orderId;
+
+
+        document.getElementById(
+            "total"
+        ).textContent =
+            "₹" + totalAmount;
+
+
+        const orderItemsContainer =
+            document.getElementById(
+                "order-items"
             );
 
-    };
+
+        orderItemsContainer.innerHTML =
+            "";
 
 
+        orderItems.forEach(
+            (item) => {
 
-/* =========================================================
-   BACK TO MENU
-========================================================= */
+                const itemContainer =
+                    document.createElement(
+                        "div"
+                    );
 
-window.backToMenu =
-    function() {
 
-        window.location.href =
+                itemContainer.className =
+                    "order-item";
+
+
+                const left =
+                    document.createElement(
+                        "div"
+                    );
+
+
+                const name =
+                    document.createElement(
+                        "div"
+                    );
+
+
+                name.className =
+                    "order-item-name";
+
+
+                name.textContent =
+                    item.name;
+
+
+                const quantity =
+                    document.createElement(
+                        "div"
+                    );
+
+
+                quantity.className =
+                    "order-item-quantity";
+
+
+                quantity.textContent =
+                    "Quantity: " +
+                    item.quantity;
+
+
+                left.appendChild(
+                    name
+                );
+
+
+                left.appendChild(
+                    quantity
+                );
+
+
+                const price =
+                    document.createElement(
+                        "div"
+                    );
+
+
+                price.className =
+                    "order-item-price";
+
+
+                price.textContent =
+                    "₹" +
+                    (
+                        item.price *
+                        item.quantity
+                    );
+
+
+                itemContainer.appendChild(
+                    left
+                );
+
+
+                itemContainer.appendChild(
+                    price
+                );
+
+
+                orderItemsContainer.appendChild(
+                    itemContainer
+                );
+
+            }
+        );
+
+
+        // ORDER MORE FOOD
+
+        document.getElementById(
+            "order-more-button"
+        ).href =
             "menu.html" +
             "?restaurantId=" +
             encodeURIComponent(
@@ -1534,50 +1121,66 @@ window.backToMenu =
             ) +
             "&tableNumber=" +
             encodeURIComponent(
+                tableNumber
+            );
+
+
+        // BACK HOME
+
+        document.getElementById(
+            "back-home-button"
+        ).href =
+            "index.html" +
+            "?restaurantId=" +
+            encodeURIComponent(
+                restaurantId
+            ) +
+            "&tableNumber=" +
+            encodeURIComponent(
+                tableNumber
+            );
+
+    }
+
+
+    // ============================================================
+    // SHOW ERROR
+    // ============================================================
+
+    function showError(message) {
+
+        loading.style.display =
+            "none";
+
+
+        success.style.display =
+            "none";
+
+
+        error.style.display =
+            "block";
+
+
+        errorMessage.textContent =
+            message;
+
+
+        document.getElementById(
+            "back-cart-button"
+        ).href =
+            "cart.html" +
+            "?restaurantId=" +
+            encodeURIComponent(
+                restaurantId || ""
+            ) +
+            "&tableNumber=" +
+            encodeURIComponent(
                 tableNumber || ""
             );
 
-    };
-
-
-
-/* =========================================================
-   ESCAPE HTML
-========================================================= */
-
-function escapeHtml(value) {
-
-    return String(value)
-
-        .replaceAll(
-            "&",
-            "&amp;"
-        )
-
-        .replaceAll(
-            "<",
-            "&lt;"
-        )
-
-        .replaceAll(
-            ">",
-            "&gt;"
-        )
-
-        .replaceAll(
-            '"',
-            "&quot;"
-        )
-
-        .replaceAll(
-            "'",
-            "&#039;"
-        );
-
-}
+    }
 
 </script>
-
 
 </body>
 
