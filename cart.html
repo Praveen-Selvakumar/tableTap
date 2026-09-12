@@ -10,8 +10,7 @@
         content="width=device-width, initial-scale=1.0"
     >
 
-    <title>Your Cart - TableTap</title>
-
+    <title>Cart - TableTap</title>
 
     <style>
 
@@ -21,570 +20,304 @@
             padding: 0;
         }
 
-
         body {
-
             font-family: Arial, sans-serif;
-
-            background: #f7f7f7;
-
-            color: #222;
-
-            padding-bottom: 100px;
+            background: #eeeae5;
+            color: #211d1a;
         }
 
+        main {
+            max-width: 520px;
+            min-height: 100vh;
+            margin: auto;
+            background: #faf8f4;
+            padding-bottom: 110px;
+        }
 
-        /* =========================
-           HEADER
-        ========================== */
-
-        .header {
-
+        header {
             position: sticky;
-
             top: 0;
+            z-index: 20;
 
-            z-index: 100;
-
-            height: 60px;
-
-            background: #ffffff;
+            height: 64px;
+            padding: 0 20px;
 
             display: flex;
-
             align-items: center;
-
             justify-content: space-between;
 
-            padding: 0 18px;
-
-            border-bottom: 1px solid #eeeeee;
+            background: #211d1a;
+            color: white;
         }
 
+        .logo {
+            font-size: 22px;
+            font-weight: bold;
+        }
 
-        .back-btn {
+        .logo span {
+            color: #e6a15c;
+        }
 
+        .back-button {
             border: none;
+            background: transparent;
+            color: white;
 
-            background: none;
-
-            font-size: 24px;
-
+            font-size: 25px;
             cursor: pointer;
-
-            width: 40px;
-
-            height: 40px;
         }
-
 
         .header-title {
-
-            font-size: 19px;
-
-            font-weight: 700;
+            font-size: 18px;
+            font-weight: bold;
         }
-
 
         .header-spacer {
-
-            width: 40px;
+            width: 30px;
         }
 
-
-        /* =========================
-           MAIN
-        ========================== */
-
-        .container {
-
-            max-width: 520px;
-
-            margin: auto;
-
-            padding: 18px 16px;
+        .content {
+            padding: 20px;
         }
 
+        .restaurant-card {
+            background: white;
+            border-radius: 18px;
+            padding: 18px;
+            margin-bottom: 18px;
+
+            box-shadow: 0 4px 15px rgba(0,0,0,0.05);
+        }
 
         .restaurant-name {
+            font-size: 20px;
+            font-weight: bold;
+        }
 
+        .table-info {
+            margin-top: 8px;
+            color: #777;
             font-size: 14px;
-
-            color: #777;
-
-            margin-bottom: 18px;
         }
-
-
-        /* =========================
-           TABLE INFO
-        ========================== */
-
-        .table-card {
-
-            background: #ffffff;
-
-            border-radius: 14px;
-
-            padding: 15px;
-
-            margin-bottom: 18px;
-
-            border: 1px solid #eeeeee;
-        }
-
-
-        .table-label {
-
-            font-size: 12px;
-
-            color: #777;
-
-            margin-bottom: 5px;
-        }
-
-
-        .table-number {
-
-            font-size: 17px;
-
-            font-weight: 700;
-        }
-
-
-        /* =========================
-           SECTION TITLE
-        ========================== */
 
         .section-title {
+            font-size: 20px;
+            font-weight: bold;
+            margin: 20px 0 12px;
+        }
 
-            font-size: 18px;
+        .cart-item {
+            display: flex;
+            gap: 12px;
 
-            font-weight: 700;
-
+            background: white;
+            padding: 14px;
             margin-bottom: 12px;
+
+            border-radius: 16px;
+
+            box-shadow: 0 4px 15px rgba(0,0,0,0.04);
         }
 
+        .item-image {
+            width: 78px;
+            height: 78px;
 
-        /* =========================
-           LOADING
-        ========================== */
+            border-radius: 12px;
+            object-fit: cover;
 
-        .loading {
-
-            text-align: center;
-
-            padding: 50px 20px;
-
-            color: #777;
-
-            font-size: 14px;
+            background: #eee;
+            flex-shrink: 0;
         }
 
-
-        /* =========================
-           ERROR
-        ========================== */
-
-        .error {
-
-            display: none;
-
-            background: #fff0ed;
-
-            color: #c0392b;
-
-            padding: 15px;
+        .item-image-placeholder {
+            width: 78px;
+            height: 78px;
 
             border-radius: 12px;
 
-            margin-bottom: 15px;
-
-            font-size: 13px;
-
-            text-align: center;
-        }
-
-
-        .error.show {
-
-            display: block;
-        }
-
-
-        /* =========================
-           CART ITEM
-        ========================== */
-
-        .cart-item {
-
-            background: #ffffff;
-
-            border-radius: 14px;
-
-            padding: 14px;
-
-            margin-bottom: 12px;
-
             display: flex;
-
             align-items: center;
+            justify-content: center;
 
-            gap: 12px;
-
-            border: 1px solid #eeeeee;
-        }
-
-
-        .food-image {
-
-            width: 65px;
-
-            height: 65px;
-
-            border-radius: 10px;
-
-            object-fit: cover;
+            background: #f0ebe5;
+            font-size: 30px;
 
             flex-shrink: 0;
-
-            background: #eeeeee;
         }
 
-
         .item-details {
-
             flex: 1;
-
             min-width: 0;
         }
 
-
-        .food-name {
-
-            font-size: 15px;
-
-            font-weight: 600;
-
-            margin-bottom: 5px;
+        .item-name {
+            font-size: 16px;
+            font-weight: bold;
         }
 
-
-        .food-price {
-
+        .item-price {
+            margin-top: 7px;
             font-size: 14px;
-
             color: #777;
         }
 
-
-        /* =========================
-           QUANTITY
-        ========================== */
-
-        .quantity-control {
-
-            display: flex;
-
-            align-items: center;
-
-            border: 1px solid #dddddd;
-
-            border-radius: 8px;
-
-            overflow: hidden;
+        .item-total {
+            margin-top: 6px;
+            font-size: 16px;
+            font-weight: bold;
         }
 
+        .quantity-row {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            margin-top: 10px;
+        }
 
-        .quantity-btn {
-
+        .quantity-button {
             width: 30px;
-
             height: 30px;
 
             border: none;
+            border-radius: 8px;
 
-            background: #ffffff;
+            background: #211d1a;
+            color: white;
 
             font-size: 18px;
-
             cursor: pointer;
         }
 
-
         .quantity {
-
-            width: 28px;
-
+            min-width: 20px;
             text-align: center;
-
-            font-size: 14px;
-
-            font-weight: 600;
+            font-weight: bold;
         }
-
-
-        /* =========================
-           ITEM TOTAL
-        ========================== */
-
-        .item-total {
-
-            font-size: 14px;
-
-            font-weight: 700;
-
-            min-width: 55px;
-
-            text-align: right;
-        }
-
-
-        /* =========================
-           EMPTY CART
-        ========================== */
 
         .empty-cart {
-
-            background: #ffffff;
-
-            border-radius: 14px;
-
-            padding: 50px 20px;
-
             text-align: center;
-
-            display: none;
+            padding: 70px 20px;
         }
 
-
         .empty-icon {
-
-            font-size: 45px;
-
+            font-size: 55px;
             margin-bottom: 15px;
         }
 
-
-        .empty-title {
-
-            font-size: 18px;
-
-            font-weight: 700;
-
-            margin-bottom: 8px;
+        .empty-cart h2 {
+            font-size: 22px;
         }
 
-
-        .empty-text {
-
+        .empty-cart p {
+            margin-top: 8px;
             color: #777;
-
-            font-size: 14px;
-
-            margin-bottom: 20px;
         }
 
-
-        .browse-btn {
-
+        .browse-button {
             display: inline-block;
 
-            background: #111;
+            margin-top: 22px;
+            padding: 13px 22px;
 
+            border-radius: 12px;
+
+            background: #211d1a;
             color: white;
 
-            padding: 12px 22px;
-
-            border-radius: 9px;
-
             text-decoration: none;
-
-            font-size: 14px;
-
-            font-weight: 600;
+            font-weight: bold;
         }
 
+        .warning {
+            background: #fff3cd;
+            color: #856404;
 
-        /* =========================
-           SUMMARY
-        ========================== */
+            border-radius: 12px;
+            padding: 12px;
+
+            margin-bottom: 15px;
+
+            font-size: 14px;
+        }
 
         .summary {
-
-            background: #ffffff;
-
-            border-radius: 14px;
-
+            background: white;
+            border-radius: 18px;
             padding: 18px;
 
             margin-top: 20px;
-
-            border: 1px solid #eeeeee;
         }
-
 
         .summary-row {
-
             display: flex;
-
             justify-content: space-between;
-
-            font-size: 14px;
 
             margin-bottom: 12px;
+            font-size: 15px;
         }
 
-
-        .summary-label {
-
-            color: #777;
-        }
-
-
-        .summary-value {
-
-            font-weight: 600;
-        }
-
-
-        .divider {
-
-            border: none;
-
-            border-top: 1px solid #eeeeee;
-
-            margin: 15px 0;
-        }
-
-
-        .total-row {
-
-            display: flex;
-
-            justify-content: space-between;
-
-            font-size: 18px;
-
-            font-weight: 700;
-        }
-
-
-        /* =========================
-           BOTTOM BAR
-        ========================== */
-
-        .bottom-bar {
-
-            position: fixed;
-
-            bottom: 0;
-
-            left: 0;
-
-            right: 0;
-
-            background: #ffffff;
-
-            border-top: 1px solid #eeeeee;
-
-            padding: 12px 16px;
-
-            z-index: 100;
-        }
-
-
-        .bottom-content {
-
-            max-width: 520px;
-
-            margin: auto;
-
-            display: flex;
-
-            align-items: center;
-
-            gap: 12px;
-        }
-
-
-        .bottom-total {
-
-            flex: 1;
-        }
-
-
-        .bottom-label {
-
-            font-size: 12px;
-
-            color: #777;
-        }
-
-
-        .bottom-price {
+        .summary-row.total {
+            border-top: 1px solid #eee;
+            padding-top: 14px;
 
             font-size: 19px;
-
-            font-weight: 700;
+            font-weight: bold;
         }
 
+        .bottom-bar {
+            position: fixed;
+            bottom: 0;
+            left: 50%;
 
-        .place-order-btn {
+            transform: translateX(-50%);
+
+            width: 100%;
+            max-width: 520px;
+
+            padding: 14px 18px;
+
+            background: white;
+            border-top: 1px solid #eee;
+
+            box-shadow: 0 -4px 15px rgba(0,0,0,0.08);
+
+            z-index: 30;
+        }
+
+        .place-order-button {
+            width: 100%;
 
             border: none;
+            border-radius: 14px;
 
-            background: #111;
+            padding: 16px;
 
-            color: #ffffff;
+            background: #211d1a;
+            color: white;
 
-            padding: 14px 20px;
-
-            border-radius: 10px;
-
-            font-size: 15px;
-
-            font-weight: 600;
+            font-size: 17px;
+            font-weight: bold;
 
             cursor: pointer;
         }
 
-
-        .place-order-btn:disabled {
-
-            background: #cccccc;
-
+        .place-order-button:disabled {
+            background: #aaa;
             cursor: not-allowed;
         }
 
+        .loading {
+            text-align: center;
+            padding: 60px 20px;
+            color: #777;
+        }
 
-        /* =========================
-           DESKTOP
-        ========================== */
-
-        @media (min-width: 600px) {
-
-            body {
-
-                background: #eeeeee;
-            }
-
-
-            .header {
-
-                max-width: 520px;
-
-                margin: auto;
-            }
-
-
-            .bottom-bar {
-
-                background: transparent;
-
-                border: none;
-            }
-
+        .error {
+            text-align: center;
+            padding: 50px 20px;
+            color: #c0392b;
         }
 
     </style>
@@ -594,555 +327,735 @@
 
 <body>
 
+<main>
 
-<!-- =========================
-     HEADER
-========================== -->
+    <!-- HEADER -->
 
-<header class="header">
+    <header>
 
+        <button
+            class="back-button"
+            onclick="goBack()"
+        >
+            ←
+        </button>
 
-    <button
-        class="back-btn"
-        id="backButton">
-
-        ←
-
-    </button>
-
-
-    <div class="header-title">
-
-        Your Cart
-
-    </div>
-
-
-    <div class="header-spacer"></div>
-
-
-</header>
-
-
-
-<!-- =========================
-     MAIN
-========================== -->
-
-<main class="container">
-
-
-    <div
-        class="restaurant-name"
-        id="restaurantName">
-
-        Loading...
-
-    </div>
-
-
-
-    <!-- TABLE -->
-
-    <div class="table-card">
-
-
-        <div class="table-label">
-
-            Ordering for
-
+        <div class="header-title">
+            Your Cart
         </div>
 
+        <div class="header-spacer"></div>
+
+    </header>
+
+
+    <!-- CONTENT -->
+
+    <div class="content">
+
+        <div id="loading" class="loading">
+            Loading cart...
+        </div>
 
         <div
-            class="table-number"
-            id="tableNumber">
-
-            Table -
-
+            id="error"
+            class="error"
+            style="display:none;"
+        >
+            Unable to load cart.
         </div>
 
+        <div
+            id="cart-content"
+            style="display:none;"
+        >
 
-    </div>
+            <!-- RESTAURANT -->
 
+            <div class="restaurant-card">
 
+                <div
+                    id="restaurant-name"
+                    class="restaurant-name"
+                >
+                    Restaurant
+                </div>
 
-    <!-- ERROR -->
-
-    <div
-        class="error"
-        id="errorMessage">
-
-    </div>
-
-
-
-    <!-- LOADING -->
-
-    <div
-        class="loading"
-        id="loading">
-
-        Loading your cart...
-
-    </div>
-
-
-
-    <!-- CART -->
-
-    <div
-        id="cartSection"
-        style="display:none;">
-
-
-        <div class="section-title">
-
-            Your Order
-
-        </div>
-
-
-        <div id="cartItems"></div>
-
-
-
-        <!-- SUMMARY -->
-
-        <div class="summary">
-
-
-            <div class="summary-row">
-
-                <span class="summary-label">
-
-                    Items
-
-                </span>
-
-
-                <span
-                    class="summary-value"
-                    id="itemCount">
-
-                    0
-
-                </span>
+                <div
+                    id="table-info"
+                    class="table-info"
+                >
+                    Table
+                </div>
 
             </div>
 
 
+            <!-- WARNING -->
 
-            <div class="summary-row">
-
-                <span class="summary-label">
-
-                    Subtotal
-
-                </span>
+            <div
+                id="warning"
+                class="warning"
+                style="display:none;"
+            ></div>
 
 
-                <span
-                    class="summary-value"
-                    id="subtotal">
+            <!-- ITEMS -->
 
-                    ₹0
-
-                </span>
-
+            <div class="section-title">
+                Your Items
             </div>
 
+            <div id="cart-items"></div>
 
 
-            <hr class="divider">
+            <!-- SUMMARY -->
+
+            <div
+                id="summary"
+                class="summary"
+            >
+
+                <div class="summary-row">
+
+                    <span>
+                        Items
+                    </span>
+
+                    <span id="item-count">
+                        0
+                    </span>
+
+                </div>
 
 
+                <div class="summary-row total">
 
-            <div class="total-row">
+                    <span>
+                        Total
+                    </span>
 
-                <span>
+                    <span id="total">
+                        ₹0
+                    </span>
 
-                    Total
-
-                </span>
-
-
-                <span id="total">
-
-                    ₹0
-
-                </span>
+                </div>
 
             </div>
-
 
         </div>
 
 
+        <!-- EMPTY CART -->
+
+        <div
+            id="empty-cart"
+            class="empty-cart"
+            style="display:none;"
+        >
+
+            <div class="empty-icon">
+                🛒
+            </div>
+
+            <h2>
+                Your cart is empty
+            </h2>
+
+            <p>
+                Add some delicious food to continue.
+            </p>
+
+            <a
+                id="browse-menu"
+                class="browse-button"
+                href="#"
+            >
+                Browse Menu
+            </a>
+
+        </div>
+
     </div>
 
 
-
-    <!-- EMPTY CART -->
+    <!-- BOTTOM BAR -->
 
     <div
-        class="empty-cart"
-        id="emptyCart">
+        id="bottom-bar"
+        class="bottom-bar"
+        style="display:none;"
+    >
 
-
-        <div class="empty-icon">
-
-            🛒
-
-        </div>
-
-
-        <div class="empty-title">
-
-            Your cart is empty
-
-        </div>
-
-
-        <div class="empty-text">
-
-            Add some delicious food to your order.
-
-        </div>
-
-
-        <a
-            href="#"
-            class="browse-btn"
-            id="browseButton">
-
-            Browse Menu
-
-        </a>
-
+        <button
+            id="place-order-button"
+            class="place-order-button"
+            onclick="placeOrder()"
+        >
+            Place Order
+        </button>
 
     </div>
-
 
 </main>
 
 
-
-<!-- =========================
-     BOTTOM BAR
-========================== -->
-
-<div
-    class="bottom-bar"
-    id="bottomBar"
-    style="display:none;">
-
-
-    <div class="bottom-content">
-
-
-        <div class="bottom-total">
-
-
-            <div class="bottom-label">
-
-                Total
-
-            </div>
-
-
-            <div
-                class="bottom-price"
-                id="bottomTotal">
-
-                ₹0
-
-            </div>
-
-
-        </div>
-
-
-
-        <button
-            class="place-order-btn"
-            id="placeOrderButton">
-
-            Place Order →
-
-        </button>
-
-
-    </div>
-
-
-</div>
-
-
-
 <script type="module">
 
+    import { db } from "./firebase.js";
 
-/* =========================================================
-   FIREBASE
-========================================================= */
-
-import {
-
-    collection,
-    getDocs,
-    doc,
-    getDoc
-
-} from
-"https://www.gstatic.com/firebasejs/12.2.1/firebase-firestore.js";
+    import {
+        doc,
+        getDoc,
+        collection,
+        getDocs
+    }
+    from
+        "https://www.gstatic.com/firebasejs/12.2.1/firebase-firestore.js";
 
 
-import { db } from "./firebase.js";
+    // ============================================================
+    // URL PARAMETERS
+    // ============================================================
+
+    const params =
+        new URLSearchParams(window.location.search);
+
+    const restaurantId =
+        params.get("restaurantId");
+
+    const tableNumber =
+        params.get("tableNumber");
 
 
+    // ============================================================
+    // CART
+    // ============================================================
 
-/* =========================================================
-   URL PARAMETERS
-========================================================= */
-
-const params =
-    new URLSearchParams(
-        window.location.search
-    );
-
-
-const restaurantId =
-    params.get("restaurantId");
+    let cart =
+        JSON.parse(
+            localStorage.getItem("tableTapCart")
+        ) || {};
 
 
-const tableNumber =
-    params.get("tableNumber");
+    let menuItems = [];
 
 
+    // ============================================================
+    // ELEMENTS
+    // ============================================================
 
-/* =========================================================
-   ELEMENTS
-========================================================= */
+    const loading =
+        document.getElementById("loading");
 
-const restaurantName =
-    document.getElementById(
-        "restaurantName"
-    );
+    const error =
+        document.getElementById("error");
 
+    const cartContent =
+        document.getElementById("cart-content");
 
-const tableNumberElement =
-    document.getElementById(
-        "tableNumber"
-    );
+    const emptyCart =
+        document.getElementById("empty-cart");
 
+    const bottomBar =
+        document.getElementById("bottom-bar");
 
-const cartSection =
-    document.getElementById(
-        "cartSection"
-    );
+    const cartItemsContainer =
+        document.getElementById("cart-items");
 
+    const restaurantName =
+        document.getElementById("restaurant-name");
 
-const cartItemsElement =
-    document.getElementById(
-        "cartItems"
-    );
+    const tableInfo =
+        document.getElementById("table-info");
 
+    const totalElement =
+        document.getElementById("total");
 
-const emptyCart =
-    document.getElementById(
-        "emptyCart"
-    );
+    const itemCountElement =
+        document.getElementById("item-count");
 
+    const warning =
+        document.getElementById("warning");
 
-const loading =
-    document.getElementById(
-        "loading"
-    );
-
-
-const bottomBar =
-    document.getElementById(
-        "bottomBar"
-    );
+    const browseMenu =
+        document.getElementById("browse-menu");
 
 
-const errorMessage =
-    document.getElementById(
-        "errorMessage"
-    );
+    // ============================================================
+    // VALIDATE
+    // ============================================================
 
+    if (!restaurantId) {
 
-const placeOrderButton =
-    document.getElementById(
-        "placeOrderButton"
-    );
+        showError(
+            "Restaurant information is missing."
+        );
 
+    } else {
 
+        browseMenu.href =
+            "menu.html?restaurantId=" +
+            encodeURIComponent(restaurantId) +
+            "&tableNumber=" +
+            encodeURIComponent(tableNumber || "");
 
-/* =========================================================
-   CART
-========================================================= */
-
-let cart =
-    JSON.parse(
-        localStorage.getItem(
-            "tableTapCart"
-        )
-    ) || {};
-
-
-
-/* =========================================================
-   FIRESTORE MENU
-========================================================= */
-
-let menuItems = [];
-
-
-
-/* =========================================================
-   INITIAL
-========================================================= */
-
-if (!restaurantId) {
-
-    showError(
-        "Restaurant information is missing."
-    );
-
-} else {
-
-    if (tableNumber) {
-
-        tableNumberElement.textContent =
-            "Table " + tableNumber;
+        loadCart();
 
     }
 
 
-    setupNavigation();
+    // ============================================================
+    // LOAD CART
+    // ============================================================
 
-    loadCart();
+    async function loadCart() {
 
-}
+        try {
+
+            loading.style.display = "block";
+            error.style.display = "none";
 
 
+            // --------------------------------------------
+            // RESTAURANT
+            // --------------------------------------------
 
-/* =========================================================
-   NAVIGATION
-========================================================= */
-
-function setupNavigation() {
-
-    document
-        .getElementById("backButton")
-        .addEventListener(
-            "click",
-            () => {
-
-                window.location.href =
-                    "menu.html" +
-                    "?restaurantId=" +
-                    encodeURIComponent(
+            const restaurantSnapshot =
+                await getDoc(
+                    doc(
+                        db,
+                        "restaurants",
                         restaurantId
-                    ) +
-                    "&tableNumber=" +
-                    encodeURIComponent(
-                        tableNumber || ""
-                    );
+                    )
+                );
+
+
+            if (restaurantSnapshot.exists()) {
+
+                const data =
+                    restaurantSnapshot.data();
+
+                restaurantName.textContent =
+                    data.name ||
+                    "Restaurant";
+
+            } else {
+
+                restaurantName.textContent =
+                    "Restaurant";
 
             }
-        );
 
 
-    document
-        .getElementById("browseButton")
-        .addEventListener(
-            "click",
-            event => {
-
-                event.preventDefault();
+            tableInfo.textContent =
+                tableNumber
+                    ? "Table " + tableNumber
+                    : "Table";
 
 
-                window.location.href =
-                    "menu.html" +
-                    "?restaurantId=" +
-                    encodeURIComponent(
-                        restaurantId
-                    ) +
-                    "&tableNumber=" +
-                    encodeURIComponent(
-                        tableNumber || ""
-                    );
+            // --------------------------------------------
+            // MENU
+            // --------------------------------------------
 
-            }
-        );
-
-
-    placeOrderButton.addEventListener(
-        "click",
-        placeOrder
-    );
-
-}
+            const menuSnapshot =
+                await getDocs(
+                    collection(
+                        db,
+                        "restaurants",
+                        restaurantId,
+                        "myMenu"
+                    )
+                );
 
 
-
-/* =========================================================
-   LOAD CART
-========================================================= */
-
-async function loadCart() {
-
-    loading.style.display =
-        "block";
+            menuItems = [];
 
 
-    try {
+            menuSnapshot.forEach(
+                (menuDocument) => {
 
-        /* =========================================
-           LOAD RESTAURANT
-        ========================================= */
+                    const data =
+                        menuDocument.data();
 
-        const restaurantRef =
-            doc(
-                db,
-                "restaurants",
-                restaurantId
+
+                    /*
+                     * IMPORTANT:
+                     *
+                     * Firestore document.id
+                     * is the ONLY canonical item ID.
+                     *
+                     * Do NOT use data.id here.
+                     */
+
+                    menuItems.push({
+
+                        id: menuDocument.id,
+
+                        name:
+                            data.name ||
+                            "Food Item",
+
+                        description:
+                            data.des ||
+                            data.description ||
+                            "",
+
+                        price:
+                            Number(
+                                data.price || 0
+                            ),
+
+                        count:
+                            Number(
+                                data.count || 0
+                            ),
+
+                        image:
+                            data.image ||
+                            data.imageUrl ||
+                            ""
+
+                    });
+
+                }
             );
 
 
-        const restaurantSnapshot =
-            await getDoc(
-                restaurantRef
+            // --------------------------------------------
+            // CLEAN INVALID CART ITEMS
+            // --------------------------------------------
+
+            cleanCart();
+
+
+            loading.style.display = "none";
+
+
+            if (
+                Object.keys(cart).length === 0
+            ) {
+
+                showEmptyCart();
+
+            } else {
+
+                cartContent.style.display =
+                    "block";
+
+                bottomBar.style.display =
+                    "block";
+
+                renderCart();
+
+            }
+
+        } catch (e) {
+
+            console.error(
+                "Cart loading error:",
+                e
             );
 
-
-        if (
-            restaurantSnapshot.exists()
-        ) {
-
-            const restaurant =
-                restaurantSnapshot.data();
-
-
-            restaurantName.textContent =
-                restaurant.restaurantName ||
-                "Restaurant";
-
-        } else {
-
-            restaurantName.textContent =
-                "Restaurant";
+            showError(
+                "Unable to load your cart."
+            );
 
         }
 
+    }
 
 
-        /* =========================================
-           CHECK CART
-        ========================================= */
+    // ============================================================
+    // CLEAN CART
+    // ============================================================
+
+    function cleanCart() {
+
+        let changed = false;
+
+
+        Object.keys(cart).forEach(
+            (cartItemId) => {
+
+                const item =
+                    menuItems.find(
+                        menuItem =>
+                            menuItem.id ===
+                            cartItemId
+                    );
+
+
+                if (!item) {
+
+                    delete cart[cartItemId];
+
+                    changed = true;
+
+                }
+
+            }
+        );
+
+
+        if (changed) {
+
+            saveCart();
+
+        }
+
+    }
+
+
+    // ============================================================
+    // RENDER CART
+    // ============================================================
+
+    function renderCart() {
+
+        cartItemsContainer.innerHTML = "";
+
+
+        let total = 0;
+        let itemCount = 0;
+
+
+        Object.entries(cart).forEach(
+            ([id, quantity]) => {
+
+
+                /*
+                 * IMPORTANT:
+                 *
+                 * Only Firestore document.id
+                 * is used for matching.
+                 */
+
+                const item =
+                    menuItems.find(
+                        menuItem =>
+                            menuItem.id === id
+                    );
+
+
+                if (!item) {
+                    return;
+                }
+
+
+                const safeQuantity =
+                    Number(quantity);
+
+
+                const itemTotal =
+                    item.price *
+                    safeQuantity;
+
+
+                total += itemTotal;
+
+                itemCount += safeQuantity;
+
+
+                const card =
+                    document.createElement(
+                        "div"
+                    );
+
+                card.className =
+                    "cart-item";
+
+
+                // IMAGE
+
+                if (item.image) {
+
+                    const image =
+                        document.createElement(
+                            "img"
+                        );
+
+                    image.className =
+                        "item-image";
+
+                    image.src =
+                        item.image;
+
+                    image.alt =
+                        item.name;
+
+                    card.appendChild(image);
+
+                } else {
+
+                    const placeholder =
+                        document.createElement(
+                            "div"
+                        );
+
+                    placeholder.className =
+                        "item-image-placeholder";
+
+                    placeholder.textContent =
+                        "🍽️";
+
+                    card.appendChild(
+                        placeholder
+                    );
+
+                }
+
+
+                // DETAILS
+
+                const details =
+                    document.createElement(
+                        "div"
+                    );
+
+                details.className =
+                    "item-details";
+
+
+                const name =
+                    document.createElement(
+                        "div"
+                    );
+
+                name.className =
+                    "item-name";
+
+                name.textContent =
+                    item.name;
+
+
+                const price =
+                    document.createElement(
+                        "div"
+                    );
+
+                price.className =
+                    "item-price";
+
+                price.textContent =
+                    "₹" + item.price;
+
+
+                const itemTotalElement =
+                    document.createElement(
+                        "div"
+                    );
+
+                itemTotalElement.className =
+                    "item-total";
+
+                itemTotalElement.textContent =
+                    "₹" + itemTotal;
+
+
+                // QUANTITY
+
+                const quantityRow =
+                    document.createElement(
+                        "div"
+                    );
+
+                quantityRow.className =
+                    "quantity-row";
+
+
+                const minus =
+                    document.createElement(
+                        "button"
+                    );
+
+                minus.className =
+                    "quantity-button";
+
+                minus.textContent =
+                    "−";
+
+                minus.onclick =
+                    () => decreaseItem(id);
+
+
+                const quantityText =
+                    document.createElement(
+                        "span"
+                    );
+
+                quantityText.className =
+                    "quantity";
+
+                quantityText.textContent =
+                    safeQuantity;
+
+
+                const plus =
+                    document.createElement(
+                        "button"
+                    );
+
+                plus.className =
+                    "quantity-button";
+
+                plus.textContent =
+                    "+";
+
+                plus.onclick =
+                    () => increaseItem(id);
+
+
+                quantityRow.appendChild(
+                    minus
+                );
+
+                quantityRow.appendChild(
+                    quantityText
+                );
+
+                quantityRow.appendChild(
+                    plus
+                );
+
+
+                details.appendChild(
+                    name
+                );
+
+                details.appendChild(
+                    price
+                );
+
+                details.appendChild(
+                    itemTotalElement
+                );
+
+                details.appendChild(
+                    quantityRow
+                );
+
+
+                card.appendChild(
+                    details
+                );
+
+
+                cartItemsContainer.appendChild(
+                    card
+                );
+
+            }
+        );
+
+
+        totalElement.textContent =
+            "₹" + total;
+
+
+        itemCountElement.textContent =
+            itemCount;
+
 
         if (
             Object.keys(cart).length === 0
@@ -1150,174 +1063,53 @@ async function loadCart() {
 
             showEmptyCart();
 
-            return;
-
         }
-
-
-
-        /* =========================================
-           LOAD MY MENU
-        ========================================= */
-
-        const myMenuRef =
-            collection(
-                db,
-                "restaurants",
-                restaurantId,
-                "myMenu"
-            );
-
-
-        const snapshot =
-            await getDocs(
-                myMenuRef
-            );
-
-
-        menuItems = [];
-
-
-        snapshot.forEach(
-            document => {
-
-                const data =
-                    document.data();
-
-
-                /*
-                 * IMPORTANT:
-                 *
-                 * document.id is the
-                 * canonical item ID.
-                 *
-                 * data.id is kept only
-                 * as a fallback for
-                 * older data.
-                 */
-
-                menuItems.push({
-
-                    id:
-                        document.id,
-
-                    fieldId:
-                        data.id ||
-                        "",
-
-                    name:
-                        data.name ||
-                        "Food Item",
-
-                    description:
-                        data.des ||
-                        data.description ||
-                        "",
-
-                    price:
-                        Number(
-                            data.price || 0
-                        ),
-
-                    count:
-                        Number(
-                            data.count || 0
-                        ),
-
-                    image:
-                        data.image ||
-                        data.imageUrl ||
-                        ""
-
-                });
-
-            }
-        );
-
-
-        console.log(
-            "Cart menu items:",
-            menuItems
-        );
-
-
-        renderCart();
-
-
-    } catch (error) {
-
-        console.error(
-            "Cart loading error:",
-            error
-        );
-
-
-        showError(
-            "Unable to load your cart."
-        );
-
-    } finally {
-
-        loading.style.display =
-            "none";
 
     }
 
-}
 
+    // ============================================================
+    // INCREASE
+    // ============================================================
 
-
-/* =========================================================
-   RENDER CART
-========================================================= */
-
-function renderCart() {
-
-    cartItemsElement.innerHTML = "";
-
-
-    let total = 0;
-
-    let itemCount = 0;
-
-    let validItems = 0;
-
-
-
-    Object.keys(cart).forEach(
-        id => {
-
-            const quantity =
-                Number(cart[id]);
-
-
-            if (quantity <= 0) {
-
-                return;
-
-            }
-
-
-            /*
-             * Match by Firestore document ID.
-             *
-             * Also support old cart data
-             * using data.id.
-             */
+    window.increaseItem =
+        function(id) {
 
             const item =
                 menuItems.find(
                     menuItem =>
-                        menuItem.id === id ||
-                        menuItem.fieldId === id
+                        menuItem.id === id
                 );
 
 
             if (!item) {
+                return;
+            }
 
-                console.warn(
-                    "Cart item not found:",
-                    id
+
+            const currentQuantity =
+                Number(
+                    cart[id] || 0
+                );
+
+
+            /*
+             * count = stock.
+             *
+             * count 0 means unlimited /
+             * not stock-controlled.
+             */
+
+            if (
+                item.count > 0 &&
+                currentQuantity >= item.count
+            ) {
+
+                showWarning(
+                    item.name +
+                    " has only " +
+                    item.count +
+                    " available."
                 );
 
                 return;
@@ -1325,438 +1117,202 @@ function renderCart() {
             }
 
 
-            validItems++;
+            cart[id] =
+                currentQuantity + 1;
 
 
-            const itemTotal =
-                item.price *
-                quantity;
+            saveCart();
+
+            renderCart();
+
+        };
 
 
-            total +=
-                itemTotal;
+    // ============================================================
+    // DECREASE
+    // ============================================================
 
+    window.decreaseItem =
+        function(id) {
 
-            itemCount +=
-                quantity;
-
-
-
-            const itemElement =
-                document.createElement(
-                    "div"
+            const currentQuantity =
+                Number(
+                    cart[id] || 0
                 );
 
 
-            itemElement.className =
-                "cart-item";
+            if (
+                currentQuantity <= 1
+            ) {
 
+                delete cart[id];
 
-            const image =
-                item.image ||
-                "https://images.unsplash.com/photo-1547592180-85f173990554?auto=format&fit=crop&w=200&q=80";
+            } else {
 
+                cart[id] =
+                    currentQuantity - 1;
 
-            itemElement.innerHTML = `
+            }
 
-                <img
-                    class="food-image"
-                    src="${escapeHtml(image)}"
-                    alt="${escapeHtml(item.name)}"
-                    onerror="this.src='https://images.unsplash.com/photo-1547592180-85f173990554?auto=format&fit=crop&w=200&q=80'"
-                >
 
+            saveCart();
 
-                <div class="item-details">
+            renderCart();
 
-                    <div class="food-name">
+        };
 
-                        ${escapeHtml(item.name)}
 
-                    </div>
+    // ============================================================
+    // SAVE CART
+    // ============================================================
 
+    function saveCart() {
 
-                    <div class="food-price">
+        localStorage.setItem(
+            "tableTapCart",
+            JSON.stringify(cart)
+        );
 
-                        ₹${item.price}
 
-                    </div>
-
-                </div>
-
-
-                <div class="quantity-control">
-
-
-                    <button
-                        class="quantity-btn"
-                        onclick="decreaseItem('${escapeJs(id)}')">
-
-                        −
-
-                    </button>
-
-
-                    <div class="quantity">
-
-                        ${quantity}
-
-                    </div>
-
-
-                    <button
-                        class="quantity-btn"
-                        onclick="increaseItem('${escapeJs(id)}')">
-
-                        +
-
-                    </button>
-
-
-                </div>
-
-
-                <div class="item-total">
-
-                    ₹${itemTotal}
-
-                </div>
-
-            `;
-
-
-            cartItemsElement.appendChild(
-                itemElement
-            );
-
-        }
-    );
-
-
-
-    /* =====================================================
-       EMPTY
-    ===================================================== */
-
-    if (validItems === 0) {
-
-        showEmptyCart();
-
-        return;
-
-    }
-
-
-
-    cartSection.style.display =
-        "block";
-
-
-    emptyCart.style.display =
-        "none";
-
-
-    bottomBar.style.display =
-        "block";
-
-
-
-    /* =====================================================
-       TOTALS
-    ===================================================== */
-
-    document.getElementById(
-        "itemCount"
-    ).textContent =
-        itemCount;
-
-
-    document.getElementById(
-        "subtotal"
-    ).textContent =
-        "₹" + total;
-
-
-    document.getElementById(
-        "total"
-    ).textContent =
-        "₹" + total;
-
-
-    document.getElementById(
-        "bottomTotal"
-    ).textContent =
-        "₹" + total;
-
-
-    placeOrderButton.disabled =
-        false;
-
-}
-
-
-
-/* =========================================================
-   INCREASE
-========================================================= */
-
-window.increaseItem =
-    function(id) {
-
-        const item =
-            menuItems.find(
-                menuItem =>
-                    menuItem.id === id ||
-                    menuItem.fieldId === id
-            );
-
-
-        if (!item) {
-
-            return;
-
-        }
-
-
-        const currentQuantity =
-            cart[id] || 0;
-
-
-        /*
-         * Do not exceed stock.
-         *
-         * count > 0 means stock
-         * is being controlled.
-         */
-
-        if (
-            item.count > 0 &&
-            currentQuantity >= item.count
-        ) {
-
-            alert(
-                "Only " +
-                item.count +
-                " available."
-            );
-
-            return;
-
-        }
-
-
-        cart[id] =
-            currentQuantity + 1;
-
-
-        saveCart();
-
-    };
-
-
-
-/* =========================================================
-   DECREASE
-========================================================= */
-
-window.decreaseItem =
-    function(id) {
-
-        if (!cart[id]) {
-
-            return;
-
-        }
-
-
-        cart[id]--;
-
-
-        if (cart[id] <= 0) {
-
-            delete cart[id];
-
-        }
-
-
-        saveCart();
-
-    };
-
-
-
-/* =========================================================
-   SAVE CART
-========================================================= */
-
-function saveCart() {
-
-    localStorage.setItem(
-
-        "tableTapCart",
-
-        JSON.stringify(cart)
-
-    );
-
-
-    localStorage.setItem(
-
-        "tableTapRestaurantId",
-
-        restaurantId
-
-    );
-
-
-    localStorage.setItem(
-
-        "tableTapTableNumber",
-
-        tableNumber || ""
-
-    );
-
-
-    renderCart();
-
-}
-
-
-
-/* =========================================================
-   PLACE ORDER
-========================================================= */
-
-function placeOrder() {
-
-    if (
-        Object.keys(cart).length === 0
-    ) {
-
-        return;
-
-    }
-
-
-    /*
-     * Do not create the order here.
-     *
-     * The confirmation page is responsible
-     * for validating the latest Firestore
-     * menu data and creating the order.
-     */
-
-    placeOrderButton.disabled =
-        true;
-
-
-    window.location.href =
-        "order-confirmation.html" +
-        "?restaurantId=" +
-        encodeURIComponent(
+        localStorage.setItem(
+            "tableTapRestaurantId",
             restaurantId
-        ) +
-        "&tableNumber=" +
-        encodeURIComponent(
+        );
+
+
+        localStorage.setItem(
+            "tableTapTableNumber",
             tableNumber || ""
         );
 
-}
+    }
 
 
+    // ============================================================
+    // PLACE ORDER
+    // ============================================================
 
-/* =========================================================
-   EMPTY CART
-========================================================= */
+    window.placeOrder =
+        function() {
 
-function showEmptyCart() {
+            if (
+                Object.keys(cart).length === 0
+            ) {
 
-    cartSection.style.display =
-        "none";
+                return;
 
-
-    emptyCart.style.display =
-        "block";
-
-
-    bottomBar.style.display =
-        "none";
-
-}
+            }
 
 
+            window.location.href =
+                "order-confirmation.html" +
+                "?restaurantId=" +
+                encodeURIComponent(
+                    restaurantId
+                ) +
+                "&tableNumber=" +
+                encodeURIComponent(
+                    tableNumber || ""
+                );
 
-/* =========================================================
-   ERROR
-========================================================= */
-
-function showError(message) {
-
-    errorMessage.textContent =
-        message;
-
-
-    errorMessage.classList.add(
-        "show"
-    );
-
-}
+        };
 
 
+    // ============================================================
+    // BACK
+    // ============================================================
 
-/* =========================================================
-   ESCAPE HTML
-========================================================= */
+    window.goBack =
+        function() {
 
-function escapeHtml(value) {
+            window.location.href =
+                "menu.html" +
+                "?restaurantId=" +
+                encodeURIComponent(
+                    restaurantId
+                ) +
+                "&tableNumber=" +
+                encodeURIComponent(
+                    tableNumber || ""
+                );
 
-    return String(value)
+        };
 
-        .replaceAll(
-            "&",
-            "&amp;"
-        )
 
-        .replaceAll(
-            "<",
-            "&lt;"
-        )
+    // ============================================================
+    // EMPTY
+    // ============================================================
 
-        .replaceAll(
-            ">",
-            "&gt;"
-        )
+    function showEmptyCart() {
 
-        .replaceAll(
-            '"',
-            "&quot;"
-        )
+        loading.style.display =
+            "none";
 
-        .replaceAll(
-            "'",
-            "&#039;"
+        cartContent.style.display =
+            "none";
+
+        bottomBar.style.display =
+            "none";
+
+        emptyCart.style.display =
+            "block";
+
+    }
+
+
+    // ============================================================
+    // ERROR
+    // ============================================================
+
+    function showError(message) {
+
+        loading.style.display =
+            "none";
+
+        cartContent.style.display =
+            "none";
+
+        bottomBar.style.display =
+            "none";
+
+        emptyCart.style.display =
+            "none";
+
+        error.style.display =
+            "block";
+
+        error.textContent =
+            message;
+
+    }
+
+
+    // ============================================================
+    // WARNING
+    // ============================================================
+
+    function showWarning(message) {
+
+        warning.textContent =
+            message;
+
+        warning.style.display =
+            "block";
+
+
+        setTimeout(
+            () => {
+
+                warning.style.display =
+                    "none";
+
+            },
+            2500
         );
 
-}
-
-
-
-/* =========================================================
-   ESCAPE JAVASCRIPT
-========================================================= */
-
-function escapeJs(value) {
-
-    return String(value)
-        .replaceAll("\\", "\\\\")
-        .replaceAll("'", "\\'")
-        .replaceAll('"', '\\"');
-
-}
+    }
 
 </script>
-
 
 </body>
 
