@@ -691,8 +691,9 @@
 
     <!-- CART -->
 
-    <div id="cartSection"
-         style="display:none;">
+    <div
+        id="cartSection"
+        style="display:none;">
 
 
         <div class="section-title">
@@ -865,8 +866,7 @@
 
         <button
             class="place-order-btn"
-            id="placeOrderButton"
-            onclick="placeOrder()">
+            id="placeOrderButton">
 
             Place Order →
 
@@ -890,11 +890,8 @@
 import {
 
     collection,
-
     getDocs,
-
     doc,
-
     getDoc
 
 } from
@@ -982,6 +979,7 @@ const placeOrderButton =
     );
 
 
+
 /* =========================================================
    CART
 ========================================================= */
@@ -992,6 +990,7 @@ let cart =
             "tableTapCart"
         )
     ) || {};
+
 
 
 /* =========================================================
@@ -1035,7 +1034,6 @@ if (!restaurantId) {
 ========================================================= */
 
 function setupNavigation() {
-
 
     document
         .getElementById("backButton")
@@ -1081,6 +1079,12 @@ function setupNavigation() {
             }
         );
 
+
+    placeOrderButton.addEventListener(
+        "click",
+        placeOrder
+    );
+
 }
 
 
@@ -1096,7 +1100,6 @@ async function loadCart() {
 
 
     try {
-
 
         /* =========================================
            LOAD RESTAURANT
@@ -1182,10 +1185,25 @@ async function loadCart() {
                     document.data();
 
 
+                /*
+                 * IMPORTANT:
+                 *
+                 * document.id is the
+                 * canonical item ID.
+                 *
+                 * data.id is kept only
+                 * as a fallback for
+                 * older data.
+                 */
+
                 menuItems.push({
 
                     id:
                         document.id,
+
+                    fieldId:
+                        data.id ||
+                        "",
 
                     name:
                         data.name ||
@@ -1280,19 +1298,27 @@ function renderCart() {
             }
 
 
+            /*
+             * Match by Firestore document ID.
+             *
+             * Also support old cart data
+             * using data.id.
+             */
+
             const item =
                 menuItems.find(
                     menuItem =>
-                        menuItem.id === id
+                        menuItem.id === id ||
+                        menuItem.fieldId === id
                 );
 
 
-            /*
-            Item no longer exists
-            in restaurant menu.
-            */
-
             if (!item) {
+
+                console.warn(
+                    "Cart item not found:",
+                    id
+                );
 
                 return;
 
@@ -1335,10 +1361,8 @@ function renderCart() {
 
                 <img
                     class="food-image"
-                    src="${image}"
-                    alt="${escapeHtml(
-                        item.name
-                    )}"
+                    src="${escapeHtml(image)}"
+                    alt="${escapeHtml(item.name)}"
                     onerror="this.src='https://images.unsplash.com/photo-1547592180-85f173990554?auto=format&fit=crop&w=200&q=80'"
                 >
 
@@ -1347,9 +1371,7 @@ function renderCart() {
 
                     <div class="food-name">
 
-                        ${escapeHtml(
-                            item.name
-                        )}
+                        ${escapeHtml(item.name)}
 
                     </div>
 
@@ -1368,7 +1390,7 @@ function renderCart() {
 
                     <button
                         class="quantity-btn"
-                        onclick="decreaseItem('${id}')">
+                        onclick="decreaseItem('${escapeJs(id)}')">
 
                         −
 
@@ -1384,7 +1406,7 @@ function renderCart() {
 
                     <button
                         class="quantity-btn"
-                        onclick="increaseItem('${id}')">
+                        onclick="increaseItem('${escapeJs(id)}')">
 
                         +
 
@@ -1481,11 +1503,11 @@ function renderCart() {
 window.increaseItem =
     function(id) {
 
-
         const item =
             menuItems.find(
                 menuItem =>
-                    menuItem.id === id
+                    menuItem.id === id ||
+                    menuItem.fieldId === id
             );
 
 
@@ -1501,8 +1523,11 @@ window.increaseItem =
 
 
         /*
-        Do not exceed stock.
-        */
+         * Do not exceed stock.
+         *
+         * count > 0 means stock
+         * is being controlled.
+         */
 
         if (
             item.count > 0 &&
@@ -1536,7 +1561,6 @@ window.increaseItem =
 
 window.decreaseItem =
     function(id) {
-
 
         if (!cart[id]) {
 
@@ -1604,76 +1628,41 @@ function saveCart() {
    PLACE ORDER
 ========================================================= */
 
-window.placeOrder =
-    function() {
+function placeOrder() {
+
+    if (
+        Object.keys(cart).length === 0
+    ) {
+
+        return;
+
+    }
 
 
-        if (
-            Object.keys(cart).length === 0
-        ) {
+    /*
+     * Do not create the order here.
+     *
+     * The confirmation page is responsible
+     * for validating the latest Firestore
+     * menu data and creating the order.
+     */
 
-            return;
-
-        }
-
-
-        /*
-        We are NOT creating the Firestore
-        order yet.
-
-        Next step:
-        create:
-
-        restaurants/{restaurantId}/orders/{orderId}
-
-        */
-
-        const orderData = {
-
-            restaurantId:
-                restaurantId,
-
-            tableNumber:
-                Number(
-                    tableNumber || 0
-                ),
-
-            items:
-                cart,
-
-            createdAt:
-                Date.now()
-
-        };
+    placeOrderButton.disabled =
+        true;
 
 
-        localStorage.setItem(
-
-            "tableTapOrder",
-
-            JSON.stringify(
-                orderData
-            )
-
+    window.location.href =
+        "order-confirmation.html" +
+        "?restaurantId=" +
+        encodeURIComponent(
+            restaurantId
+        ) +
+        "&tableNumber=" +
+        encodeURIComponent(
+            tableNumber || ""
         );
 
-
-        /*
-        Temporary navigation.
-        */
-
-        window.location.href =
-            "order-confirmation.html" +
-            "?restaurantId=" +
-            encodeURIComponent(
-                restaurantId
-            ) +
-            "&tableNumber=" +
-            encodeURIComponent(
-                tableNumber || ""
-            );
-
-    };
+}
 
 
 
@@ -1748,6 +1737,21 @@ function escapeHtml(value) {
             "'",
             "&#039;"
         );
+
+}
+
+
+
+/* =========================================================
+   ESCAPE JAVASCRIPT
+========================================================= */
+
+function escapeJs(value) {
+
+    return String(value)
+        .replaceAll("\\", "\\\\")
+        .replaceAll("'", "\\'")
+        .replaceAll('"', '\\"');
 
 }
 
