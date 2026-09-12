@@ -1,6 +1,8 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
+
     <meta charset="UTF-8">
 
     <meta
@@ -10,6 +12,7 @@
 
     <title>Order Confirmed - TableTap</title>
 
+
     <style>
 
         * {
@@ -18,29 +21,123 @@
             padding: 0;
         }
 
+
         body {
+
             font-family: Arial, sans-serif;
+
             background: #f7f7f7;
+
             color: #222;
         }
 
+
         .container {
+
             max-width: 520px;
+
             margin: auto;
+
             padding: 25px 16px 40px;
         }
+
+
+        /* =========================
+           LOADING
+        ========================== */
+
+        .loading {
+
+            text-align: center;
+
+            padding: 80px 20px;
+
+            color: #777;
+
+            font-size: 14px;
+        }
+
+
+        /* =========================
+           ERROR
+        ========================== */
+
+        .error {
+
+            display: none;
+
+            text-align: center;
+
+            padding: 50px 20px;
+        }
+
+
+        .error.show {
+
+            display: block;
+        }
+
+
+        .error-icon {
+
+            width: 70px;
+
+            height: 70px;
+
+            margin: 0 auto 20px;
+
+            border-radius: 50%;
+
+            background: #eeeeee;
+
+            display: flex;
+
+            align-items: center;
+
+            justify-content: center;
+
+            font-size: 32px;
+        }
+
+
+        .error-title {
+
+            font-size: 21px;
+
+            font-weight: 700;
+
+            margin-bottom: 8px;
+        }
+
+
+        .error-message {
+
+            color: #777;
+
+            font-size: 14px;
+
+            line-height: 1.5;
+
+            margin-bottom: 25px;
+        }
+
 
         /* =========================
            SUCCESS
         ========================== */
 
         .success-section {
+
             text-align: center;
+
             padding: 25px 10px 30px;
         }
 
+
         .success-icon {
+
             width: 75px;
+
             height: 75px;
 
             margin: 0 auto 18px;
@@ -48,25 +145,35 @@
             border-radius: 50%;
 
             background: #111;
+
             color: white;
 
             display: flex;
+
             align-items: center;
+
             justify-content: center;
 
             font-size: 38px;
         }
 
+
         .success-title {
+
             font-size: 25px;
+
             font-weight: 700;
 
             margin-bottom: 8px;
         }
 
+
         .success-message {
+
             color: #777;
+
             font-size: 14px;
+
             line-height: 1.5;
         }
 
@@ -76,6 +183,7 @@
         ========================== */
 
         .order-id-card {
+
             background: #ffffff;
 
             border-radius: 16px;
@@ -89,15 +197,21 @@
             margin-bottom: 15px;
         }
 
+
         .order-id-label {
+
             font-size: 12px;
+
             color: #777;
 
             margin-bottom: 8px;
         }
 
+
         .order-id {
+
             font-size: 24px;
+
             font-weight: 700;
 
             letter-spacing: 1px;
@@ -109,6 +223,7 @@
         ========================== */
 
         .table-card {
+
             background: #ffffff;
 
             border-radius: 14px;
@@ -116,7 +231,9 @@
             padding: 16px;
 
             display: flex;
+
             justify-content: space-between;
+
             align-items: center;
 
             border: 1px solid #eeeeee;
@@ -124,14 +241,36 @@
             margin-bottom: 20px;
         }
 
+
         .table-label {
+
             font-size: 12px;
+
             color: #777;
         }
 
+
         .table-number {
+
             font-size: 17px;
+
             font-weight: 700;
+        }
+
+
+        /* =========================
+           RESTAURANT
+        ========================== */
+
+        .restaurant-name {
+
+            text-align: center;
+
+            font-size: 14px;
+
+            color: #777;
+
+            margin-bottom: 20px;
         }
 
 
@@ -140,13 +279,17 @@
         ========================== */
 
         .section-title {
+
             font-size: 18px;
+
             font-weight: 700;
 
             margin-bottom: 12px;
         }
 
+
         .order-card {
+
             background: #ffffff;
 
             border-radius: 14px;
@@ -158,31 +301,50 @@
             margin-bottom: 18px;
         }
 
+
         .order-item {
+
             display: flex;
+
             justify-content: space-between;
+
+            gap: 15px;
 
             padding: 12px 0;
 
             border-bottom: 1px solid #eeeeee;
         }
 
+
         .order-item:last-child {
+
             border-bottom: none;
         }
 
+
         .item-name {
+
             font-size: 14px;
+
+            flex: 1;
         }
 
+
         .item-quantity {
+
             color: #777;
+
             margin-left: 5px;
         }
 
+
         .item-price {
+
             font-size: 14px;
+
             font-weight: 600;
+
+            white-space: nowrap;
         }
 
 
@@ -191,12 +353,15 @@
         ========================== */
 
         .total-row {
+
             display: flex;
+
             justify-content: space-between;
 
             padding-top: 15px;
 
             font-size: 18px;
+
             font-weight: 700;
         }
 
@@ -206,6 +371,7 @@
         ========================== */
 
         .status-card {
+
             background: #ffffff;
 
             border-radius: 14px;
@@ -217,8 +383,11 @@
             margin-bottom: 20px;
         }
 
+
         .status-header {
+
             display: flex;
+
             align-items: center;
 
             gap: 10px;
@@ -226,8 +395,11 @@
             margin-bottom: 8px;
         }
 
+
         .status-dot {
+
             width: 10px;
+
             height: 10px;
 
             border-radius: 50%;
@@ -235,13 +407,19 @@
             background: #222;
         }
 
+
         .status-title {
+
             font-size: 16px;
+
             font-weight: 700;
         }
 
+
         .status-message {
+
             font-size: 13px;
+
             color: #777;
 
             line-height: 1.5;
@@ -253,11 +431,13 @@
         ========================== */
 
         .menu-btn {
+
             width: 100%;
 
             border: none;
 
             background: #111;
+
             color: #ffffff;
 
             padding: 15px;
@@ -265,12 +445,15 @@
             border-radius: 10px;
 
             font-size: 15px;
+
             font-weight: 600;
 
             cursor: pointer;
         }
 
+
         .menu-btn:active {
+
             transform: scale(0.98);
         }
 
@@ -280,6 +463,7 @@
         ========================== */
 
         .footer {
+
             text-align: center;
 
             margin-top: 25px;
@@ -290,331 +474,1034 @@
         }
 
     </style>
+
 </head>
 
+
 <body>
+
 
 <div class="container">
 
 
     <!-- =========================
-         SUCCESS
+         LOADING
     ========================== -->
 
-    <section class="success-section">
+    <div
+        class="loading"
+        id="loading">
 
-        <div class="success-icon">
-            ✓
-        </div>
+        Sending your order...
 
-        <div class="success-title">
-            Order Placed!
-        </div>
+    </div>
 
-        <div class="success-message">
-            Your order has been successfully sent
-            to the kitchen.
-        </div>
-
-    </section>
 
 
     <!-- =========================
-         ORDER ID
+         ERROR
     ========================== -->
 
-    <div class="order-id-card">
+    <div
+        class="error"
+        id="errorSection">
 
-        <div class="order-id-label">
-            Your Order ID
+
+        <div class="error-icon">
+
+            ✕
+
         </div>
+
+
+        <div class="error-title">
+
+            Order Failed
+
+        </div>
+
 
         <div
-            class="order-id"
-            id="orderId">
+            class="error-message"
+            id="errorMessage">
 
-            TT000000
+            We couldn't place your order.
 
         </div>
+
+
+        <button
+            class="menu-btn"
+            onclick="backToCart()">
+
+            Back to Cart
+
+        </button>
+
 
     </div>
 
 
+
     <!-- =========================
-         TABLE
+         SUCCESS CONTENT
     ========================== -->
 
-    <div class="table-card">
+    <div
+        id="successContent"
+        style="display:none;">
 
-        <div>
 
-            <div class="table-label">
-                Table
+        <!-- RESTAURANT -->
+
+        <div
+            class="restaurant-name"
+            id="restaurantName">
+
+            Restaurant
+
+        </div>
+
+
+
+        <!-- SUCCESS -->
+
+        <section class="success-section">
+
+
+            <div class="success-icon">
+
+                ✓
+
             </div>
+
+
+            <div class="success-title">
+
+                Order Placed!
+
+            </div>
+
+
+            <div class="success-message">
+
+                Your order has been successfully sent
+                to the kitchen.
+
+            </div>
+
+
+        </section>
+
+
+
+        <!-- ORDER ID -->
+
+        <div class="order-id-card">
+
+
+            <div class="order-id-label">
+
+                Your Order ID
+
+            </div>
+
 
             <div
-                class="table-number"
-                id="tableNumber">
+                class="order-id"
+                id="orderId">
 
-                Table 4
+                TK-A482
 
             </div>
 
-        </div>
-
-        <div style="font-size: 24px;">
-            🍽️
-        </div>
-
-    </div>
-
-
-    <!-- =========================
-         ORDER DETAILS
-    ========================== -->
-
-    <div class="section-title">
-        Order Details
-    </div>
-
-    <div class="order-card">
-
-        <div id="orderItems"></div>
-
-        <div class="total-row">
-
-            <span>
-                Total
-            </span>
-
-            <span id="orderTotal">
-                ₹0
-            </span>
 
         </div>
 
-    </div>
 
 
-    <!-- =========================
-         STATUS
-    ========================== -->
+        <!-- TABLE -->
 
-    <div class="status-card">
+        <div class="table-card">
 
-        <div class="status-header">
 
-            <div class="status-dot"></div>
+            <div>
 
-            <div class="status-title">
-                Order Received
+                <div class="table-label">
+
+                    Table
+
+                </div>
+
+
+                <div
+                    class="table-number"
+                    id="tableNumber">
+
+                    Table -
+
+                </div>
+
             </div>
 
+
+            <div style="font-size: 24px;">
+
+                🍽️
+
+            </div>
+
+
         </div>
 
-        <div class="status-message">
-            The restaurant has received your order.
-            Please wait while our kitchen prepares
-            your food.
+
+
+        <!-- ORDER DETAILS -->
+
+        <div class="section-title">
+
+            Order Details
+
         </div>
+
+
+        <div class="order-card">
+
+
+            <div id="orderItems"></div>
+
+
+            <div class="total-row">
+
+
+                <span>
+
+                    Total
+
+                </span>
+
+
+                <span id="orderTotal">
+
+                    ₹0
+
+                </span>
+
+
+            </div>
+
+
+        </div>
+
+
+
+        <!-- STATUS -->
+
+        <div class="status-card">
+
+
+            <div class="status-header">
+
+
+                <div class="status-dot"></div>
+
+
+                <div class="status-title">
+
+                    Order Received
+
+                </div>
+
+
+            </div>
+
+
+            <div class="status-message">
+
+                The restaurant has received your
+                order. Please wait while our kitchen
+                prepares your food.
+
+            </div>
+
+
+        </div>
+
+
+
+        <!-- ORDER MORE -->
+
+        <button
+            class="menu-btn"
+            onclick="backToMenu()">
+
+            Order More Food
+
+        </button>
+
+
+
+        <div class="footer">
+
+            Powered by TableTap · Scan. Order. Serve.
+
+        </div>
+
 
     </div>
 
-
-    <!-- =========================
-         BACK TO MENU
-    ========================== -->
-
-    <button
-        class="menu-btn"
-        onclick="backToMenu()">
-
-        Order More Food
-
-    </button>
-
-
-    <div class="footer">
-        Powered by TableTap · Scan. Order. Serve.
-    </div>
 
 </div>
 
 
-<script>
 
-    /* =========================
-       MENU DATA
-    ========================== */
-
-    const menu = {
-
-        dosa: {
-            name: "Masala Dosa",
-            price: 80
-        },
-
-        idly: {
-            name: "Idly",
-            price: 50
-        },
-
-        briyani: {
-            name: "Chicken Briyani",
-            price: 180
-        },
-
-        parotta: {
-            name: "Parotta",
-            price: 60
-        },
-
-        coffee: {
-            name: "Filter Coffee",
-            price: 40
-        }
-
-    };
+<script type="module">
 
 
-    /* =========================
-       GET ORDER
-    ========================== */
+/* =========================================================
+   FIREBASE
+========================================================= */
 
-    const order =
-        JSON.parse(
-            localStorage.getItem("tableTapOrder")
-        );
+import {
 
+    collection,
 
-    /* =========================
-       DISPLAY ORDER
-    ========================== */
+    getDocs,
 
-    function displayOrder() {
+    doc,
 
-        if (!order) {
-            return;
-        }
+    getDoc,
 
+    setDoc
 
-        /* Order ID */
-
-        document.getElementById("orderId")
-            .textContent =
-                order.orderId;
+} from
+"https://www.gstatic.com/firebasejs/12.2.1/firebase-firestore.js";
 
 
-        /* Table */
-
-        document.getElementById("tableNumber")
-            .textContent =
-                `Table ${order.tableNumber}`;
+import { db } from "./firebase.js";
 
 
-        const orderItems =
-            document.getElementById("orderItems");
+
+/* =========================================================
+   URL PARAMETERS
+========================================================= */
+
+const params =
+    new URLSearchParams(
+        window.location.search
+    );
 
 
-        orderItems.innerHTML = "";
+const restaurantId =
+    params.get("restaurantId");
 
 
-        let total = 0;
+const tableNumber =
+    params.get("tableNumber");
 
 
-        for (const id in order.items) {
 
-            const quantity =
-                order.items[id];
+/* =========================================================
+   ELEMENTS
+========================================================= */
 
-            if (
-                !menu[id] ||
-                quantity <= 0
-            ) {
-                continue;
-            }
+const loading =
+    document.getElementById(
+        "loading"
+    );
 
 
-            const item =
-                menu[id];
+const errorSection =
+    document.getElementById(
+        "errorSection"
+    );
 
 
-            const itemTotal =
-                item.price * quantity;
+const errorMessage =
+    document.getElementById(
+        "errorMessage"
+    );
 
 
-            total += itemTotal;
+const successContent =
+    document.getElementById(
+        "successContent"
+    );
 
 
-            const itemElement =
-                document.createElement("div");
+const restaurantName =
+    document.getElementById(
+        "restaurantName"
+    );
 
 
-            itemElement.className =
-                "order-item";
+const orderIdElement =
+    document.getElementById(
+        "orderId"
+    );
 
 
-            itemElement.innerHTML = `
-
-                <div class="item-name">
-
-                    ${item.name}
-
-                    <span class="item-quantity">
-                        × ${quantity}
-                    </span>
-
-                </div>
-
-                <div class="item-price">
-                    ₹${itemTotal}
-                </div>
-
-            `;
+const tableNumberElement =
+    document.getElementById(
+        "tableNumber"
+    );
 
 
-            orderItems.appendChild(
-                itemElement
+const orderItemsElement =
+    document.getElementById(
+        "orderItems"
+    );
+
+
+const orderTotalElement =
+    document.getElementById(
+        "orderTotal"
+    );
+
+
+
+/* =========================================================
+   CART
+========================================================= */
+
+const cart =
+    JSON.parse(
+        localStorage.getItem(
+            "tableTapCart"
+        )
+    ) || {};
+
+
+
+/* =========================================================
+   START
+========================================================= */
+
+createOrder();
+
+
+
+/* =========================================================
+   CREATE ORDER
+========================================================= */
+
+async function createOrder() {
+
+
+    try {
+
+
+        /* =========================================
+           VALIDATION
+        ========================================= */
+
+        if (!restaurantId) {
+
+            throw new Error(
+                "Restaurant information is missing."
             );
 
         }
 
 
-        document.getElementById("orderTotal")
-            .textContent =
-                `₹${total}`;
+        if (!tableNumber) {
 
-    }
+            throw new Error(
+                "Table information is missing."
+            );
+
+        }
 
 
-    /* =========================
-       BACK TO MENU
-    ========================== */
+        if (
+            Object.keys(cart).length === 0
+        ) {
 
-    function backToMenu() {
+            throw new Error(
+                "Your cart is empty."
+            );
 
-        /*
-         * Clear previous cart so customer
-         * can create a fresh order.
-         */
+        }
+
+
+
+        /* =========================================
+           LOAD RESTAURANT
+        ========================================= */
+
+        const restaurantRef =
+            doc(
+                db,
+                "restaurants",
+                restaurantId
+            );
+
+
+        const restaurantSnapshot =
+            await getDoc(
+                restaurantRef
+            );
+
+
+        if (
+            restaurantSnapshot.exists()
+        ) {
+
+            const restaurant =
+                restaurantSnapshot.data();
+
+
+            restaurantName.textContent =
+                restaurant.restaurantName ||
+                "Restaurant";
+
+        }
+
+
+
+        /* =========================================
+           LOAD MY MENU
+        ========================================= */
+
+        const myMenuRef =
+            collection(
+                db,
+                "restaurants",
+                restaurantId,
+                "myMenu"
+            );
+
+
+        const menuSnapshot =
+            await getDocs(
+                myMenuRef
+            );
+
+
+        const menuItems = [];
+
+
+        menuSnapshot.forEach(
+            document => {
+
+                const data =
+                    document.data();
+
+
+                menuItems.push({
+
+                    id:
+                        document.id,
+
+                    name:
+                        data.name ||
+                        "Food Item",
+
+                    price:
+                        Number(
+                            data.price || 0
+                        ),
+
+                    count:
+                        Number(
+                            data.count || 0
+                        )
+
+                });
+
+            }
+        );
+
+
+
+        /* =========================================
+           BUILD ORDER ITEMS
+        ========================================= */
+
+        const orderItems = [];
+
+
+        let totalAmount = 0;
+
+
+        for (
+            const itemId in cart
+        ) {
+
+
+            const quantity =
+                Number(
+                    cart[itemId]
+                );
+
+
+            if (
+                quantity <= 0
+            ) {
+
+                continue;
+
+            }
+
+
+            const item =
+                menuItems.find(
+                    menuItem =>
+                        menuItem.id === itemId
+                );
+
+
+            if (!item) {
+
+                throw new Error(
+                    "Some selected items are no longer available."
+                );
+
+            }
+
+
+            /*
+             * Check stock
+             */
+
+            if (
+                item.count > 0 &&
+                quantity > item.count
+            ) {
+
+                throw new Error(
+                    `${item.name} has only ${item.count} available.`
+                );
+
+            }
+
+
+            const itemTotal =
+                item.price *
+                quantity;
+
+
+            totalAmount +=
+                itemTotal;
+
+
+            orderItems.push({
+
+                itemId:
+                    item.id,
+
+                name:
+                    item.name,
+
+                quantity:
+                    quantity,
+
+                price:
+                    item.price
+
+            });
+
+        }
+
+
+
+        if (
+            orderItems.length === 0
+        ) {
+
+            throw new Error(
+                "No valid items found in your cart."
+            );
+
+        }
+
+
+
+        /* =========================================
+           GENERATE ORDER ID
+        ========================================= */
+
+        const orderId =
+            generateOrderId();
+
+
+        const now =
+            Date.now();
+
+
+
+        /* =========================================
+           TABLE ID
+        ========================================= */
+
+        const tableId =
+            "table_" +
+            tableNumber;
+
+
+
+        /* =========================================
+           FIRESTORE ORDER
+        ========================================= */
+
+        const order = {
+
+            orderId:
+                orderId,
+
+            tableId:
+                tableId,
+
+            tableNumber:
+                Number(
+                    tableNumber
+                ),
+
+            items:
+                orderItems,
+
+            totalAmount:
+                totalAmount,
+
+            status:
+                "NEW",
+
+            orderType:
+                "DINE_IN",
+
+            createdAt:
+                now,
+
+            updatedAt:
+                now
+
+        };
+
+
+
+        console.log(
+            "Creating order:",
+            order
+        );
+
+
+
+        /* =========================================
+           WRITE TO FIRESTORE
+        ========================================= */
+
+        await setDoc(
+
+            doc(
+                db,
+                "restaurants",
+                restaurantId,
+                "orders",
+                orderId
+            ),
+
+            order
+
+        );
+
+
+
+        /* =========================================
+           DISPLAY SUCCESS
+        ========================================= */
+
+        orderIdElement.textContent =
+            orderId;
+
+
+        tableNumberElement.textContent =
+            "Table " +
+            tableNumber;
+
+
+        renderOrderItems(
+            orderItems,
+            totalAmount
+        );
+
+
+        loading.style.display =
+            "none";
+
+
+        errorSection.classList.remove(
+            "show"
+        );
+
+
+        successContent.style.display =
+            "block";
+
+
+
+        /* =========================================
+           CLEAR CART
+        ========================================= */
 
         localStorage.removeItem(
             "tableTapCart"
         );
 
-        window.location.href =
-            "menu.html";
+
+        localStorage.setItem(
+            "tableTapLastOrderId",
+            orderId
+        );
+
+
+        localStorage.setItem(
+            "tableTapOrder",
+            JSON.stringify(
+                order
+            )
+        );
+
+
+    } catch (error) {
+
+
+        console.error(
+            "Order creation failed:",
+            error
+        );
+
+
+        showError(
+            error.message ||
+            "Unable to place your order."
+        );
 
     }
 
+}
 
-    /* =========================
-       INITIALIZE
-    ========================== */
 
-    displayOrder();
+
+/* =========================================================
+   GENERATE ORDER ID
+========================================================= */
+
+function generateOrderId() {
+
+    const letters =
+        "ABCDEFGHJKLMNPQRTUVWXYZ";
+
+
+    const randomLetter =
+        letters[
+            Math.floor(
+                Math.random() *
+                letters.length
+            )
+        ];
+
+
+    const randomNumber =
+        Math.floor(
+            Math.random() * 900
+        ) + 100;
+
+
+    return (
+        "TK-" +
+        randomLetter +
+        randomNumber
+    );
+
+}
+
+
+
+/* =========================================================
+   RENDER ORDER ITEMS
+========================================================= */
+
+function renderOrderItems(
+    items,
+    total
+) {
+
+
+    orderItemsElement.innerHTML =
+        "";
+
+
+    items.forEach(
+        item => {
+
+
+            const itemTotal =
+                item.price *
+                item.quantity;
+
+
+            const element =
+                document.createElement(
+                    "div"
+                );
+
+
+            element.className =
+                "order-item";
+
+
+            element.innerHTML = `
+
+                <div class="item-name">
+
+                    ${escapeHtml(
+                        item.name
+                    )}
+
+                    <span class="item-quantity">
+
+                        × ${item.quantity}
+
+                    </span>
+
+                </div>
+
+
+                <div class="item-price">
+
+                    ₹${itemTotal}
+
+                </div>
+
+            `;
+
+
+            orderItemsElement.appendChild(
+                element
+            );
+
+        }
+    );
+
+
+    orderTotalElement.textContent =
+        "₹" + total;
+
+}
+
+
+
+/* =========================================================
+   ERROR
+========================================================= */
+
+function showError(message) {
+
+
+    loading.style.display =
+        "none";
+
+
+    successContent.style.display =
+        "none";
+
+
+    errorMessage.textContent =
+        message;
+
+
+    errorSection.classList.add(
+        "show"
+    );
+
+}
+
+
+
+/* =========================================================
+   BACK TO CART
+========================================================= */
+
+window.backToCart =
+    function() {
+
+
+        window.location.href =
+            "cart.html" +
+            "?restaurantId=" +
+            encodeURIComponent(
+                restaurantId
+            ) +
+            "&tableNumber=" +
+            encodeURIComponent(
+                tableNumber || ""
+            );
+
+    };
+
+
+
+/* =========================================================
+   BACK TO MENU
+========================================================= */
+
+window.backToMenu =
+    function() {
+
+
+        window.location.href =
+            "menu.html" +
+            "?restaurantId=" +
+            encodeURIComponent(
+                restaurantId
+            ) +
+            "&tableNumber=" +
+            encodeURIComponent(
+                tableNumber || ""
+            );
+
+    };
+
+
+
+/* =========================================================
+   ESCAPE HTML
+========================================================= */
+
+function escapeHtml(value) {
+
+    return String(value)
+
+        .replaceAll(
+            "&",
+            "&amp;"
+        )
+
+        .replaceAll(
+            "<",
+            "&lt;"
+        )
+
+        .replaceAll(
+            ">",
+            "&gt;"
+        )
+
+        .replaceAll(
+            '"',
+            "&quot;"
+        )
+
+        .replaceAll(
+            "'",
+            "&#039;"
+        );
+
+}
 
 </script>
 
+
 </body>
+
 </html>
