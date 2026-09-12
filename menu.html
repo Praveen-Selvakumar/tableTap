@@ -93,6 +93,8 @@
             justify-content: center;
 
             font-size: 19px;
+
+            cursor: pointer;
         }
 
 
@@ -538,6 +540,10 @@
 <main>
 
 
+    <!-- =====================================================
+         HEADER
+    ====================================================== -->
+
     <header>
 
         <a
@@ -561,7 +567,10 @@
         </div>
 
 
-        <div class="cart-icon">
+        <div
+            class="cart-icon"
+            id="cartIcon"
+        >
 
             🛒
 
@@ -570,6 +579,10 @@
     </header>
 
 
+
+    <!-- =====================================================
+         RESTAURANT INFO
+    ====================================================== -->
 
     <section class="restaurant-info">
 
@@ -600,6 +613,10 @@
 
 
 
+    <!-- =====================================================
+         CATEGORIES
+    ====================================================== -->
+
     <div
         class="categories"
         id="categories"
@@ -608,6 +625,10 @@
     </div>
 
 
+
+    <!-- =====================================================
+         MENU
+    ====================================================== -->
 
     <section class="menu-section">
 
@@ -655,6 +676,10 @@
     </section>
 
 
+
+    <!-- =====================================================
+         ORDER BAR
+    ====================================================== -->
 
     <div class="order-bar">
 
@@ -813,10 +838,32 @@ const backButton =
     );
 
 
+const cartIcon =
+    document.getElementById(
+        "cartIcon"
+    );
+
+
 
 /* =========================================================
    CART
 ========================================================= */
+
+/*
+ * IMPORTANT:
+ *
+ * Every time menu.html is opened,
+ * the cart starts completely empty.
+ *
+ * Therefore:
+ *
+ * Item 1 = 0
+ * Item 2 = 0
+ * Item 3 = 0
+ * ...
+ *
+ * Old localStorage cart will NOT be loaded here.
+ */
 
 let cart = {};
 
@@ -829,56 +876,6 @@ let cart = {};
 let menuItems = [];
 
 let selectedCategory = "All";
-
-
-
-/* =========================================================
-   LOAD OLD CART
-========================================================= */
-
-const savedCart =
-    localStorage.getItem(
-        "tableTapCart"
-    );
-
-
-if (savedCart) {
-
-    try {
-
-        const parsedCart =
-            JSON.parse(
-                savedCart
-            );
-
-
-        if (
-            parsedCart &&
-            typeof parsedCart === "object" &&
-            !Array.isArray(parsedCart)
-        ) {
-
-            cart = parsedCart;
-
-        }
-
-    } catch (error) {
-
-        console.warn(
-            "Invalid saved cart. Clearing it."
-        );
-
-
-        localStorage.removeItem(
-            "tableTapCart"
-        );
-
-
-        cart = {};
-
-    }
-
-}
 
 
 
@@ -951,6 +948,7 @@ async function loadRestaurant() {
 
             restaurantName.textContent =
                 data.restaurantName ||
+                data.name ||
                 "Restaurant";
 
 
@@ -1037,8 +1035,8 @@ async function loadMyMenu() {
                 /*
                  * IMPORTANT:
                  *
-                 * document.id is the
-                 * ONLY canonical cart ID.
+                 * Firestore document.id
+                 * is the ONLY canonical ID.
                  */
 
                 menuItems.push({
@@ -1086,15 +1084,6 @@ async function loadMyMenu() {
         );
 
 
-
-        /* =================================================
-           CLEAN OLD CART
-        ================================================= */
-
-        cleanCartAgainstCurrentMenu();
-
-
-
         loading.style.display =
             "none";
 
@@ -1135,74 +1124,6 @@ async function loadMyMenu() {
 
         showError(
             "Unable to load menu."
-        );
-
-    }
-
-}
-
-
-
-/* =========================================================
-   CLEAN CART
-========================================================= */
-
-function cleanCartAgainstCurrentMenu() {
-
-    /*
-     * Build a Set containing only the
-     * current Firestore document IDs.
-     */
-
-    const validMenuIds =
-        new Set(
-            menuItems.map(
-                item => item.id
-            )
-        );
-
-
-    let changed = false;
-
-
-    /*
-     * Remove anything from localStorage
-     * that doesn't belong to this restaurant's
-     * current myMenu.
-     */
-
-    Object.keys(cart).forEach(
-        cartItemId => {
-
-            if (
-                !validMenuIds.has(
-                    cartItemId
-                )
-            ) {
-
-                console.warn(
-                    "Removing stale cart item:",
-                    cartItemId
-                );
-
-
-                delete cart[cartItemId];
-
-
-                changed = true;
-
-            }
-
-        }
-    );
-
-
-    if (changed) {
-
-        saveCart();
-
-        console.log(
-            "Cart cleaned successfully."
         );
 
     }
@@ -1347,8 +1268,13 @@ function renderMenu() {
                 "https://images.unsplash.com/photo-1547592180-85f173990554?auto=format&fit=crop&w=300&q=80";
 
 
-            const quantity =
-                cart[item.id] || 0;
+            /*
+             * IMPORTANT:
+             *
+             * Cart always starts at zero.
+             */
+
+            const quantity = 0;
 
 
             card.innerHTML = `
@@ -1486,8 +1412,6 @@ window.addItem =
 
         /*
          * Stock validation.
-         *
-         * Current rule:
          *
          * count > 0 = stock controlled
          * count = 0 = unlimited/unknown
@@ -1627,6 +1551,10 @@ function updateUI() {
 
 function saveCart() {
 
+    /*
+     * Save only the items currently selected.
+     */
+
     localStorage.setItem(
 
         "tableTapCart",
@@ -1695,6 +1623,30 @@ window.goToCart =
             );
 
     };
+
+
+
+/* =========================================================
+   CART ICON
+========================================================= */
+
+cartIcon.addEventListener(
+    "click",
+    () => {
+
+        if (
+            Object.keys(cart).length === 0
+        ) {
+
+            return;
+
+        }
+
+
+        goToCart();
+
+    }
+);
 
 
 
