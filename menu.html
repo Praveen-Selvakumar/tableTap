@@ -34,10 +34,6 @@
         }
 
 
-        /* =========================
-           HEADER
-        ========================= */
-
         header {
 
             height: 64px;
@@ -100,10 +96,6 @@
         }
 
 
-        /* =========================
-           RESTAURANT
-        ========================= */
-
         .restaurant-info {
 
             padding: 22px 20px 10px;
@@ -145,10 +137,6 @@
             font-weight: 600;
         }
 
-
-        /* =========================
-           CATEGORIES
-        ========================= */
 
         .categories {
 
@@ -200,10 +188,6 @@
         }
 
 
-        /* =========================
-           MENU
-        ========================= */
-
         .menu-section {
 
             padding: 5px 20px;
@@ -220,10 +204,6 @@
         }
 
 
-        /* =========================
-           LOADING
-        ========================= */
-
         .loading {
 
             text-align: center;
@@ -235,10 +215,6 @@
             font-size: 14px;
         }
 
-
-        /* =========================
-           ERROR
-        ========================= */
 
         .error {
 
@@ -266,10 +242,6 @@
         }
 
 
-        /* =========================
-           EMPTY
-        ========================= */
-
         .empty {
 
             display: none;
@@ -289,10 +261,6 @@
             display: block;
         }
 
-
-        /* =========================
-           FOOD CARD
-        ========================= */
 
         .food-card {
 
@@ -382,10 +350,6 @@
         }
 
 
-        /* =========================
-           QUANTITY
-        ========================= */
-
         .quantity {
 
             display: flex;
@@ -435,10 +399,6 @@
             font-weight: bold;
         }
 
-
-        /* =========================
-           BOTTOM ORDER BAR
-        ========================= */
 
         .order-bar {
 
@@ -526,10 +486,6 @@
         }
 
 
-        /* =========================
-           DESKTOP
-        ========================= */
-
         @media (min-width: 700px) {
 
             body {
@@ -582,10 +538,6 @@
 <main>
 
 
-    <!-- =========================
-         HEADER
-    ========================= -->
-
     <header>
 
         <a
@@ -593,7 +545,9 @@
             class="back"
             id="backButton"
         >
+
             ←
+
         </a>
 
 
@@ -601,7 +555,9 @@
             class="header-title"
             id="headerTitle"
         >
+
             Menu
+
         </div>
 
 
@@ -614,10 +570,6 @@
     </header>
 
 
-
-    <!-- =========================
-         RESTAURANT
-    ========================= -->
 
     <section class="restaurant-info">
 
@@ -648,24 +600,14 @@
 
 
 
-    <!-- =========================
-         CATEGORIES
-    ========================= -->
-
     <div
         class="categories"
         id="categories"
     >
 
-        <!-- Categories generated dynamically -->
-
     </div>
 
 
-
-    <!-- =========================
-         MENU
-    ========================= -->
 
     <section class="menu-section">
 
@@ -707,18 +649,12 @@
 
         <div id="menuContainer">
 
-            <!-- Firestore items generated here -->
-
         </div>
 
 
     </section>
 
 
-
-    <!-- =========================
-         BOTTOM ORDER BAR
-    ========================= -->
 
     <div class="order-bar">
 
@@ -789,7 +725,7 @@ import { db } from "./firebase.js";
 
 
 /* =========================================================
-   URL PARAMETERS
+   URL
 ========================================================= */
 
 const params =
@@ -885,9 +821,20 @@ const backButton =
 let cart = {};
 
 
-/*
-Restore previous cart if available
-*/
+
+/* =========================================================
+   MENU
+========================================================= */
+
+let menuItems = [];
+
+let selectedCategory = "All";
+
+
+
+/* =========================================================
+   LOAD OLD CART
+========================================================= */
 
 const savedCart =
     localStorage.getItem(
@@ -899,12 +846,33 @@ if (savedCart) {
 
     try {
 
-        cart =
+        const parsedCart =
             JSON.parse(
                 savedCart
             );
 
-    } catch {
+
+        if (
+            parsedCart &&
+            typeof parsedCart === "object" &&
+            !Array.isArray(parsedCart)
+        ) {
+
+            cart = parsedCart;
+
+        }
+
+    } catch (error) {
+
+        console.warn(
+            "Invalid saved cart. Clearing it."
+        );
+
+
+        localStorage.removeItem(
+            "tableTapCart"
+        );
+
 
         cart = {};
 
@@ -915,17 +883,7 @@ if (savedCart) {
 
 
 /* =========================================================
-   MENU DATA
-========================================================= */
-
-let menuItems = [];
-
-let selectedCategory = "All";
-
-
-
-/* =========================================================
-   URL VALIDATION
+   VALIDATE URL
 ========================================================= */
 
 if (!restaurantId) {
@@ -935,6 +893,7 @@ if (!restaurantId) {
     );
 
 } else {
+
 
     if (tableNumber) {
 
@@ -1061,8 +1020,8 @@ async function loadMyMenu() {
 
 
                 /*
-                Only show available items
-                */
+                 * Only available items.
+                 */
 
                 const isAvailable =
                     data.isAvailable !== false;
@@ -1075,9 +1034,17 @@ async function loadMyMenu() {
                 }
 
 
+                /*
+                 * IMPORTANT:
+                 *
+                 * document.id is the
+                 * ONLY canonical cart ID.
+                 */
+
                 menuItems.push({
 
-                    id: document.id,
+                    id:
+                        document.id,
 
                     name:
                         data.name ||
@@ -1114,9 +1081,18 @@ async function loadMyMenu() {
 
 
         console.log(
-            "My Menu:",
+            "Current restaurant menu:",
             menuItems
         );
+
+
+
+        /* =================================================
+           CLEAN OLD CART
+        ================================================= */
+
+        cleanCartAgainstCurrentMenu();
+
 
 
         loading.style.display =
@@ -1130,6 +1106,8 @@ async function loadMyMenu() {
             emptyMessage.classList.add(
                 "show"
             );
+
+            updateUI();
 
             return;
 
@@ -1166,29 +1144,97 @@ async function loadMyMenu() {
 
 
 /* =========================================================
-   CREATE CATEGORIES
+   CLEAN CART
+========================================================= */
+
+function cleanCartAgainstCurrentMenu() {
+
+    /*
+     * Build a Set containing only the
+     * current Firestore document IDs.
+     */
+
+    const validMenuIds =
+        new Set(
+            menuItems.map(
+                item => item.id
+            )
+        );
+
+
+    let changed = false;
+
+
+    /*
+     * Remove anything from localStorage
+     * that doesn't belong to this restaurant's
+     * current myMenu.
+     */
+
+    Object.keys(cart).forEach(
+        cartItemId => {
+
+            if (
+                !validMenuIds.has(
+                    cartItemId
+                )
+            ) {
+
+                console.warn(
+                    "Removing stale cart item:",
+                    cartItemId
+                );
+
+
+                delete cart[cartItemId];
+
+
+                changed = true;
+
+            }
+
+        }
+    );
+
+
+    if (changed) {
+
+        saveCart();
+
+        console.log(
+            "Cart cleaned successfully."
+        );
+
+    }
+
+}
+
+
+
+/* =========================================================
+   CATEGORIES
 ========================================================= */
 
 function createCategories() {
 
-    categoriesContainer.innerHTML = "";
+    categoriesContainer.innerHTML =
+        "";
 
 
-    /*
-    Get unique categories
-    */
+    const categories = [
 
-    const categories =
-        [
-            "All",
-            ...new Set(
-                menuItems
-                    .map(item =>
+        "All",
+
+        ...new Set(
+            menuItems
+                .map(
+                    item =>
                         item.category
-                    )
-                    .filter(Boolean)
-            )
-        ];
+                )
+                .filter(Boolean)
+        )
+
+    ];
 
 
     categories.forEach(
@@ -1266,12 +1312,15 @@ function createCategories() {
 
 function renderMenu() {
 
-    menuContainer.innerHTML = "";
+    menuContainer.innerHTML =
+        "";
 
 
     const filteredItems =
         selectedCategory === "All"
+
             ? menuItems
+
             : menuItems.filter(
                 item =>
                     item.category ===
@@ -1281,6 +1330,7 @@ function renderMenu() {
 
     filteredItems.forEach(
         item => {
+
 
             const card =
                 document.createElement(
@@ -1305,7 +1355,7 @@ function renderMenu() {
 
                 <img
                     class="food-image"
-                    src="${image}"
+                    src="${escapeHtml(image)}"
                     alt="${escapeHtml(item.name)}"
                     onerror="this.src='https://images.unsplash.com/photo-1547592180-85f173990554?auto=format&fit=crop&w=300&q=80'"
                 >
@@ -1318,7 +1368,9 @@ function renderMenu() {
 
                         <div class="food-name">
 
-                            ${escapeHtml(item.name)}
+                            ${escapeHtml(
+                                item.name
+                            )}
 
                         </div>
 
@@ -1334,6 +1386,7 @@ function renderMenu() {
                     </div>
 
 
+
                     <div class="food-bottom">
 
 
@@ -1344,11 +1397,12 @@ function renderMenu() {
                         </div>
 
 
+
                         <div class="quantity">
 
 
                             <button
-                                onclick="removeItem('${item.id}')"
+                                onclick="removeItem('${escapeJs(item.id)}')"
                             >
 
                                 −
@@ -1357,7 +1411,7 @@ function renderMenu() {
 
 
                             <span
-                                id="qty-${item.id}"
+                                id="qty-${escapeHtml(item.id)}"
                             >
 
                                 ${quantity}
@@ -1367,7 +1421,7 @@ function renderMenu() {
 
                             <button
                                 class="plus"
-                                onclick="addItem('${item.id}')"
+                                onclick="addItem('${escapeJs(item.id)}')"
                             >
 
                                 +
@@ -1404,6 +1458,7 @@ function renderMenu() {
 window.addItem =
     function(id) {
 
+
         const item =
             menuItems.find(
                 menuItem =>
@@ -1413,23 +1468,38 @@ window.addItem =
 
         if (!item) {
 
+            console.error(
+                "Menu item not found:",
+                id
+            );
+
             return;
 
         }
 
 
         const currentQuantity =
-            cart[id] || 0;
+            Number(
+                cart[id] || 0
+            );
 
 
         /*
-        Do not allow order quantity
-        above available stock.
-        */
+         * Stock validation.
+         *
+         * Current rule:
+         *
+         * count > 0 = stock controlled
+         * count = 0 = unlimited/unknown
+         */
 
         if (
+
             item.count > 0 &&
-            currentQuantity >= item.count
+
+            currentQuantity >=
+            item.count
+
         ) {
 
             alert(
@@ -1462,6 +1532,7 @@ window.addItem =
 window.removeItem =
     function(id) {
 
+
         if (!cart[id]) {
 
             return;
@@ -1472,7 +1543,9 @@ window.removeItem =
         cart[id]--;
 
 
-        if (cart[id] <= 0) {
+        if (
+            cart[id] <= 0
+        ) {
 
             delete cart[id];
 
@@ -1501,17 +1574,23 @@ function updateUI() {
     menuItems.forEach(
         item => {
 
+
             const quantity =
-                cart[item.id] || 0;
+                Number(
+                    cart[item.id] || 0
+                );
 
 
             const quantityElement =
                 document.getElementById(
-                    "qty-" + item.id
+                    "qty-" +
+                    item.id
                 );
 
 
-            if (quantityElement) {
+            if (
+                quantityElement
+            ) {
 
                 quantityElement.innerText =
                     quantity;
@@ -1552,15 +1631,12 @@ function saveCart() {
 
         "tableTapCart",
 
-        JSON.stringify(cart)
+        JSON.stringify(
+            cart
+        )
 
     );
 
-
-    /*
-    Store restaurant/table information
-    so cart.html knows where this order belongs.
-    */
 
     localStorage.setItem(
 
@@ -1590,6 +1666,7 @@ function saveCart() {
 window.goToCart =
     function() {
 
+
         if (
             Object.keys(cart).length === 0
         ) {
@@ -1604,11 +1681,15 @@ window.goToCart =
 
         window.location.href =
             "cart.html" +
+
             "?restaurantId=" +
+
             encodeURIComponent(
                 restaurantId
             ) +
+
             "&tableNumber=" +
+
             encodeURIComponent(
                 tableNumber || ""
             );
@@ -1626,6 +1707,7 @@ function showError(message) {
     errorMessage.textContent =
         message;
 
+
     errorMessage.classList.add(
         "show"
     );
@@ -1641,9 +1723,16 @@ function showError(message) {
 function formatCategory(category) {
 
     return category
-        .replaceAll("_", " ")
-        .replace(/\b\w/g, char =>
-            char.toUpperCase()
+
+        .replaceAll(
+            "_",
+            " "
+        )
+
+        .replace(
+            /\b\w/g,
+            char =>
+                char.toUpperCase()
         );
 
 }
@@ -1651,17 +1740,64 @@ function formatCategory(category) {
 
 
 /* =========================================================
-   HTML ESCAPE
+   ESCAPE HTML
 ========================================================= */
 
 function escapeHtml(value) {
 
     return String(value)
-        .replaceAll("&", "&amp;")
-        .replaceAll("<", "&lt;")
-        .replaceAll(">", "&gt;")
-        .replaceAll('"', "&quot;")
-        .replaceAll("'", "&#039;");
+
+        .replaceAll(
+            "&",
+            "&amp;"
+        )
+
+        .replaceAll(
+            "<",
+            "&lt;"
+        )
+
+        .replaceAll(
+            ">",
+            "&gt;"
+        )
+
+        .replaceAll(
+            '"',
+            "&quot;"
+        )
+
+        .replaceAll(
+            "'",
+            "&#039;"
+        );
+
+}
+
+
+
+/* =========================================================
+   ESCAPE JAVASCRIPT
+========================================================= */
+
+function escapeJs(value) {
+
+    return String(value)
+
+        .replaceAll(
+            "\\",
+            "\\\\"
+        )
+
+        .replaceAll(
+            "'",
+            "\\'"
+        )
+
+        .replaceAll(
+            '"',
+            '\\"'
+        );
 
 }
 
