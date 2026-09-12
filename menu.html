@@ -2,10 +2,16 @@
 <html lang="en">
 
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-    <title>Menu - Sri Saravana Bhavan</title>
+    <meta charset="UTF-8">
+
+    <meta
+        name="viewport"
+        content="width=device-width, initial-scale=1.0"
+    >
+
+    <title>Menu</title>
+
 
     <style>
 
@@ -15,24 +21,33 @@
             padding: 0;
         }
 
+
         body {
+
             font-family: Arial, sans-serif;
+
             background: #faf8f4;
+
             color: #24211f;
+
             padding-bottom: 95px;
         }
+
 
         /* =========================
            HEADER
         ========================= */
 
         header {
+
             height: 64px;
 
             background: white;
 
             display: flex;
+
             align-items: center;
+
             justify-content: space-between;
 
             padding: 0 20px;
@@ -40,23 +55,35 @@
             border-bottom: 1px solid #eee9e3;
 
             position: sticky;
+
             top: 0;
+
             z-index: 10;
         }
 
+
         .back {
+
             font-size: 22px;
+
             text-decoration: none;
+
             color: #24211f;
         }
 
+
         .header-title {
+
             font-size: 18px;
+
             font-weight: bold;
         }
 
+
         .cart-icon {
+
             width: 40px;
+
             height: 40px;
 
             background: #f4efe9;
@@ -64,7 +91,9 @@
             border-radius: 12px;
 
             display: flex;
+
             align-items: center;
+
             justify-content: center;
 
             font-size: 19px;
@@ -76,14 +105,19 @@
         ========================= */
 
         .restaurant-info {
+
             padding: 22px 20px 10px;
         }
 
+
         .restaurant-info h1 {
+
             font-size: 26px;
         }
 
+
         .restaurant-info p {
+
             margin-top: 7px;
 
             color: #777;
@@ -94,8 +128,26 @@
         }
 
 
+        .table-info {
+
+            margin-top: 10px;
+
+            display: inline-block;
+
+            background: #f4efe9;
+
+            padding: 7px 12px;
+
+            border-radius: 10px;
+
+            font-size: 12px;
+
+            font-weight: 600;
+        }
+
+
         /* =========================
-           CATEGORY
+           CATEGORIES
         ========================= */
 
         .categories {
@@ -111,9 +163,12 @@
             scrollbar-width: none;
         }
 
+
         .categories::-webkit-scrollbar {
+
             display: none;
         }
+
 
         .category {
 
@@ -130,7 +185,10 @@
             font-size: 12px;
 
             font-weight: 600;
+
+            cursor: pointer;
         }
+
 
         .category.active {
 
@@ -151,6 +209,7 @@
             padding: 5px 20px;
         }
 
+
         .section-title {
 
             font-size: 19px;
@@ -158,6 +217,76 @@
             font-weight: bold;
 
             margin-bottom: 14px;
+        }
+
+
+        /* =========================
+           LOADING
+        ========================= */
+
+        .loading {
+
+            text-align: center;
+
+            padding: 50px 20px;
+
+            color: #888;
+
+            font-size: 14px;
+        }
+
+
+        /* =========================
+           ERROR
+        ========================= */
+
+        .error {
+
+            display: none;
+
+            margin: 20px;
+
+            padding: 15px;
+
+            border-radius: 12px;
+
+            background: #fff0ed;
+
+            color: #c0392b;
+
+            font-size: 13px;
+
+            text-align: center;
+        }
+
+
+        .error.show {
+
+            display: block;
+        }
+
+
+        /* =========================
+           EMPTY
+        ========================= */
+
+        .empty {
+
+            display: none;
+
+            text-align: center;
+
+            padding: 50px 20px;
+
+            color: #888;
+
+            font-size: 14px;
+        }
+
+
+        .empty.show {
+
+            display: block;
         }
 
 
@@ -184,9 +313,11 @@
             min-height: 125px;
         }
 
+
         .food-image {
 
             width: 105px;
+
             height: 105px;
 
             flex-shrink: 0;
@@ -194,7 +325,10 @@
             border-radius: 14px;
 
             object-fit: cover;
+
+            background: #eee;
         }
+
 
         .food-details {
 
@@ -207,12 +341,14 @@
             justify-content: space-between;
         }
 
+
         .food-name {
 
             font-size: 15px;
 
             font-weight: bold;
         }
+
 
         .food-description {
 
@@ -225,6 +361,7 @@
             margin-top: 5px;
         }
 
+
         .food-bottom {
 
             display: flex;
@@ -235,6 +372,7 @@
 
             margin-top: 8px;
         }
+
 
         .price {
 
@@ -257,9 +395,11 @@
             gap: 10px;
         }
 
+
         .quantity button {
 
             width: 30px;
+
             height: 30px;
 
             border: none;
@@ -275,12 +415,14 @@
             cursor: pointer;
         }
 
+
         .quantity button.plus {
 
             background: #e85d04;
 
             color: white;
         }
+
 
         .quantity span {
 
@@ -303,7 +445,9 @@
             position: fixed;
 
             bottom: 0;
+
             left: 0;
+
             right: 0;
 
             background: white;
@@ -314,6 +458,7 @@
 
             z-index: 20;
         }
+
 
         .order-container {
 
@@ -328,10 +473,12 @@
             gap: 12px;
         }
 
+
         .total {
 
             flex: 1;
         }
+
 
         .total-label {
 
@@ -339,6 +486,7 @@
 
             color: #888;
         }
+
 
         .total-price {
 
@@ -348,6 +496,7 @@
 
             margin-top: 3px;
         }
+
 
         .order-button {
 
@@ -368,6 +517,7 @@
             cursor: pointer;
         }
 
+
         .order-button:disabled {
 
             background: #cfc8c1;
@@ -383,8 +533,10 @@
         @media (min-width: 700px) {
 
             body {
+
                 background: #eeeae5;
             }
+
 
             main {
 
@@ -397,6 +549,7 @@
                 min-height: 100vh;
             }
 
+
             header {
 
                 max-width: 520px;
@@ -404,8 +557,10 @@
                 margin: auto;
 
                 left: 0;
+
                 right: 0;
             }
+
 
             .order-bar {
 
@@ -423,6 +578,7 @@
 
 <body>
 
+
 <main>
 
 
@@ -432,19 +588,31 @@
 
     <header>
 
-        <a href="index.html" class="back">
+        <a
+            href="#"
+            class="back"
+            id="backButton"
+        >
             ←
         </a>
 
-        <div class="header-title">
+
+        <div
+            class="header-title"
+            id="headerTitle"
+        >
             Menu
         </div>
 
+
         <div class="cart-icon">
+
             🛒
+
         </div>
 
     </header>
+
 
 
     <!-- =========================
@@ -453,45 +621,46 @@
 
     <section class="restaurant-info">
 
-        <h1>
-            Sri Saravana Bhavan
+        <h1 id="restaurantName">
+
+            Loading...
+
         </h1>
 
-        <p>
-            Authentic South Indian food, freshly prepared
-            and served hot.
+
+        <p id="restaurantDescription">
+
+            Loading menu...
+
         </p>
 
+
+        <div
+            class="table-info"
+            id="tableInfo"
+        >
+
+            Table -
+
+        </div>
+
     </section>
+
 
 
     <!-- =========================
          CATEGORIES
     ========================= -->
 
-    <div class="categories">
+    <div
+        class="categories"
+        id="categories"
+    >
 
-        <div class="category active">
-            All
-        </div>
-
-        <div class="category">
-            Breakfast
-        </div>
-
-        <div class="category">
-            Main Course
-        </div>
-
-        <div class="category">
-            Snacks
-        </div>
-
-        <div class="category">
-            Drinks
-        </div>
+        <!-- Categories generated dynamically -->
 
     </div>
+
 
 
     <!-- =========================
@@ -500,287 +669,51 @@
 
     <section class="menu-section">
 
+
         <div class="section-title">
-            Popular
-        </div>
 
-
-        <!-- DOSA -->
-
-        <div class="food-card">
-
-            <img
-                class="food-image"
-                src="https://images.unsplash.com/photo-1630383249896-424e482df921?auto=format&fit=crop&w=300&q=80"
-            >
-
-            <div class="food-details">
-
-                <div>
-
-                    <div class="food-name">
-                        Masala Dosa
-                    </div>
-
-                    <div class="food-description">
-                        Crispy dosa served with potato masala,
-                        sambar and chutney.
-                    </div>
-
-                </div>
-
-                <div class="food-bottom">
-
-                    <div class="price">
-                        ₹80
-                    </div>
-
-                    <div class="quantity">
-
-                        <button onclick="removeItem('dosa')">
-                            −
-                        </button>
-
-                        <span id="qty-dosa">
-                            0
-                        </span>
-
-                        <button
-                            class="plus"
-                            onclick="addItem('dosa')">
-                            +
-                        </button>
-
-                    </div>
-
-                </div>
-
-            </div>
+            Menu
 
         </div>
 
 
-        <!-- IDLY -->
+        <div
+            class="loading"
+            id="loading"
+        >
 
-        <div class="food-card">
-
-            <img
-                class="food-image"
-                src="https://images.unsplash.com/photo-1589301760014-d929f3979dbc?auto=format&fit=crop&w=300&q=80"
-            >
-
-            <div class="food-details">
-
-                <div>
-
-                    <div class="food-name">
-                        Idly
-                    </div>
-
-                    <div class="food-description">
-                        Soft steamed idlis served with
-                        sambar and coconut chutney.
-                    </div>
-
-                </div>
-
-                <div class="food-bottom">
-
-                    <div class="price">
-                        ₹50
-                    </div>
-
-                    <div class="quantity">
-
-                        <button onclick="removeItem('idly')">
-                            −
-                        </button>
-
-                        <span id="qty-idly">
-                            0
-                        </span>
-
-                        <button
-                            class="plus"
-                            onclick="addItem('idly')">
-                            +
-                        </button>
-
-                    </div>
-
-                </div>
-
-            </div>
+            Loading menu...
 
         </div>
 
 
-        <!-- BRIYANI -->
-
-        <div class="food-card">
-
-            <img
-                class="food-image"
-                src="https://images.unsplash.com/photo-1563379091339-03246963d51a?auto=format&fit=crop&w=300&q=80"
-            >
-
-            <div class="food-details">
-
-                <div>
-
-                    <div class="food-name">
-                        Chicken Briyani
-                    </div>
-
-                    <div class="food-description">
-                        Fragrant basmati rice cooked with
-                        tender chicken and aromatic spices.
-                    </div>
-
-                </div>
-
-                <div class="food-bottom">
-
-                    <div class="price">
-                        ₹180
-                    </div>
-
-                    <div class="quantity">
-
-                        <button onclick="removeItem('briyani')">
-                            −
-                        </button>
-
-                        <span id="qty-briyani">
-                            0
-                        </span>
-
-                        <button
-                            class="plus"
-                            onclick="addItem('briyani')">
-                            +
-                        </button>
-
-                    </div>
-
-                </div>
-
-            </div>
+        <div
+            class="error"
+            id="errorMessage"
+        >
 
         </div>
 
 
-        <!-- PAROTTA -->
+        <div
+            class="empty"
+            id="emptyMessage"
+        >
 
-        <div class="food-card">
-
-            <img
-                class="food-image"
-                src="https://images.unsplash.com/photo-1601050690597-df0568f70950?auto=format&fit=crop&w=300&q=80"
-            >
-
-            <div class="food-details">
-
-                <div>
-
-                    <div class="food-name">
-                        Parotta
-                    </div>
-
-                    <div class="food-description">
-                        Flaky layered parotta served with
-                        delicious vegetable kurma.
-                    </div>
-
-                </div>
-
-                <div class="food-bottom">
-
-                    <div class="price">
-                        ₹60
-                    </div>
-
-                    <div class="quantity">
-
-                        <button onclick="removeItem('parotta')">
-                            −
-                        </button>
-
-                        <span id="qty-parotta">
-                            0
-                        </span>
-
-                        <button
-                            class="plus"
-                            onclick="addItem('parotta')">
-                            +
-                        </button>
-
-                    </div>
-
-                </div>
-
-            </div>
+            No menu items available.
 
         </div>
 
 
-        <!-- COFFEE -->
+        <div id="menuContainer">
 
-        <div class="food-card">
-
-            <img
-                class="food-image"
-                src="https://images.unsplash.com/photo-1514432324607-a09d9b4aefdd?auto=format&fit=crop&w=300&q=80"
-            >
-
-            <div class="food-details">
-
-                <div>
-
-                    <div class="food-name">
-                        Filter Coffee
-                    </div>
-
-                    <div class="food-description">
-                        Traditional South Indian filter coffee
-                        served hot.
-                    </div>
-
-                </div>
-
-                <div class="food-bottom">
-
-                    <div class="price">
-                        ₹40
-                    </div>
-
-                    <div class="quantity">
-
-                        <button onclick="removeItem('coffee')">
-                            −
-                        </button>
-
-                        <span id="qty-coffee">
-                            0
-                        </span>
-
-                        <button
-                            class="plus"
-                            onclick="addItem('coffee')">
-                            +
-                        </button>
-
-                    </div>
-
-                </div>
-
-            </div>
+            <!-- Firestore items generated here -->
 
         </div>
 
 
     </section>
+
 
 
     <!-- =========================
@@ -791,29 +724,40 @@
 
         <div class="order-container">
 
+
             <div class="total">
 
                 <div class="total-label">
+
                     Total
+
                 </div>
+
 
                 <div
                     class="total-price"
-                    id="total">
+                    id="total"
+                >
+
                     ₹0
+
                 </div>
 
             </div>
+
+
 
             <button
                 class="order-button"
                 id="orderButton"
                 onclick="goToCart()"
-                disabled>
+                disabled
+            >
 
                 Order →
 
             </button>
+
 
         </div>
 
@@ -823,123 +767,903 @@
 </main>
 
 
-<script>
 
-    const menu = {
+<script type="module">
 
-        dosa: {
-            name: "Masala Dosa",
-            price: 80
-        },
 
-        idly: {
-            name: "Idly",
-            price: 50
-        },
+/* =========================================================
+   FIREBASE
+========================================================= */
 
-        briyani: {
-            name: "Chicken Briyani",
-            price: 180
-        },
+import {
+    collection,
+    getDocs,
+    doc,
+    getDoc
+} from
+"https://www.gstatic.com/firebasejs/12.2.1/firebase-firestore.js";
 
-        parotta: {
-            name: "Parotta",
-            price: 60
-        },
 
-        coffee: {
-            name: "Filter Coffee",
-            price: 40
+import { db } from "./firebase.js";
+
+
+
+/* =========================================================
+   URL PARAMETERS
+========================================================= */
+
+const params =
+    new URLSearchParams(
+        window.location.search
+    );
+
+
+const restaurantId =
+    params.get("restaurantId");
+
+
+const tableNumber =
+    params.get("tableNumber");
+
+
+
+/* =========================================================
+   ELEMENTS
+========================================================= */
+
+const restaurantName =
+    document.getElementById(
+        "restaurantName"
+    );
+
+
+const restaurantDescription =
+    document.getElementById(
+        "restaurantDescription"
+    );
+
+
+const tableInfo =
+    document.getElementById(
+        "tableInfo"
+    );
+
+
+const menuContainer =
+    document.getElementById(
+        "menuContainer"
+    );
+
+
+const categoriesContainer =
+    document.getElementById(
+        "categories"
+    );
+
+
+const loading =
+    document.getElementById(
+        "loading"
+    );
+
+
+const errorMessage =
+    document.getElementById(
+        "errorMessage"
+    );
+
+
+const emptyMessage =
+    document.getElementById(
+        "emptyMessage"
+    );
+
+
+const totalElement =
+    document.getElementById(
+        "total"
+    );
+
+
+const orderButton =
+    document.getElementById(
+        "orderButton"
+    );
+
+
+const backButton =
+    document.getElementById(
+        "backButton"
+    );
+
+
+
+/* =========================================================
+   CART
+========================================================= */
+
+let cart = {};
+
+
+/*
+Restore previous cart if available
+*/
+
+const savedCart =
+    localStorage.getItem(
+        "tableTapCart"
+    );
+
+
+if (savedCart) {
+
+    try {
+
+        cart =
+            JSON.parse(
+                savedCart
+            );
+
+    } catch {
+
+        cart = {};
+
+    }
+
+}
+
+
+
+/* =========================================================
+   MENU DATA
+========================================================= */
+
+let menuItems = [];
+
+let selectedCategory = "All";
+
+
+
+/* =========================================================
+   URL VALIDATION
+========================================================= */
+
+if (!restaurantId) {
+
+    showError(
+        "Restaurant ID is missing."
+    );
+
+} else {
+
+    if (tableNumber) {
+
+        tableInfo.textContent =
+            "Table " + tableNumber;
+
+    }
+
+
+    backButton.href =
+        "index.html" +
+        "?restaurantId=" +
+        encodeURIComponent(
+            restaurantId
+        ) +
+        "&tableNumber=" +
+        encodeURIComponent(
+            tableNumber || ""
+        );
+
+
+    loadRestaurant();
+
+}
+
+
+
+/* =========================================================
+   LOAD RESTAURANT
+========================================================= */
+
+async function loadRestaurant() {
+
+    try {
+
+        const restaurantRef =
+            doc(
+                db,
+                "restaurants",
+                restaurantId
+            );
+
+
+        const snapshot =
+            await getDoc(
+                restaurantRef
+            );
+
+
+        if (snapshot.exists()) {
+
+            const data =
+                snapshot.data();
+
+
+            restaurantName.textContent =
+                data.restaurantName ||
+                "Restaurant";
+
+
+            restaurantDescription.textContent =
+                data.description ||
+                "Freshly prepared food served with care.";
+
         }
+
+
+        await loadMyMenu();
+
+
+    } catch (error) {
+
+        console.error(
+            "Restaurant loading error:",
+            error
+        );
+
+
+        showError(
+            "Unable to load restaurant."
+        );
+
+    }
+
+}
+
+
+
+/* =========================================================
+   LOAD MY MENU
+========================================================= */
+
+async function loadMyMenu() {
+
+    loading.style.display =
+        "block";
+
+
+    try {
+
+        const myMenuRef =
+            collection(
+                db,
+                "restaurants",
+                restaurantId,
+                "myMenu"
+            );
+
+
+        const snapshot =
+            await getDocs(
+                myMenuRef
+            );
+
+
+        menuItems = [];
+
+
+        snapshot.forEach(
+            document => {
+
+                const data =
+                    document.data();
+
+
+                /*
+                Only show available items
+                */
+
+                const isAvailable =
+                    data.isAvailable !== false;
+
+
+                if (!isAvailable) {
+
+                    return;
+
+                }
+
+
+                menuItems.push({
+
+                    id: document.id,
+
+                    name:
+                        data.name ||
+                        "Food Item",
+
+                    description:
+                        data.des ||
+                        data.description ||
+                        "",
+
+                    price:
+                        Number(
+                            data.price || 0
+                        ),
+
+                    category:
+                        data.category ||
+                        "Other",
+
+                    count:
+                        Number(
+                            data.count || 0
+                        ),
+
+                    image:
+                        data.image ||
+                        data.imageUrl ||
+                        ""
+
+                });
+
+            }
+        );
+
+
+        console.log(
+            "My Menu:",
+            menuItems
+        );
+
+
+        loading.style.display =
+            "none";
+
+
+        if (
+            menuItems.length === 0
+        ) {
+
+            emptyMessage.classList.add(
+                "show"
+            );
+
+            return;
+
+        }
+
+
+        createCategories();
+
+        renderMenu();
+
+        updateUI();
+
+
+    } catch (error) {
+
+        console.error(
+            "My Menu loading error:",
+            error
+        );
+
+
+        loading.style.display =
+            "none";
+
+
+        showError(
+            "Unable to load menu."
+        );
+
+    }
+
+}
+
+
+
+/* =========================================================
+   CREATE CATEGORIES
+========================================================= */
+
+function createCategories() {
+
+    categoriesContainer.innerHTML = "";
+
+
+    /*
+    Get unique categories
+    */
+
+    const categories =
+        [
+            "All",
+            ...new Set(
+                menuItems
+                    .map(item =>
+                        item.category
+                    )
+                    .filter(Boolean)
+            )
+        ];
+
+
+    categories.forEach(
+        category => {
+
+            const element =
+                document.createElement(
+                    "div"
+                );
+
+
+            element.className =
+                "category" +
+                (
+                    category === "All"
+                        ? " active"
+                        : ""
+                );
+
+
+            element.textContent =
+                formatCategory(
+                    category
+                );
+
+
+            element.addEventListener(
+                "click",
+                () => {
+
+                    selectedCategory =
+                        category;
+
+
+                    document
+                        .querySelectorAll(
+                            ".category"
+                        )
+                        .forEach(
+                            item => {
+
+                                item.classList.remove(
+                                    "active"
+                                );
+
+                            }
+                        );
+
+
+                    element.classList.add(
+                        "active"
+                    );
+
+
+                    renderMenu();
+
+                }
+            );
+
+
+            categoriesContainer.appendChild(
+                element
+            );
+
+        }
+    );
+
+}
+
+
+
+/* =========================================================
+   RENDER MENU
+========================================================= */
+
+function renderMenu() {
+
+    menuContainer.innerHTML = "";
+
+
+    const filteredItems =
+        selectedCategory === "All"
+            ? menuItems
+            : menuItems.filter(
+                item =>
+                    item.category ===
+                    selectedCategory
+            );
+
+
+    filteredItems.forEach(
+        item => {
+
+            const card =
+                document.createElement(
+                    "div"
+                );
+
+
+            card.className =
+                "food-card";
+
+
+            const image =
+                item.image ||
+                "https://images.unsplash.com/photo-1547592180-85f173990554?auto=format&fit=crop&w=300&q=80";
+
+
+            const quantity =
+                cart[item.id] || 0;
+
+
+            card.innerHTML = `
+
+                <img
+                    class="food-image"
+                    src="${image}"
+                    alt="${escapeHtml(item.name)}"
+                    onerror="this.src='https://images.unsplash.com/photo-1547592180-85f173990554?auto=format&fit=crop&w=300&q=80'"
+                >
+
+
+                <div class="food-details">
+
+
+                    <div>
+
+                        <div class="food-name">
+
+                            ${escapeHtml(item.name)}
+
+                        </div>
+
+
+                        <div class="food-description">
+
+                            ${escapeHtml(
+                                item.description
+                            )}
+
+                        </div>
+
+                    </div>
+
+
+                    <div class="food-bottom">
+
+
+                        <div class="price">
+
+                            ₹${item.price}
+
+                        </div>
+
+
+                        <div class="quantity">
+
+
+                            <button
+                                onclick="removeItem('${item.id}')"
+                            >
+
+                                −
+
+                            </button>
+
+
+                            <span
+                                id="qty-${item.id}"
+                            >
+
+                                ${quantity}
+
+                            </span>
+
+
+                            <button
+                                class="plus"
+                                onclick="addItem('${item.id}')"
+                            >
+
+                                +
+
+                            </button>
+
+
+                        </div>
+
+
+                    </div>
+
+
+                </div>
+
+            `;
+
+
+            menuContainer.appendChild(
+                card
+            );
+
+        }
+    );
+
+}
+
+
+
+/* =========================================================
+   ADD ITEM
+========================================================= */
+
+window.addItem =
+    function(id) {
+
+        const item =
+            menuItems.find(
+                menuItem =>
+                    menuItem.id === id
+            );
+
+
+        if (!item) {
+
+            return;
+
+        }
+
+
+        const currentQuantity =
+            cart[id] || 0;
+
+
+        /*
+        Do not allow order quantity
+        above available stock.
+        */
+
+        if (
+            item.count > 0 &&
+            currentQuantity >= item.count
+        ) {
+
+            alert(
+                "Only " +
+                item.count +
+                " available."
+            );
+
+            return;
+
+        }
+
+
+        cart[id] =
+            currentQuantity + 1;
+
+
+        saveCart();
+
+        updateUI();
 
     };
 
 
-    let cart = {};
 
+/* =========================================================
+   REMOVE ITEM
+========================================================= */
 
-    function addItem(id) {
-
-        if (!cart[id]) {
-            cart[id] = 0;
-        }
-
-        cart[id]++;
-
-        updateUI();
-
-    }
-
-
-    function removeItem(id) {
+window.removeItem =
+    function(id) {
 
         if (!cart[id]) {
+
             return;
+
         }
+
 
         cart[id]--;
 
+
         if (cart[id] <= 0) {
+
             delete cart[id];
+
         }
+
+
+        saveCart();
 
         updateUI();
 
-    }
+    };
 
 
-    function updateUI() {
 
-        let total = 0;
-        let itemCount = 0;
+/* =========================================================
+   UPDATE UI
+========================================================= */
 
+function updateUI() {
 
-        Object.keys(menu).forEach(id => {
+    let total = 0;
 
-            const quantity = cart[id] || 0;
-
-            document.getElementById(
-                "qty-" + id
-            ).innerText = quantity;
-
-            total += menu[id].price * quantity;
-
-            itemCount += quantity;
-
-        });
+    let itemCount = 0;
 
 
-        document.getElementById("total")
-            .innerText = "₹" + total;
+    menuItems.forEach(
+        item => {
+
+            const quantity =
+                cart[item.id] || 0;
 
 
-        const orderButton =
-            document.getElementById("orderButton");
+            const quantityElement =
+                document.getElementById(
+                    "qty-" + item.id
+                );
 
 
-        orderButton.disabled =
-            itemCount === 0;
+            if (quantityElement) {
 
-    }
+                quantityElement.innerText =
+                    quantity;
+
+            }
 
 
-    function goToCart() {
+            total +=
+                item.price *
+                quantity;
 
-        if (Object.keys(cart).length === 0) {
+
+            itemCount +=
+                quantity;
+
+        }
+    );
+
+
+    totalElement.innerText =
+        "₹" + total;
+
+
+    orderButton.disabled =
+        itemCount === 0;
+
+}
+
+
+
+/* =========================================================
+   SAVE CART
+========================================================= */
+
+function saveCart() {
+
+    localStorage.setItem(
+
+        "tableTapCart",
+
+        JSON.stringify(cart)
+
+    );
+
+
+    /*
+    Store restaurant/table information
+    so cart.html knows where this order belongs.
+    */
+
+    localStorage.setItem(
+
+        "tableTapRestaurantId",
+
+        restaurantId
+
+    );
+
+
+    localStorage.setItem(
+
+        "tableTapTableNumber",
+
+        tableNumber || ""
+
+    );
+
+}
+
+
+
+/* =========================================================
+   GO TO CART
+========================================================= */
+
+window.goToCart =
+    function() {
+
+        if (
+            Object.keys(cart).length === 0
+        ) {
+
             return;
+
         }
 
 
-        localStorage.setItem(
-            "tableTapCart",
-            JSON.stringify(cart)
-        );
+        saveCart();
 
 
         window.location.href =
-            "cart.html";
+            "cart.html" +
+            "?restaurantId=" +
+            encodeURIComponent(
+                restaurantId
+            ) +
+            "&tableNumber=" +
+            encodeURIComponent(
+                tableNumber || ""
+            );
 
-    }
+    };
+
+
+
+/* =========================================================
+   ERROR
+========================================================= */
+
+function showError(message) {
+
+    errorMessage.textContent =
+        message;
+
+    errorMessage.classList.add(
+        "show"
+    );
+
+}
+
+
+
+/* =========================================================
+   CATEGORY FORMAT
+========================================================= */
+
+function formatCategory(category) {
+
+    return category
+        .replaceAll("_", " ")
+        .replace(/\b\w/g, char =>
+            char.toUpperCase()
+        );
+
+}
+
+
+
+/* =========================================================
+   HTML ESCAPE
+========================================================= */
+
+function escapeHtml(value) {
+
+    return String(value)
+        .replaceAll("&", "&amp;")
+        .replaceAll("<", "&lt;")
+        .replaceAll(">", "&gt;")
+        .replaceAll('"', "&quot;")
+        .replaceAll("'", "&#039;");
+
+}
 
 </script>
 
